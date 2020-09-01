@@ -17,6 +17,11 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        stage('Sonar') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=779a91a78162e4aaed4fdace5388882d35716ccf'
+            }
+        }        
 
     }
 }

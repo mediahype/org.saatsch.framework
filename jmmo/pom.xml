@@ -16,8 +16,8 @@
 
    <modules>
     <module>core</module>
-<!--     <module>base-game</module>
     <module>data-editor</module>
- -->  </modules>
+    <module>base-game</module>
+  </modules>
 
 </project>
