@@ -9,9 +9,9 @@ import de.osrg.tools.apiclient.model.MethodCallVO;
 
 public class CmdRenameCall extends AbstractTreeRenamer {
 
-  private ApiClientMainUI client;
+  private ApiClientMainC client;
 
-  public CmdRenameCall(ApiClientMainUI apiClientMainUI) {
+  public CmdRenameCall(ApiClientMainC apiClientMainUI) {
     this.client = apiClientMainUI;
   }
   

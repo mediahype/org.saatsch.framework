@@ -7,9 +7,9 @@ import de.osrg.tools.apiclient.ApiClientUserData;
 
 public class CmdNewCall extends SelectionAdapter {
 
-  private ApiClientMainUI client;
+  private ApiClientMainC client;
 
-  public CmdNewCall(ApiClientMainUI apiClientMainUI) {
+  public CmdNewCall(ApiClientMainC apiClientMainUI) {
     this.client = apiClientMainUI;
   }
 

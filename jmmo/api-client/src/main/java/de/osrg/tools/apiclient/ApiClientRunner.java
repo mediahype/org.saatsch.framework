@@ -4,7 +4,7 @@ import de.osrg.base.simplescript.StepTypeRegistry;
 import de.osrg.tools.apiclient.model.AssertVO;
 import de.osrg.tools.apiclient.model.MethodCallVO;
 import de.osrg.tools.apiclient.model.WaitVO;
-import de.osrg.tools.apiclient.ui.ApiClientMainUI;
+import de.osrg.tools.apiclient.ui.ApiClientMainShell;
 
 public class ApiClientRunner {
 
@@ -17,7 +17,7 @@ public class ApiClientRunner {
     StepTypeRegistry.addType(WaitVO.class);
 
     try {
-      ApiClientMainUI window = new ApiClientMainUI();
+      ApiClientMainShell window = new ApiClientMainShell();
       window.open();
     } finally {
       

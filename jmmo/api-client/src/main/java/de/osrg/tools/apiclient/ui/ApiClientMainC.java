@@ -8,9 +8,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Tree;
@@ -23,53 +21,37 @@ import de.osrg.base.swt.widgets.logintercept.LogInterceptorFactory;
 import de.osrg.tools.apiclient.ApiClientUserData;
 import de.osrg.tools.apiclient.ui.expressions.ExpressionsUI;
 
-public class ApiClientMainUI implements Appending {
+/**
+ * main composite
+ * 
+ * @author saatsch
+ *
+ */
+public class ApiClientMainC extends Composite implements Appending {
 
+  public ApiClientMainC(Composite parent, int style) {
+    super(parent, style);
+    createContents();
+  }
 
   private static final String CALLS = "Calls";
   private static final String METHODS = "Methods";
-  private static Shell shlApiClient;
   private LogComposite cmpLog;
   private Menu methodsContextMenu;
   private TreeViewer tvMethods;
   private TreeViewer tvCalls;
   private Tree treeCalls;
 
-
-  public static Shell getShell() {
-    return shlApiClient;
-  }
-
-  /**
-   * Open the window.
-   * 
-   * @wbp.parser.entryPoint
-   */
-  public void open() {
-    Display display = Display.getDefault();
-    createContents();
-    shlApiClient.open();
-    shlApiClient.layout();
-    while (!shlApiClient.isDisposed()) {
-      if (!display.readAndDispatch()) {
-        display.sleep();
-      }
-    }
-  }
-
-
-
+  
   /**
    * Create contents of the window.
+   * @param parent 
    */
   protected void createContents() {
-    shlApiClient = new Shell();
-    shlApiClient.setSize(783, 518);
-    shlApiClient.setText("API Client");
-    shlApiClient.setLayout(new FillLayout(SWT.HORIZONTAL));
+
     Roots methodsModel = ApisContentProvider.createModel(Impls.getInstance().getTasks());
 
-    SashForm sashMain = new SashForm(shlApiClient, SWT.BORDER | SWT.VERTICAL);
+    SashForm sashMain = new SashForm(this, SWT.BORDER | SWT.VERTICAL);
 
     Composite composite = new Composite(sashMain, SWT.NONE);
     composite.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -144,17 +126,12 @@ public class ApiClientMainUI implements Appending {
     
     LogInterceptorFactory.initLogging(this);
   }
+  
+  @Override
+  public void append(String toAppend) {
+    cmpLog.append(toAppend);
 
-
-
-  public Optional<AbstractMethod> getCurrentlySelectedMethod() {
-    IStructuredSelection selection = (IStructuredSelection) tvMethods.getSelection();
-    AbstractMethod firstElement = (AbstractMethod) selection.getFirstElement();
-    return Optional.ofNullable(firstElement);
   }
-
-
-
   /**
    * updates the treeViewer that presents the method calls.
    */
@@ -166,10 +143,12 @@ public class ApiClientMainUI implements Appending {
   public Tree getTreeCalls() {
     return treeCalls;
   }
-
-  @Override
-  public void append(String toAppend) {
-    cmpLog.append(toAppend);
-
+  
+  public Optional<AbstractMethod> getCurrentlySelectedMethod() {
+    IStructuredSelection selection = (IStructuredSelection) tvMethods.getSelection();
+    AbstractMethod firstElement = (AbstractMethod) selection.getFirstElement();
+    return Optional.ofNullable(firstElement);
   }
+  
+  
 }
