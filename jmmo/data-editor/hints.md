@@ -1,0 +1,1 @@
+As soon as there are subclasses, an @Entity annotation is required on the Base Class.

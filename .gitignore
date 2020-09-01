@@ -1,0 +1,14 @@
+.project
+.classpath
+target
+.settings
+.wdmc
+bin
+*.iml
+*.ipr
+*.iws
+*.releaseBackup
+.idea
+jmmoclient.properties
+jmmoserver.properties
+autoconfig

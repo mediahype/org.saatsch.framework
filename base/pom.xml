@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>saatsch.framework.base.pom</artifactId>
+
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>org.saatsch</groupId>
+    <artifactId>saatsch.framework.pom</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+
+
+  <properties>
+    <juel.version>2.2.7</juel.version>
+    <xstream.version>1.4.12</xstream.version>
+  </properties>
+
+  <modules>
+    <module>beans-support</module>
+    <module>classpath-support</module>
+    <module>expressions-base</module>
+    <module>jface-base</module>
+    <module>jface-support</module>
+    <module>serializing</module>
+    <module>simplescript</module>
+    <module>simplescript-jface</module>
+    <module>util</module>
+  </modules>
+
+
+</project>
