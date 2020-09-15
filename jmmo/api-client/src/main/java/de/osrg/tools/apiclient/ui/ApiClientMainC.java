@@ -50,6 +50,7 @@ public class ApiClientMainC extends Composite implements Appending {
   protected void createContents() {
 
     Roots methodsModel = ApisContentProvider.createModel(Impls.getInstance().getTasks());
+    setLayout(new FillLayout(SWT.HORIZONTAL));
 
     SashForm sashMain = new SashForm(this, SWT.BORDER | SWT.VERTICAL);
 
