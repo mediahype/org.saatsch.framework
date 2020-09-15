@@ -28,5 +28,7 @@ public interface BeanNamespace {
    * @param bean the bean
    */
   public void putBean(String name, Bean bean);
+
+
   
 }

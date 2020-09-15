@@ -4,12 +4,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.jmmo.basegame.client.BeanNamespaceImpl;
 import de.jmmo.cdi.container.JmmoContext;
 import de.osrg.base.expressions.ExpressionsException;
 import de.osrg.base.simplescript.ExecutionException;
 import de.osrg.base.simplescript.JfaceStep;
 import de.osrg.base.simplescript.OpenableEditor;
-import de.osrg.tools.apiclient.cdi.BeanNamespaceImpl;
 import de.osrg.tools.apiclient.ui.scripts.DialogAssert;
 
 public class AssertVO extends JfaceStep {
@@ -56,8 +56,6 @@ public class AssertVO extends JfaceStep {
 
   @Override
   public void execute() throws ExecutionException {
-    String expected = getExpected();
-    String expression = getExpression();
 
     try {
       boolean doAssert =

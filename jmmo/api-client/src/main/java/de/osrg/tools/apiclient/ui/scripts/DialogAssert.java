@@ -15,12 +15,12 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.jmmo.basegame.client.BeanNamespaceImpl;
 import de.jmmo.cdi.container.JmmoContext;
 import de.osrg.base.expressions.ExpressionsException;
 import de.osrg.base.simplescript.OpenableEditor;
 import de.osrg.base.swt.DialogUtil;
 import de.osrg.base.swt.MessageBoxUtil;
-import de.osrg.tools.apiclient.cdi.BeanNamespaceImpl;
 import de.osrg.tools.apiclient.model.AssertVO;
 
 /**

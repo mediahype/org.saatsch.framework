@@ -1,4 +1,4 @@
-package de.osrg.tools.apiclient.cdi;
+package de.jmmo.basegame.client;
 
 import org.joda.beans.Bean;
 

@@ -17,13 +17,13 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.joda.beans.Property;
 
+import de.jmmo.basegame.client.BeanNamespaceImpl;
 import de.jmmo.cdi.container.JmmoContext;
 import de.jmmo.data.mongo.MongoDataObject;
 import de.osrg.base.expressions.KeysChangedListener;
 import de.osrg.base.jface.beantree.namespaced.NamespaceBeanTree;
 import de.osrg.base.serializing.AbstractSerializer;
 import de.osrg.base.serializing.SerializerFactory;
-import de.osrg.tools.apiclient.cdi.BeanNamespaceImpl;
 
 public class ExpressionsUI extends Composite {
 
@@ -83,7 +83,6 @@ public class ExpressionsUI extends Composite {
           }
           getTree().setInput(collect);
           updateText();
-
 
         });
       }

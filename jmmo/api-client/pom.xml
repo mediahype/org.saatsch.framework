@@ -37,7 +37,7 @@
     </dependency>
     <dependency>
       <groupId>org.saatsch</groupId>
-      <artifactId>saatsch.framework.base.expression-base</artifactId>
+      <artifactId>saatsch.framework.jmmo.base-game.client</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
