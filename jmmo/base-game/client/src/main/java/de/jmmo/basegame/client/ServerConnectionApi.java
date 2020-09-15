@@ -6,6 +6,7 @@ import de.jmmo.basegame.common.CreateAccountRequest;
 import de.jmmo.basegame.common.CreateAccountResponse;
 import de.jmmo.basegame.common.LoginRequest;
 import de.jmmo.basegame.common.LogoutRequest;
+import de.jmmo.basegame.common.Ping;
 import de.jmmo.cdi.container.JmmoContext;
 
 /**
@@ -80,11 +81,8 @@ public class ServerConnectionApi {
     client.disconnect();
   }
   
-  public void ifConnected(Runnable action) {
-    if (client.isConnected()) {
-      action.run();
-    }
+  public void ping() {
+    client.sendTCP(new Ping(String.valueOf(System.currentTimeMillis())));
   }
-  
   
 }
