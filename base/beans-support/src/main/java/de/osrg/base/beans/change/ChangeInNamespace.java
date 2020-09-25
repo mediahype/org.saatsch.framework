@@ -18,8 +18,6 @@ import org.joda.beans.impl.direct.DirectMetaBean;
 import org.joda.beans.impl.direct.DirectMetaProperty;
 import org.joda.beans.impl.direct.DirectMetaPropertyMap;
 
-import de.osrg.base.beans.change.PropertyChange;
-
 /**
  * this is sent from server to client in order to tell the client that he has to change one or more
  * properties in Beans that reside in the client's BeanNamespace.

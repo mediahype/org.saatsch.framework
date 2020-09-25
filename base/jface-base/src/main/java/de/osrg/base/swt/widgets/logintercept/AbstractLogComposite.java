@@ -9,17 +9,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public class LogComposite extends Composite {
-  
-  private static final String WARN = "WARN";
+public abstract class AbstractLogComposite extends Composite {
 
-  private static final String ERROR = "ERROR";
-  
-  private static final Color ORANGE = new Color(Display.getDefault(), 255, 128, 0);
-  
   private StyledText text;
 
-  public LogComposite(Composite parent) {
+  public AbstractLogComposite(Composite parent) {
     super(parent, SWT.NONE);
     setLayout(new FillLayout(SWT.HORIZONTAL));
 
@@ -34,25 +28,22 @@ public class LogComposite extends Composite {
    * 
    * @param s the String to append.
    */
-  public void append(String s) {
+  public void append(Object s) {
 
     Display.getDefault().asyncExec(() -> {
       
-      int oldCount = 0;
+      int currentCharCount = text.getCharCount();
+
       
-      if (shouldColorize(s)) {
-        oldCount = text.getCharCount();
-      }
-      
-      text.append(s + "\n");
+      text.append(getText(s) + "\n");
       text.setTopIndex(text.getLineCount() - 5);
 
       if (shouldColorize(s))
       {
         StyleRange style1 = new StyleRange();
-        style1.start = oldCount;
-        style1.length = s.length();
-        style1.foreground = systemColor(s);
+        style1.start = currentCharCount;
+        style1.length = s.toString().length();
+        style1.foreground = getForeground(s);
         text.setStyleRange(style1);
         
       }
@@ -61,21 +52,12 @@ public class LogComposite extends Composite {
 
   }
 
-  private boolean shouldColorize(String s) {
-    return s.contains(ERROR) || s.contains(WARN);
-  }
+  protected abstract boolean shouldColorize(Object s);
   
-  private Color systemColor(String s) {
-    if (s.contains(ERROR)) {
-      return Display.getDefault().getSystemColor(SWT.COLOR_RED);
-    } else if (s.contains(WARN)) {
-      return ORANGE;
-    }
-    
-    return Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
-    
-    
-  }
+  protected abstract Color getForeground(Object s);
+  
+  protected abstract String getText(Object s);
+  
   
   /**
    * clears the text area.

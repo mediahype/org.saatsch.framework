@@ -17,7 +17,6 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class MemUpdater implements Runnable {
 
-  private Runtime runtime = Runtime.getRuntime();
   private Label lblMem;
   private NumberFormat format = NumberFormat.getInstance();
   private Shell shell;
@@ -46,7 +45,8 @@ public class MemUpdater implements Runnable {
         @Override
         public void run() {
           if (!lblMem.isDisposed()) {
-            String m = format.format(runtime.totalMemory() / 1024);
+            // TODO: this does not update itself any more
+            String m = format.format(Runtime.getRuntime().totalMemory() / 1024);
             lblMem.setText("Mem: " + m);
             lblMem.pack();
             Point size = lblMem.getSize();

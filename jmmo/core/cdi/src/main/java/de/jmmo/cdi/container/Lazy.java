@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 public class Lazy<T> {
   
   private final Supplier<T> supplier;
-  private volatile T value;
+  private volatile transient T value;
 
   public Lazy(Supplier<T> supplier) {
     Objects.requireNonNull(supplier);
