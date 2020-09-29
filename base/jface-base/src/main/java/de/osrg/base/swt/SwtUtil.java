@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Table;
@@ -32,6 +34,12 @@ public class SwtUtil {
     
     return Optional.ofNullable(table.getSelection()[0]);
     
+  }
+
+  public static void disposeChildren(Composite cmp) {
+    for (Control c : cmp.getChildren()) {
+      c.dispose();
+    }
   }
 
 }

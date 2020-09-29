@@ -33,8 +33,8 @@ public class DialogUtil {
   /**
    * installs a given runnable to be executed when the enter key is pressed on the given control.
    * 
-   * @param runnable the {@link Runnable}
-   * @param control the {@link Control}
+   * @param control the {@link Control} to install the enter key listener onto.
+   * @param runnable the {@link Runnable} to install.
    */
   public static void execOnEnter(Runnable runnable, Control control) {
     control.addTraverseListener(new TraverseListener() {

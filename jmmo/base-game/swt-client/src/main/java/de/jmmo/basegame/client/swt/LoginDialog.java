@@ -1,5 +1,7 @@
 package de.jmmo.basegame.client.swt;
 
+import java.util.Optional;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -8,7 +10,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -22,16 +23,11 @@ import de.osrg.base.swt.DialogUtil;
  * @author saatsch
  *
  */
-public class LoginDialog extends Dialog {
+public class LoginDialog extends CredentialsDialog {
 
-  private Shell shell;
 
-  /**
-   * 
-   */
-  protected Credentials dialogReturnValue;
-  private Text txtUser;
-  private Text txtPass;
+
+
 
   public LoginDialog(Shell parent) {
     super(parent);
@@ -41,8 +37,10 @@ public class LoginDialog extends Dialog {
   /**
    * Open the dialog.
    * 
+   * @return the entered credentials, or empty if no credentials where provided (e.g. in case dialog was closed).
+   * 
    */
-  public Credentials open() {
+  public Optional<Credentials> open() {
     createContent();
     shell.open();
     DialogUtil.center(shell, getParent());
@@ -53,56 +51,36 @@ public class LoginDialog extends Dialog {
         display.sleep();
       }
     }
-    return dialogReturnValue;
+    return Optional.ofNullable(dialogReturnValue);
   }
 
 
-  private void createContent() {
-    shell = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
-    shell.setSize(294, 128);
-    shell.setLayout(new GridLayout(2, false));
+  protected void createContent() {
+    super.createContent();
+    
     shell.setText("Login");
 
-    Label lblUser = new Label(shell, SWT.NONE);
-    lblUser.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-    lblUser.setText("user");
-
-    txtUser = new Text(shell, SWT.BORDER);
-    txtUser.setText("user");
-    txtUser.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-    DialogUtil.execOnEnter(this::ok, txtUser);
-
-    Label lblPass = new Label(shell, SWT.NONE);
-    lblPass.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-    lblPass.setText("pass");
-
-    txtPass = new Text(shell, SWT.BORDER);
-    txtPass.setEchoChar('*');
-    txtPass.setText("pass");
-    txtPass.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-    DialogUtil.execOnEnter(this::ok, txtPass);
-
-    Composite composite = new Composite(shell, SWT.NONE);
-    composite.setLayout(new RowLayout(SWT.HORIZONTAL));
-    composite.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 2, 1));
-
-    Button btnOk = new Button(composite, SWT.NONE);
-    btnOk.addSelectionListener(new SelectionAdapter() {
+    
+    Button btnCreateAccount = new Button(cmpButtons, SWT.NONE);
+    btnCreateAccount.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent e) {
-        ok();
+        showCreateAccount();
       }
     });
-    btnOk.setText("OK");
-
-
+    btnCreateAccount.setText("Create Account...");
+    
+    createOkButton();
+    
 
   }
 
-
-  public void ok() {
-    dialogReturnValue = new Credentials(txtUser.getText(), txtPass.getText());
-    shell.dispose();
+  private void showCreateAccount() {
+    CreateAccountDialog diag = new CreateAccountDialog(shell);
+    diag.open();
+    
   }
+
+
 
 }

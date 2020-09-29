@@ -30,8 +30,10 @@ public class ServerConnectionApi {
    * @param pass the password
    */
   public void createAccount(String account, String pass) {
+    if (!client.isConnected()) {
+      client.connectSync();
+    }
     client.sendTCP(new CreateAccountRequest(account, pass));
-
   }
 
 
@@ -82,6 +84,9 @@ public class ServerConnectionApi {
   }
   
   public void ping() {
+    if (!client.isConnected()) {
+      client.connectSync();
+    }
     client.sendTCP(new Ping(String.valueOf(System.currentTimeMillis())));
   }
   

@@ -5,6 +5,12 @@ import java.io.Serializable;
 
 import de.jmmo.data.api.model.JmmoImage;
 
+/**
+ * Response to a {@link ResolveImagePointerRequest}
+ * 
+ * @author saatsch
+ *
+ */
 public class ImagePointerResponse implements Serializable {
 
   private static final long serialVersionUID = 7766038162586391549L;
