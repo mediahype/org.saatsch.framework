@@ -6,3 +6,4 @@ Saatsch's framework consists of 2 modules:
 
 * [jmmo](jmmo/Readme.md) 
 
+jmmo sits on top of base, but the modules of base also have a standalone purpose. 

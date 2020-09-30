@@ -9,8 +9,8 @@ consists of:
 * [core](core/Readme.md)
    * core modules.
 * [api-client](api-client/Readme.md)
-   * core modules.
-* [data-editor](core/Readme.md)
+   * skeleton for an api-client.
+* [data-editor](data-editor/Readme.md)
    * skeleton for a data editor.
 
 
