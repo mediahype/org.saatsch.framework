@@ -26,7 +26,7 @@ public class XmlSerializer extends AbstractSerializer {
   }
 
   /**
-   * sets operation mode.
+   * sets operation mode to NO_REFERENCES
    * 
    * @return this
    */

@@ -2,10 +2,10 @@ package de.osrg.tools.apiclient.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.layout.FormLayout;
+
+import de.osrg.base.swt.safeapploop.SafeAppLoop;
 
 public class ApiClientMainShell {
   
@@ -23,15 +23,15 @@ public class ApiClientMainShell {
    * @wbp.parser.entryPoint
    */
   public void open() {
+    
+    
     Display display = Display.getDefault();
     createContents();
     shlApiClient.open();
     shlApiClient.layout();
-    while (!shlApiClient.isDisposed()) {
-      if (!display.readAndDispatch()) {
-        display.sleep();
-      }
-    }
+  
+    SafeAppLoop.run(shlApiClient, display);
+
   }
 
 

@@ -119,7 +119,7 @@ public class DialogAssert extends Dialog implements OpenableEditor<AssertVO> {
       String evaluate =
           JmmoContext.getBean(BeanNamespaceImpl.class).evaluate(txtExpression.getText());
       MessageBoxUtil.showInfoMessage(evaluate, getParent());
-    } catch (ELException e) {
+    } catch (Exception e ) {  // ELException 
       MessageBoxUtil.showErrorMessage(e.getMessage(), getParent());
       LOG.error("Error: {}", e.getMessage());
     }
