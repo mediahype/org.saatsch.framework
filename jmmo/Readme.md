@@ -4,12 +4,14 @@ Java Massive Multiuser Online Framework
 
 consists of:
 
-* [base-game](modules/Readme.md)
-   * introduces the concept of an account and a login.
-   
+* [base-game](base-game/Readme.md)
+   * introduces the concept of an account and a login. 
 * [core](core/Readme.md)
    * core modules.
-
+* [api-client](api-client/Readme.md)
+   * core modules.
+* [data-editor](core/Readme.md)
+   * skeleton for a data editor.
 
 
 
