@@ -1,5 +1,4 @@
-## beans-support
-
+## saatsch.framework.base.beans-support
 
 pulls in [joda-beans](http://www.joda.org/joda-beans/).
 
@@ -18,3 +17,6 @@ Projects that are using beans-support and want to define own beans must also dec
 			</execution>
 		</executions>
 	</plugin>
+	
+
+beans-support is required for jmmo.core.data 

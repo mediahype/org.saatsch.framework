@@ -1,0 +1,1 @@
+saatsch.framework.jmmo.base-game.pom
