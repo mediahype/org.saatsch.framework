@@ -23,10 +23,10 @@ public class TreeViewCreatorUtil {
     sashForm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
     
-    AbstractPropertyTreeComposite treeNames = new NameTree(sashForm, bean);
+    AbstractPropertyTreeC treeNames = new NameTree(sashForm, bean);
     treeNames.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
-    AbstractPropertyTreeComposite treeValues = new ValueTree(sashForm, bean);
+    AbstractPropertyTreeC treeValues = new ValueTree(sashForm, bean);
     treeValues.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
     
     // sync tree expand and collapse

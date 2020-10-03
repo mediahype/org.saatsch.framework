@@ -24,7 +24,7 @@ import de.jmmo.data.mongo.MorphiaMongoDataSink;
  * @author saatsch
  *
  */
-public class ValueTree extends AbstractPropertyTreeComposite {
+public class ValueTree extends AbstractPropertyTreeC {
 
   private static final Logger LOG = LoggerFactory.getLogger(ValueTree.class);
 
