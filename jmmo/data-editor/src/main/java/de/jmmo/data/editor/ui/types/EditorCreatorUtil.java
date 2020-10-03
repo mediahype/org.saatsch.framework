@@ -137,7 +137,7 @@ public class EditorCreatorUtil {
     if (propType.contains("java.lang.String")) {
       return createString(parent, property, objectToEdit);
     }
-    if (propType.contains("java.lang.Boolean")) {
+    if (propType.contains("java.lang.Boolean") || propType.equals("boolean") ) {
       return createBoolean(parent, property, objectToEdit);
     }
     if (propType.contains("java.lang.Float") || propType.equals("float")) {
