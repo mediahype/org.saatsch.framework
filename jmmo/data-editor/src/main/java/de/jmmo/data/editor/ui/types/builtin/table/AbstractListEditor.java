@@ -76,16 +76,14 @@ public abstract class AbstractListEditor extends AbstractEditorComposite {
 
 
     cmpForTable = new Composite(this, SWT.BORDER);
-    GridData gd_cmpForTable = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
-    gd_cmpForTable.heightHint = 158;
-    cmpForTable.setLayoutData(gd_cmpForTable);
+    cmpForTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
     GridLayout glCmpForTable = new GridLayout(2, false);
     glCmpForTable.verticalSpacing = 2;
     glCmpForTable.horizontalSpacing = 2;
     cmpForTable.setLayout(glCmpForTable);
 
     tblTable = new Table(cmpForTable, SWT.BORDER | SWT.FULL_SELECTION);
-    GridData gdTblTable = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+    GridData gdTblTable = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
     gdTblTable.heightHint = 63;
     gdTblTable.widthHint = 366;
     tblTable.setLayoutData(gdTblTable);
