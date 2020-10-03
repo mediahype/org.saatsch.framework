@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.jmmo.cdi.container.JmmoContext;
-import de.jmmo.data.editor.ui.dialog.EditorWrapperDialog;
+import de.jmmo.data.editor.ui.dialog.EditPropertyDialog;
 import de.jmmo.data.mongo.MorphiaMongoDataSink;
 
 /**
@@ -57,7 +57,7 @@ public class ValueTree extends AbstractPropertyTreeComposite {
       @Override
       public void doubleClick(DoubleClickEvent event) {
         // 
-        EditorWrapperDialog diag = new EditorWrapperDialog(getShell(), object, selected());
+        EditPropertyDialog diag = new EditPropertyDialog(getShell(), object, selected());
         diag.open();
         treeViewer.refresh();
         
