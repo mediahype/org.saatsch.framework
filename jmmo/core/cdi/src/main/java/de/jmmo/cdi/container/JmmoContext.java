@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Implementation of a context for JMMO. It can be used to look up beans. only supports
  * ApplicationScoped beans. This context is suitable for usage on client and on server. It is also
- * independent of clustering. Which implies that it is not clustered.
+ * independent of clustering. Which implies that there is one JmmoContext per JVM.
  *
  * It is additionally backed by a map that can be written to by calling {@link #putBean(Object)}.
  * This map is consulted when calling {@link #getBean(Class)}.
