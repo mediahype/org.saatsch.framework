@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>saatsch.framework.jmmo.base-game.swt-client</artifactId>
+  <artifactId>saatsch.framework.jmmo.base-app.server</artifactId>
   <name>${project.artifactId}</name>
 
 
   <parent>
     <groupId>org.saatsch</groupId>
-    <artifactId>saatsch.framework.jmmo.base-game.pom</artifactId>
+    <artifactId>saatsch.framework.jmmo.base-app.pom</artifactId>
     <version>0.1.1-SNAPSHOT</version>
   </parent>
 
@@ -14,14 +14,30 @@
   <dependencies>
     <dependency>
       <groupId>org.saatsch</groupId>
-      <artifactId>saatsch.framework.jmmo.base-game.client</artifactId>
+      <artifactId>saatsch.framework.jmmo.base-app.common</artifactId>
       <version>${project.version}</version>
     </dependency>
+
+
     <dependency>
       <groupId>org.saatsch</groupId>
-      <artifactId>saatsch.framework.base.jface-base</artifactId>
+      <artifactId>saatsch.framework.jmmo.core.clustering</artifactId>
       <version>${project.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.saatsch</groupId>
+      <artifactId>saatsch.framework.jmmo.core.timing</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+
   </dependencies>
 
 
