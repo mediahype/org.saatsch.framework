@@ -1,3 +1,5 @@
-Provides:
-* the dependency to the JUEL Expression Language.
-* a small wrapper around it.
+## saatsch.framework.base.expression-base
+
+pulls in juel
+
+provides a small wrapper around it.
