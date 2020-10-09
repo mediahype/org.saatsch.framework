@@ -2,11 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>saatsch.framework.pom</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.1</version>
 
   <scm>
     <developerConnection>scm:git:https://github.com/mediahype/org.saatsch.framework.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>saatsch.framework.pom-0.1.1</tag>
   </scm>
 
   <packaging>pom</packaging>
