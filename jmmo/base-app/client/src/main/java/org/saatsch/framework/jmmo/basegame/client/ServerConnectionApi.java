@@ -43,6 +43,9 @@ public class ServerConnectionApi {
    * @param selectedName the selected name for the account.
    */
   public void checkAccountName(String selectedName) {
+    if (!client.isConnected()) {
+      client.connectSync();
+    }
     client.sendTCP(new CheckAccountRequest(selectedName));
 
   }

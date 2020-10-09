@@ -5,7 +5,7 @@ import java.util.Properties;
 import org.saatsch.framework.base.util.properties.AbstractProperties;
 
 /**
- * Bean not managed by CDI exposing some client properties. Properties are read from a file named
+ * Exposes some client properties. Properties are read from a file named
  * {@value #JMMOCLIENT_PROPERTIES_FILENAME}, which must be located in the directory from which the
  * JVM was started. If the file is not present, it will be created and populated with default
  * properties.
