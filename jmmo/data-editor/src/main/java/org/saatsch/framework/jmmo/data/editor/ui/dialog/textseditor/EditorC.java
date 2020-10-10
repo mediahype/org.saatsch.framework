@@ -68,7 +68,9 @@ public class EditorC extends Composite {
   }
   
   private void updateText() {
-    txtEntry.setText(currentString.getForLanguage(cfg.get().getCurrentLanguage()));
+    if (null != currentString) {
+      txtEntry.setText(currentString.getForLanguage(cfg.get().getCurrentLanguage()));      
+    }
   }
 
 

@@ -73,8 +73,11 @@ public abstract class FilterableTreeComposite extends Composite {
 
         Composite tabcontent = findParentTabcontent(parent);
         if (null != tabcontent) {
-          EditObjectDialog dia = new EditObjectDialog((EditorTabContent) tabcontent);
-          dia.open();
+          EditorTabContent content = (EditorTabContent) tabcontent;
+          if (null != content.getCurrentlySelected()) {
+            EditObjectDialog dia = new EditObjectDialog(content);
+            dia.open();            
+          }
         }
 
       }
