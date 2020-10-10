@@ -81,6 +81,7 @@ public class IntlStringEditor extends AbstractEditorComposite {
     // if writable
     if (!property.metaProperty().style().isWritable()) {
       txtContent.setEditable(false);
+      txtReference.setEditable(false);
     } 
 
     txtContent.setBounds(10, 20, 230, 19);

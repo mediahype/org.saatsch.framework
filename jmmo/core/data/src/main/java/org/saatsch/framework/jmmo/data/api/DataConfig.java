@@ -29,6 +29,9 @@ public class DataConfig {
 
   private Lazy<DataConfigModel> config = Lazy.of(()-> DataConfigurator.loadConfig() );
 
+  /**
+   * @return the {@link DataConfigModel}.
+   */
   private DataConfigModel config(){
     return config.get();
   }

@@ -121,42 +121,46 @@ public class IntlStringService {
   }
 
   private String selectIntlString(IntlString string) {
-    Map<String, String> strings = string.getStrings();
-    String language = config.getCurrentLanguage();
-
-    // if the desired language is not present
-    if (null == strings.get(language)) {
-      // and no locale is present
-      if (strings.size() == 0) {
-        return "";
-      }
-
-      // and 1 language is present
-      if (strings.size() == 1) {
-        return strings.entrySet().iterator().next().getValue();
-      }
-
-      // and more than 1 language is present
-      if ( null != strings.get(Locale.ENGLISH)) {
-        return strings.get(Locale.ENGLISH);
-      }
-
-      return strings.entrySet().iterator().next().getValue();
-
-    } else {
-      return strings.get(language);
-    }
+    
+    return string.getForLanguage(config.getCurrentLanguage()); 
+    
+//    Map<String, String> strings = string.getStrings();
+//    // if the desired language is not present
+//    if (null == strings.get(language)) {
+//      // and no locale is present
+//      if (strings.size() == 0) {
+//        return "";
+//      }
+//
+//      // and 1 language is present
+//      if (strings.size() == 1) {
+//        return strings.entrySet().iterator().next().getValue();
+//      }
+//
+//      // and more than 1 language is present
+//      if ( null != strings.get(Locale.ENGLISH)) {
+//        return strings.get(Locale.ENGLISH);
+//      }
+//
+//      return strings.entrySet().iterator().next().getValue();
+//
+//    } else {
+//      return strings.get(language);
+//    }
   }
 
   public synchronized void saveLocalizedText(String coordinate, String content) {
-    String language = config.getCurrentLanguage();
-    IntlString iString = getOrCreateIntlString(coordinate);
-
-    iString.getStrings().put(language, content);
-
-    data.save(iString);
+    saveLocalizedText(coordinate, content, config.getCurrentLanguage());
   }
 
+  
+  public synchronized void saveLocalizedText(String coordinate, String content, String language) {
+    IntlString iString = getOrCreateIntlString(coordinate);
+    iString.getStrings().put(language, content);
+    data.save(iString);
+    
+  }
+  
 
   /**
    * saves a localized text property to the database.

@@ -1,9 +1,11 @@
 package org.saatsch.framework.base.swt;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
@@ -40,6 +42,20 @@ public class SwtUtil {
     for (Control c : cmp.getChildren()) {
       c.dispose();
     }
+  }
+
+  public static void selectInCombo(Combo combo, String string) {
+    Objects.requireNonNull(combo);
+    Objects.requireNonNull(string);
+    
+    for (int i = 0; i<combo.getItems().length; i++) {
+      if (string.equals(combo.getItem(i))) {
+        combo.select(i);
+      }
+    }
+    
+    
+    
   }
 
 }

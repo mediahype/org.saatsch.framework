@@ -27,7 +27,7 @@ import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.api.PointerUtil;
 import org.saatsch.framework.jmmo.data.editor.ui.dialog.images.ImagesWindow;
-import org.saatsch.framework.jmmo.data.editor.ui.dialog.textseditor.TextEditorWindow;
+import org.saatsch.framework.jmmo.data.editor.ui.dialog.textseditor.IntlStringsDialog;
 import org.saatsch.framework.jmmo.data.editor.ui.tabcontent.EditorTabContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -145,7 +145,7 @@ public class MainGui {
     lblMem = new Label(coolBar, SWT.NONE);
     coolItem.setControl(lblMem);
     lblMem.setText("Mem XXXXXXXXXXXXXXX");
-    mntmTextWindow.addListener(SWT.Selection, (event) -> new TextEditorWindow(shell).open() );
+    mntmTextWindow.addListener(SWT.Selection, (event) -> new IntlStringsDialog(shell).open() );
 
 
     fillContents();

@@ -8,7 +8,13 @@ import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.api.model.IntlString;
 
-public class Labels extends LabelProvider implements ITableLabelProvider{
+/**
+ * Label Provider for the main table in {@link IntlStringsDialog}.
+ * 
+ * @author saatsch
+ *
+ */
+class Labels extends LabelProvider implements ITableLabelProvider{
 
   private DataConfig cfg = JmmoContext.getBean(DataConfig.class);
   
@@ -21,12 +27,19 @@ public class Labels extends LabelProvider implements ITableLabelProvider{
   public String getColumnText(Object element, int columnIndex) {
     
     if (element instanceof IntlString) {
-      if (columnIndex == 0) {
-        return ((IntlString) element).getStrings().get(cfg.getCurrentLanguage());
+      
+      switch (columnIndex) {
+        case 0:
+          return ((IntlString) element).getForLanguage(cfg.getCurrentLanguage());  
+        case 1:
+          return ((IntlString) element).getCoordinate();
+        case 2:
+          return ((IntlString) element).getStrings().keySet().toString();
+        default:
+          return "unknown column";
+
       }
-      if (columnIndex == 1) {
-        return ((IntlString) element).getCoordinate();
-      }
+            
     }
 
     return "";
