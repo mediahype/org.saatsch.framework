@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 /**
- * a dialog that displays a text (in fixed width)
+ * a dialog that simply displays a text in unstyled courier new.
  * 
  * @author saatsch
  *

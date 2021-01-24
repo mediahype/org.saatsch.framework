@@ -4,7 +4,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * translates between swt and osrg color
+ * translates between swt and framework color
  * 
  * @author saatsch
  *

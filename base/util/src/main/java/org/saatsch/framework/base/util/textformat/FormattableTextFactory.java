@@ -11,7 +11,7 @@ import org.saatsch.framework.base.util.Color;
 public class FormattableTextFactory {
 
 	public static FormattableText createNewText() {
-		return new FormattableTextImpl();
+		return new FormattableText();
 	}
 
 	public static ApplyableColor createNewColor(int r, int g, int b) {

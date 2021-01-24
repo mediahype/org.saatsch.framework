@@ -13,7 +13,7 @@ public class FormattableTextTest {
 	@Test
 	public void testFormattableText() {
 
-		FormattableTextImpl text = new FormattableTextImpl();
+		FormattableText text = new FormattableText();
 
 		Newline newLine = new Newline();
 		ApplyableColor c = new ApplyableColor(new Color(230, 26, 122));

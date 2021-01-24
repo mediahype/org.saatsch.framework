@@ -38,4 +38,11 @@ public class Format implements Comparable<Format> {
     return offset.compareTo(o.getOffset());
   }
 
+  @Override
+  public String toString() {
+    return "Format [offset=" + offset + ", tag=" + tag + "]";
+  }
+
+  
+  
 }

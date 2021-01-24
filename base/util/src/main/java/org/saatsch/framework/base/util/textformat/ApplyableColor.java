@@ -5,8 +5,6 @@ import org.saatsch.framework.base.util.KeyValuePair;
 
 public class ApplyableColor extends Applyable {
 
-  private static final String COLOR = "color";
-
   public static final String COLOR_VALUE = "val";
 
 
@@ -16,8 +14,8 @@ public class ApplyableColor extends Applyable {
     if (null == c) {
       throw new IllegalArgumentException("color cannot be null");
     }
-    getStartTag().getKeysValues().add(new KeyValuePair("val", c.toHexString()));
-    getStartTag().getData().put(COLOR, c);
+    getStartTag().getKeysValues().add(new KeyValuePair(COLOR_VALUE, c.toHexString()));
+
 
   }
 
