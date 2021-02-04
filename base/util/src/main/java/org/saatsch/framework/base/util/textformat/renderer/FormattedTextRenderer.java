@@ -42,7 +42,6 @@ public class FormattedTextRenderer {
 		}
 	}
 	
-	
 	private static String renderEndTag(Tag tag) {
 		if (tag.isSurrounding()) {
 			return "</" + tag.getName()+ ">";
@@ -66,4 +65,11 @@ public class FormattedTextRenderer {
 		
 	}
 
+	
+	public static void parse(String toParse) {
+	  
+	  
+	  
+	}
+	
 }

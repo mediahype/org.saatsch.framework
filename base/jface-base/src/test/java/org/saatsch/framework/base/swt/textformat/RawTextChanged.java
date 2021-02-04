@@ -5,15 +5,15 @@ import org.eclipse.swt.events.KeyEvent;
 
 public class RawTextChanged extends KeyAdapter{
 
-  private TextFormatC grammarEditor;
+  private TextFormatC client;
 
   public RawTextChanged(TextFormatC grammarEditor) {
-    this.grammarEditor = grammarEditor;
+    this.client = grammarEditor;
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
-    grammarEditor.paintFormattedText();
+    client.paintFormattedText();
   }
 
   

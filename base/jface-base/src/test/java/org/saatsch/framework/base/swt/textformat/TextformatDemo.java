@@ -26,13 +26,13 @@ public class TextformatDemo extends AbstractDemo {
    
     TextFormatC composite = new TextFormatC(content);
     
-    FormattableText text = composite.getFormattedText();
+    FormattableText formattable = composite.getFormattedText();
 
-    text.append("redBlue");
+    formattable.append("redBlue");
 
-    text.apply(red, 0, 3);
+    formattable.apply(red, 0, 3);
 
-    text.apply(blue, 3, 7);
+    formattable.apply(blue, 3, 7);
 
     composite.updateYourself();
     
