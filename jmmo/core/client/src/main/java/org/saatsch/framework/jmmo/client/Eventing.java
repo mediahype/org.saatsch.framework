@@ -1,4 +1,4 @@
-package org.saatsch.framework.jmmo.basegame.client;
+package org.saatsch.framework.jmmo.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ public class Eventing extends EventBus {
 
   public Eventing() {
 
-    super("osrgEventing");
+    super("jmmoEventing");
 
   }
 

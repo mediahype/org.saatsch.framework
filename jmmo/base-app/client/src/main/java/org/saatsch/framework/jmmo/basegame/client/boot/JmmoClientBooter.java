@@ -1,8 +1,8 @@
 package org.saatsch.framework.jmmo.basegame.client.boot;
 
-import org.saatsch.framework.jmmo.basegame.client.Eventing;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.client.ClientConfig;
+import org.saatsch.framework.jmmo.client.Eventing;
 import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
 import org.saatsch.framework.jmmo.data.mongo.NoopDataSink;
 

@@ -8,6 +8,7 @@ import org.saatsch.framework.jmmo.basegame.client.boot.ConnectionEvent;
 import org.saatsch.framework.jmmo.basegame.client.eventing.SystemMessageEvent;
 import org.saatsch.framework.jmmo.basegame.common.MessageSeverity;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
+import org.saatsch.framework.jmmo.client.Eventing;
 import org.saatsch.framework.jmmo.client.NetworkClient;
 
 /**

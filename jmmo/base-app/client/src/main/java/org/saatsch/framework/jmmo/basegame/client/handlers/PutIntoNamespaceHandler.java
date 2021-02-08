@@ -5,11 +5,11 @@ import java.lang.reflect.Field;
 
 import org.apache.mina.core.session.IoSession;
 import org.joda.beans.Bean;
-import org.saatsch.framework.jmmo.basegame.client.Eventing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
+import org.saatsch.framework.jmmo.client.Eventing;
 import org.saatsch.framework.jmmo.networking.api.ANetworkMessageHandler;
 import org.saatsch.framework.jmmo.networking.api.NetworkMessageHandler;
 import org.saatsch.framework.jmmo.networking.beansync.PutIntoNamespace;
