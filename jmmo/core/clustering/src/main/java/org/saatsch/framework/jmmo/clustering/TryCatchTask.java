@@ -6,7 +6,7 @@ import java.io.StringWriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.saatsch.framework.base.ClientError;
 import org.saatsch.framework.jmmo.networking.api.vo.ServerError;
 
 /**
@@ -24,7 +24,11 @@ public abstract class TryCatchTask implements Runnable {
     try {
       long start = System.currentTimeMillis();
       runTask();
-      LOG.debug("Task:{} --- Duration:{} ms", this.getClass().getSimpleName(), System.currentTimeMillis() - start);
+      LOG.debug("Task:{} --- Duration:{} ms", this.getClass().getSimpleName(),
+          System.currentTimeMillis() - start);
+    } catch (ClientError ce) {
+      handle(ce);
+      LOG.warn("ClientError: {}", ce.getMessage());
     } catch (Exception e) {
       handle(e);
       LOG.error("Error while running Task of type:{} ", this.getClass());
@@ -39,12 +43,12 @@ public abstract class TryCatchTask implements Runnable {
 
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
-      
+
       e.printStackTrace(pw);
 
       // TODO: at this early point in development, we respond with the server error.
-      //  This is not desireable and must be made configurable with the default of not to give away
-      //  the raw error to the client.
+      // This is not desireable and must be made configurable with the default of not to give away
+      // the raw error to the client.
       me.respond(new ServerError(sw.toString()));
 
       try {

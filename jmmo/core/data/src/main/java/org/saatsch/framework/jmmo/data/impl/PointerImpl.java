@@ -68,7 +68,7 @@ public class PointerImpl<E> implements Pointer<E>, Bean, Serializable {
   @Override
   public String toString() {
     if (baseClass != null && appId != null) {
-      return asString();      
+      return new StringBuilder().append("PointerImpl{").append(baseClass.getSimpleName()).append(',').append(appId).append('}').toString();      
     }
     return super.toString();
   }
