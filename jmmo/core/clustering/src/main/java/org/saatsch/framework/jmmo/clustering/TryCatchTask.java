@@ -28,7 +28,7 @@ public abstract class TryCatchTask implements Runnable {
           System.currentTimeMillis() - start);
     } catch (ClientError ce) {
       handle(ce);
-      LOG.warn("ClientError: {}", ce.getMessage());
+      LOG.warn("ClientError: {}:{}", ce.getClass().getSimpleName(), ce.getMessage());
     } catch (Exception e) {
       handle(e);
       LOG.error("Error while running Task of type:{} ", this.getClass());

@@ -89,21 +89,56 @@ public class NetworkClient implements ConnectionListener {
       connector.getFilterChain().addLast("codec",
           new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
 
-      LOG.info("Trying to connect to: {}:{}", config.getServerName(), config.getServerTcpPort());
-
-      ConnectFuture connFuture =
-          connector.connect(new InetSocketAddress(config.getServerName(), config.getServerTcpPort()));
-      connFuture.awaitUninterruptibly();
-      try {
-        session = connFuture.getSession();
-      } catch (RuntimeIoException e) {
-        throw new IOException("Failed to connect to server");
-      }
       
-      connected=true;
+      newConnect();
+      
+      if (!connected) {
+        legacyConnect();        
+      } 
     }
+  }
 
 
+
+  /**
+   * new method of connecting using alternative servers
+   */
+  private void newConnect() {
+    config.getServerLocations().ifPresent(locs -> {
+      String[] locations = locs.split(",");
+      
+      for (String loc : locations) {
+        String[] serverAndPort = loc.trim().split(":");
+        if (tryConnect(serverAndPort[0], Integer.parseInt(serverAndPort[1] ))) {
+          break;
+        }
+      }
+    });
+  }
+
+
+
+  private void legacyConnect() throws IOException {
+    if (!tryConnect(config.getServerName(), config.getServerTcpPort())) {
+      throw new IOException("Failed to connect to server");
+    }
+  }
+
+
+
+  private boolean tryConnect(String server, Integer port){
+    LOG.info("Trying to connect to: {}:{}", server, port);
+    
+    ConnectFuture connFuture =
+        connector.connect(new InetSocketAddress(server, port));
+    connFuture.awaitUninterruptibly();
+    try {
+      session = connFuture.getSession();
+    } catch (RuntimeIoException e) {
+      return false;
+    }
+    connected=true;
+    return true;
   }
 
   @Override
