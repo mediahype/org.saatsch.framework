@@ -6,6 +6,12 @@ import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
 
 import dev.morphia.Morphia;
 
+/**
+ * data sink scoped to the unit tests of jmmo.
+ * 
+ * @author saatsch
+ *
+ */
 public class TestDataSink extends MorphiaMongoDataSink {
 
   private Lazy<TestDataSinkProperties> props =

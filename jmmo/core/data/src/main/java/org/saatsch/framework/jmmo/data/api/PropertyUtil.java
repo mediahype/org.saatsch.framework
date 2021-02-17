@@ -30,6 +30,7 @@ import org.saatsch.framework.base.util.Assert;
 
 public class PropertyUtil {
   private static final Logger LOG = LoggerFactory.getLogger(PropertyUtil.class);
+
   private PropertyUtil() {}
 
   /**
@@ -122,11 +123,11 @@ public class PropertyUtil {
       return (Class<?>) type.getActualTypeArguments()[0];
     } catch (ClassCastException e) {
 
-      if (type.getActualTypeArguments()[0] instanceof ParameterizedType ) {
+      if (type.getActualTypeArguments()[0] instanceof ParameterizedType) {
         type = (ParameterizedType) type.getActualTypeArguments()[0];
-        return (Class<?>) type.getRawType();        
+        return (Class<?>) type.getRawType();
       }
-      
+
       return null;
 
     }
@@ -144,8 +145,8 @@ public class PropertyUtil {
   }
 
   /**
-   * if the given object is a {@link Bean}, tries to find the full display name of the bean. Else returns
-   * o.toString();
+   * if the given object is a {@link Bean}, tries to find the full display name of the bean. If it
+   * is a {@link Pointer}, returns {@link Pointer#asString()} Else returns o.toString();
    * 
    * @param o
    * @return
@@ -157,7 +158,7 @@ public class PropertyUtil {
       return "null";
     }
 
-    
+
     if (!(o instanceof Bean)) {
       return o.toString();
     }
@@ -166,8 +167,7 @@ public class PropertyUtil {
 
     if (null == name) {
       if (o instanceof Pointer) {
-        // TODO:
-        // System.out.println("x");
+        return ((Pointer) o).asString();
       }
       return o.toString();
     }
@@ -300,7 +300,7 @@ public class PropertyUtil {
     return annotationPresent;
   }
 
-  
+
 
   public static List<Property<Object>> getPropertiesAnnotatedWith(Bean bean, Class annotation) {
     List<Property<Object>> ret = new ArrayList<>();
@@ -350,13 +350,13 @@ public class PropertyUtil {
   }
 
   public static List<Property<Object>> getStringProperties(Bean bean) {
-    
+
     List<Property<Object>> ret = new ArrayList<>();
-    
+
     for (MetaProperty<?> mp : MetaBean.of(bean.getClass()).metaPropertyIterable()) {
       if (mp.propertyType() == String.class) {
-        ret.add((Property<Object>)   bean.property(mp.name()));
-        
+        ret.add((Property<Object>) bean.property(mp.name()));
+
       }
     }
     return ret;
@@ -412,7 +412,8 @@ public class PropertyUtil {
     Bean newInstance = null;
     try {
       newInstance = c.getConstructor().newInstance();
-    } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+    } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+        | InvocationTargetException | NoSuchMethodException | SecurityException e) {
       throw new RuntimeException("Could not create instance of " + c.getName(), e);
     }
 
@@ -442,11 +443,11 @@ public class PropertyUtil {
     if (null == appIdProperty) {
       return null;
     }
-    
+
     if (null == appIdProperty.get()) {
       return null;
     }
-    
+
     return appIdProperty.get().toString();
 
   }
@@ -463,7 +464,7 @@ public class PropertyUtil {
     return null;
   }
 
-  
+
   public static MetaProperty<?> getAppIdProperty(Class<?> beanClass) {
     return getPropertyAnnotatedWith(beanClass, JmmoAppId.class);
   }
@@ -580,7 +581,8 @@ public class PropertyUtil {
    * @param resolveIntl if internationalizable strings should be resolved.
    * @return the new instance or <code>null</code> if there was no no-arg constructor.
    */
-  public static <T extends Bean> T copyBean(Bean sourceBean, Class<T> targetBeanClass, boolean resolveIntl) {
+  public static <T extends Bean> T copyBean(Bean sourceBean, Class<T> targetBeanClass,
+      boolean resolveIntl) {
 
     T targetBean = null;
     try {
@@ -601,19 +603,19 @@ public class PropertyUtil {
 
   private static void copyProperty(Property<Object> source, Property<Object> target,
       boolean resolveIntl) {
-    
+
     if (!resolveIntl) {
       target.set(source.get());
       return;
     }
-   
+
     if (isIntlString(source)) {
       target.set(intlService().loadLocalizedText((String) source.get()));
       return;
     }
-    
+
     target.set(source.get());
-    
+
   }
 
 
