@@ -28,11 +28,11 @@ public class Loading extends Dialog implements Openable<Void> {
 
   private Runnable task;
 
-  static Thread animateThread;
-  static Image image;
-  static Color shellBackground;
-  static final boolean useGIFBackground = false;
-  static GC shellGC;
+  private Thread animateThread;
+  private Image image;
+  private Color shellBackground;
+  private final boolean useGIFBackground = false;
+  private GC shellGC;
 
   
   
@@ -155,7 +155,9 @@ public class Loading extends Dialog implements Openable<Void> {
                     imageData.x, imageData.y, imageData.width, imageData.height);
 
                 /* Draw the off-screen image to the shell. */
-                shellGC.drawImage(offScreenImage, 0, 0);
+                if (!offScreenImage.isDisposed() && !shellGC.isDisposed()) {
+                  shellGC.drawImage(offScreenImage, 0, 0);                  
+                }
 
                 /*
                  * Sleep for the specified delay time (adding commonly-used slow-down fudge
@@ -178,6 +180,7 @@ public class Loading extends Dialog implements Openable<Void> {
                   repeatCount--;
               }
             } catch (SWTException ex) {
+              ex.printStackTrace();
               System.out.println("There was an error animating the GIF");
             } finally {
               if (offScreenImage != null && !offScreenImage.isDisposed())
@@ -199,6 +202,9 @@ public class Loading extends Dialog implements Openable<Void> {
   }
 
   public void close() {
+    animateThread.interrupt();
+    image.dispose();
+    shellGC.dispose();
     loading.dispose();
   }
 
