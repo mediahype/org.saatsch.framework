@@ -17,6 +17,7 @@ public interface DataSink {
    * 
    * @param obj the object to be saved.
    * @return the saved Object
+   * @throws DupKeyException 
    */
   Object save(Object obj) throws DupKeyException;
 
