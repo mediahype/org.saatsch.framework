@@ -72,7 +72,7 @@ public abstract class MorphiaMongoDataSink implements DataSink {
     morphia = new Morphia();
     
     morphia.getMapper().setOptions(MapperOptions.builder().storeEmpties(false).build());
-    morphia.mapPackage("de.jmmo.data.api.model");
+    morphia.mapPackage("org.saatsch.framework.jmmo.data.api.model");
     mapPackages(morphia);
     morphiaDatastore = morphia.createDatastore(mongoClient, dbName());
     morphiaDatastore.ensureIndexes();

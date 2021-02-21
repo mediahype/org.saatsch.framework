@@ -24,8 +24,8 @@ public class TestDataSink extends MorphiaMongoDataSink {
   @Override
   protected void mapPackages(Morphia morphia) {
 
-    morphia.mapPackage("de.jmmo.data.api.model");
-
+    morphia.mapPackage("org.saatsch.framework.jmmo.data.api.model");
+    
   }
 
   @Override
