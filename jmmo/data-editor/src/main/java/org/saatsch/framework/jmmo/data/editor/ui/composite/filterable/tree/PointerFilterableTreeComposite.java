@@ -22,13 +22,7 @@ public class PointerFilterableTreeComposite extends FilterableTreeComposite {
   @Override
   protected List<?> getContentData() {
 
-    // if (null != property) {
-    // DataSink data = JmmoContext.getBean(DataSink.class);
-    // if (null != data) {
-    // return data.getAll(PropertyUtil.getPointerType(property));
-    // }
-    // }
-    // return Collections.unmodifiableList(new ArrayList<>());
+
     Class<? extends Bean> c = (Class<? extends Bean>) PropertyUtil.getPointerType(property);
     
     CategorizingDataProviderBuilder builder = new CategorizingDataProviderBuilder(c);

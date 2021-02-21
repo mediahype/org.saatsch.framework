@@ -56,12 +56,21 @@ public class PointerEditor extends AbstractEditorComposite {
         btnGo.addSelectionListener(new SelectionAdapter() {
           @Override
           public void widgetSelected(SelectionEvent e) {
-            Pointer pointer = (Pointer) property.get();
-            //JmmoContext.getBean(MainGui.class).switchToTypeTab(pointer.getBaseClass());
-            JmmoContext.getBean(MainGui.class).selectObject(pointer);
+            go();
           }
+
         });
         btnGo.setText("Go");
+        
+        Button btnReset = new Button(composite, SWT.NONE);
+        btnReset.addSelectionListener(new SelectionAdapter() {
+          @Override
+          public void widgetSelected(SelectionEvent e) {
+            resetPointer();
+          }
+        });
+        btnReset.setToolTipText("Reset");
+        btnReset.setText("-");
 
     fillContents();
 
@@ -106,5 +115,24 @@ public class PointerEditor extends AbstractEditorComposite {
       fillContents();
     }
   }
+  
+  private void resetPointer() {
+    Pointer pointer = (Pointer) property.get();
+    pointer.setTargetCoodinate(pointer.getBaseClass(), null);
+    saveObject();
+    fillContents();
+  }
+
+  /**
+   * try to go to the target tab and select the target object. Do nothing if the pointer is invalid
+   * 
+   */
+  private void go() {
+    Pointer pointer = (Pointer) property.get();
+    if (pointer.isValid()) {
+      JmmoContext.getBean(MainGui.class).selectObject(pointer);      
+    }
+  }
+
 
 }

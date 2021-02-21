@@ -10,11 +10,15 @@ import com.mongodb.BasicDBObject;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.annotations.JmmoCategories;
 import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dev.morphia.Datastore;
 import dev.morphia.query.Query;
 
 public class CategorizingDataProvider {
 
+  private static final Logger LOG = LoggerFactory.getLogger(CategorizingDataProvider.class);
 
   private String distinct;
   private List<FilterVO> filters;
@@ -25,8 +29,7 @@ public class CategorizingDataProvider {
 
   /**
    * in order to gain speed by loading only a part of each object in a query result, later selecting
-   * an object in the editor would have to reload the object -
-   * which is not yet implemented.
+   * an object in the editor would have to reload the object - which is not yet implemented.
    */
   private static final boolean FAST_MODE = false;
 
@@ -71,7 +74,7 @@ public class CategorizingDataProvider {
       try {
         return query.asList();
       } finally {
-        // System.out.println("loaded in " + (System.currentTimeMillis() - tick));
+        LOG.debug("children loaded in {}ms.", System.currentTimeMillis() - tick);
       }
     }
 
