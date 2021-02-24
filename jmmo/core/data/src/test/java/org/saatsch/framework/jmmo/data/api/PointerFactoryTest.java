@@ -16,10 +16,7 @@ public class PointerFactoryTest {
     assertNotNull(classPointer);
     assertFalse(classPointer.isValid());
     
-    Pointer objectPointer = PointerFactory.newPointer(new ExampleBean());
-    assertNotNull(objectPointer);
-    assertTrue(objectPointer.isValid());
-    
+   
     Pointer<ExampleBean> typesafePointer = PointerFactory.newPointer(ExampleBean.class, new ExampleBean());
     assertNotNull(typesafePointer);
     

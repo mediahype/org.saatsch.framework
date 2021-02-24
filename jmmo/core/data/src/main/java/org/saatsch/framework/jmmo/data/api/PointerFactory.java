@@ -47,6 +47,7 @@ public class PointerFactory {
    *        property. Must not be <code>null</code>.
    * @return the new Pointer
    * @throws IllegalArgumentException if the target was not a Bean or was <code>null</code>
+   * @deprecated use the typesafe version {@link #newPointer(Class, Bean)}.
    */
   public static Pointer newPointer(Bean target) {
     Assert.notNull(target);
@@ -62,21 +63,22 @@ public class PointerFactory {
     }
   }
 
-  /**
+  /** 
+   * creates a new Pointer and lets it point to the given target {@link Bean}.
    * 
    * 
-   * @param beanClass
-   * @param target
+   * @param baseClass the base class of the target bean 
+   * @param target the target bean
    * @return
    */
   @SuppressWarnings("unchecked")
-  public static <T> Pointer<T> newPointer(Class<T> beanClass, Bean target) {
+  public static <T> Pointer<T> newPointer(Class<T> baseClass, Bean target) {
     Assert.notNull(PropertyUtil.getAppId(target));
 
     try {
       Pointer<T> newInstance =
           (Pointer<T>) Class.forName(POINTER_IMPL).getDeclaredConstructor().newInstance();
-      newInstance.setTargetCoodinate(beanClass, PropertyUtil.getAppId(target));
+      newInstance.setTargetCoodinate(baseClass, PropertyUtil.getAppId(target));
       return newInstance;
     } catch (InstantiationException | IllegalAccessException | ClassNotFoundException
         | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
