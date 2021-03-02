@@ -16,13 +16,24 @@ public class ServerError implements Serializable {
 
   private final String message;
 
+  private final Exception cause;
+
   public ServerError(String message) {
-    super();
     this.message = message;
+    this.cause = null;
   }
 
+  public ServerError(String message, Exception cause) {
+    this.message = message;
+    this.cause = cause;
+  }
+  
   public String getMessage() {
     return message;
+  }
+
+  public Exception getCause() {
+    return cause;
   }
 
 

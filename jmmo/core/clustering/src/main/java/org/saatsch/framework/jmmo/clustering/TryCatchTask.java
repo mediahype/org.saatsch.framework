@@ -49,7 +49,7 @@ public abstract class TryCatchTask implements Runnable {
       // TODO: at this early point in development, we respond with the server error.
       // This is not desireable and must be made configurable with the default of not to give away
       // the raw error to the client.
-      me.respond(new ServerError(sw.toString()));
+      me.respond(new ServerError(sw.toString(), e));
 
       try {
         sw.close();
