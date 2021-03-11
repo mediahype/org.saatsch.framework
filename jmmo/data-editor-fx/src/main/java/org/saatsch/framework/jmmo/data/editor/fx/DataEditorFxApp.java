@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 public class DataEditorFxApp extends Application {
 
@@ -33,6 +35,8 @@ public class DataEditorFxApp extends Application {
 //          .add(DataEditorFxApp.class.getResource("application.css").toExternalForm());
       primaryStage.setScene(scene);
 
+//      JMetro jMetro = new JMetro(Style.LIGHT);
+//      jMetro.setScene(scene); 
 
       fillContents();
 
