@@ -13,6 +13,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Demonstrates the use of {@link SafeAppLoop}
+ */
 public class SafeAppLoopDemo {
 
   private Shell shell;
@@ -23,12 +26,8 @@ public class SafeAppLoopDemo {
    */
   public static void main(String[] args) {
     
-    try {
-      SafeAppLoopDemo demo = new SafeAppLoopDemo();
-      demo.open();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+      new SafeAppLoopDemo().open();
+
   }
 
   /**

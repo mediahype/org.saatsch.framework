@@ -25,7 +25,7 @@ import de.odysseus.el.util.SimpleContext;
 
 /**
  * 
- * small wrapper around the JUEL expression language. Other than the Original EL, this one remembers which keys are defined.
+ * small wrapper around the JUEL expression language. Other than the Original EL, this wrapper remembers which keys are defined.
  * 
  * @author saatsch
  *
@@ -43,8 +43,6 @@ public class Expressions {
    */
   private final Map<String,String> keys = new ConcurrentHashMap<>();
 
-  // private final Set<String> keys = new HashSet<>();
-  
   /**
    * The property change support field.
    */
@@ -154,7 +152,7 @@ public class Expressions {
   }
   
   /**
-   * resets the expression language context. Does not reset
+   * resets the expression language context. Does not reset listeners.
    */
   public void reset() {
     context = new SimpleContext();

@@ -6,6 +6,9 @@ import java.util.List;
 import org.saatsch.framework.base.jface.beantree.BeanTree;
 import org.saatsch.framework.base.swt.AbstractDemo;
 
+/**
+ * demonstrates the use of {@link BeanTree} a composite that contains a tree widget that can dig into {@link org.joda.beans.Bean}s
+ */
 public class BeanTreeDemo extends AbstractDemo {
 
   public static void main(String[] args) {

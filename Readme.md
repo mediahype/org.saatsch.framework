@@ -1,6 +1,6 @@
 # org.saatsch.framework
 
-Saatsch's framework consists of 2 modules:
+Saatsch's framework consists of 2 top level modules:
 
 * [base](base/Readme.md)
 

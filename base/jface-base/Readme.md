@@ -1,7 +1,7 @@
 #### jface-base provides:
 
 * beantree (composite) 
-  * there is a class BeanTreeDemo in the test directory.
+  * see [BeanTreeDemo](src/test/java/org/saatsch/framework/base/swt/widgets/beantree/BeanTreeDemo.java) 
 
 * logintercept (composite)
   * intercepts app's logging and writes it to an SWT List.

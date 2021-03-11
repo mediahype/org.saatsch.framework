@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * Demonstrates how to install a keyboard shortcut that really works app wide.
  * 
- * @author 
+ * @author saatsch
  *
  */
 public class KeyboardShortcut {

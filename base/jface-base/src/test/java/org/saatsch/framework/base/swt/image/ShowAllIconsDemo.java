@@ -22,7 +22,7 @@ import jiconfont.icons.font_awesome.FontAwesome;
  * @author saatsch
  *
  */
-public class ShowAllIcons {
+public class ShowAllIconsDemo {
 
 
 

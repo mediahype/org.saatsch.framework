@@ -19,4 +19,4 @@ Projects that are using beans-support and want to define own beans must also dec
 	</plugin>
 	
 
-beans-support is required for jmmo.core.data 
+beans-support is required for saatsch.framework.jmmo.core.data 
