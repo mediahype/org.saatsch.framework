@@ -76,7 +76,7 @@ public abstract class FilterableTreeComposite extends Composite {
           EditorTabContent content = (EditorTabContent) tabcontent;
           if (null != content.getCurrentlySelected()) {
             EditObjectDialog dia = new EditObjectDialog(content);
-            dia.open();            
+            dia.open();
           }
         }
 
@@ -96,13 +96,13 @@ public abstract class FilterableTreeComposite extends Composite {
     if (c == null) {
       return null;
     }
-    
+
     if (c instanceof EditorTabContent) {
       return c;
     }
-    
+
     return findParentTabcontent(c.getParent());
-    
+
   }
 
   protected void init() {
@@ -142,7 +142,8 @@ public abstract class FilterableTreeComposite extends Composite {
     return selection.getFirstElement();
   }
 
-  // TODO: does not work. Should select the given Object.
+  // this only works when the object to be selected is present in the model, which is not always the
+  // case as we lazily load objects.
   public void makeSelected(Object o) {
 
     if (!isBean(o)) {

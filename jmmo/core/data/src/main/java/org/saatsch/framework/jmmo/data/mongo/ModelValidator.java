@@ -256,13 +256,13 @@ class ModelValidator {
     }
 
     // check (2)
-//    for (Object base : instances.keySet()) {
-//      if (!(base instanceof MongoDataObject)) {
-//        LOG.error(LOG_PREFIX + "{} must be a subclass of {}", base.getClass().getName(),
-//            MongoDataObject.class.getName());
-//        errorOccured = true;
-//      }
-//    }
+    for (Object base : instances.keySet()) {
+      if (!(base instanceof MongoDataObject)) {
+        LOG.error(LOG_PREFIX + "{} must be a subclass of {}", base.getClass().getName(),
+            MongoDataObject.class.getName());
+        errorOccured = true;
+      }
+    }
 
     return !errorOccured;
 

@@ -15,7 +15,10 @@ import org.saatsch.framework.base.swt.DialogUtil;
 import org.saatsch.framework.base.swt.Openable;
 
 /**
- * Displays a loading animation. Can a.t.m. be exited with esc. this should maybe be forbidden.
+ * Displays a loading animation. 
+ * Usage: <code>loading = new Loading(shell); loading.withTask(r).open(); </code>
+ * 
+ * Can a.t.m. be exited with the escape key. this should maybe be forbidden.
  * 
  * @author saatsch
  * 

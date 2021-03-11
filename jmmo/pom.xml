@@ -16,6 +16,7 @@
     <module>api-client</module>
     <module>core</module>
     <module>data-editor</module>
+    <module>data-editor-fx</module>
     <module>base-app</module>
   </modules>
 
