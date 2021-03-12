@@ -96,7 +96,7 @@ public class EditorCreatorUtil {
   public static AbstractEditorComposite createEditorForField(Composite parent,
       Property<Object> property, Bean objectToEdit) {
 
-    String propType = property.metaProperty().propertyType().toString();
+    
 
     if (PropertyUtil.isSupportedCollection(property)) {
       // The collection...
@@ -128,6 +128,7 @@ public class EditorCreatorUtil {
       return null;
     }
 
+    String propType = property.metaProperty().propertyType().toString();
 
     if (propType.contains("java.lang.Integer") || propType.equals("int")) {
       return createInteger(parent, property, objectToEdit);

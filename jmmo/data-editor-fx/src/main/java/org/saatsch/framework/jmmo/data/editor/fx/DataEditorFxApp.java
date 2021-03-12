@@ -31,12 +31,12 @@ public class DataEditorFxApp extends Application {
       this.stage = primaryStage;
       root = FXMLLoader.load(DataEditorFxApp.class.getResource("Editor.fxml"));
       scene = new Scene(root, 800, 600);
-//      scene.getStylesheets()
-//          .add(DataEditorFxApp.class.getResource("application.css").toExternalForm());
+      scene.getStylesheets()
+          .add(DataEditorFxApp.class.getResource("application.css").toExternalForm());
       primaryStage.setScene(scene);
 
 //      JMetro jMetro = new JMetro(Style.LIGHT);
-//      jMetro.setScene(scene); 
+//      jMetro.setScene(scene);
 
       fillContents();
 

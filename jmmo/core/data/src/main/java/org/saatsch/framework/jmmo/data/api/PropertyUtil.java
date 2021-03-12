@@ -4,11 +4,13 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.beans.Bean;
 import org.joda.beans.JodaBeanUtils;
@@ -29,18 +31,17 @@ import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.base.util.Assert;
 
 public class PropertyUtil {
+
   private static final Logger LOG = LoggerFactory.getLogger(PropertyUtil.class);
 
-  private PropertyUtil() {}
+  private PropertyUtil() {
+  }
 
   /**
    * given a property's {@link MetaProperty}, returns the class of the property. If the property's
    * class is {@link List} (or {@link Set}), returns the parameter type of the Collection. If the
    * property's class is {@link List} (or {@link Set}) and has no parameters, returns
    * <code>null</code>.
-   * 
-   * @param metaProperty
-   * @return
    */
   public static Class<?> genericClass(MetaProperty<?> metaProperty) {
 
@@ -70,13 +71,11 @@ public class PropertyUtil {
   }
 
 
-
   /**
    * returns the first type argument of a property or <code>null</code> if the given property is not
    * a parameterized type. Recurses, if said first type argument is a parameterized type again.
-   * 
+   *
    * @param metaProperty the (description of the) property.
-   * @return
    */
   public static Class<?> firstTypeArgRecurse(MetaProperty<?> metaProperty) {
 
@@ -106,9 +105,8 @@ public class PropertyUtil {
   /**
    * returns the first type argument of a property or <code>null</code> if the given property is not
    * a parameterized type or an unknown type (because it's defined generically).
-   * 
+   *
    * @param metaProperty the (description of the) property.
-   * @return
    */
   public static Class<?> firstTypeArg(MetaProperty<?> metaProperty) {
 
@@ -134,7 +132,6 @@ public class PropertyUtil {
   }
 
 
-
   public static boolean isSupportedCollection(MetaProperty<?> metaProperty) {
     return List.class.isAssignableFrom(metaProperty.propertyType())
         || Set.class.isAssignableFrom(metaProperty.propertyType());
@@ -147,9 +144,7 @@ public class PropertyUtil {
   /**
    * if the given object is a {@link Bean}, tries to find the full display name of the bean. If it
    * is a {@link Pointer}, returns {@link Pointer#asString()} Else returns o.toString();
-   * 
-   * @param o
-   * @return
+   *
    * @see #getFullName(Bean)
    */
   public static String getNameOrToString(Object o) {
@@ -157,7 +152,6 @@ public class PropertyUtil {
     if (null == o) {
       return "null";
     }
-
 
     if (!(o instanceof Bean)) {
       return o.toString();
@@ -177,12 +171,10 @@ public class PropertyUtil {
   }
 
 
-
   /**
    * gets an instance of an enum given the enum value and the enum class.
-   * 
+   *
    * @param value the enum value. Not <code>null</code>.
-   * @param enumClass
    * @return an Enum or <code>null</code> if the enum value was not found in the enum class
    */
   public static <T extends Enum<T>> T getEnumInstance(final String value,
@@ -199,19 +191,24 @@ public class PropertyUtil {
 
   /**
    * returns the constants of an enum if the given property represents an enum.
-   * 
+   *
    * @param property the {@link Property}
    * @return the enum constants or <code>null</code> if the given property does not represent an
-   *         enum.
+   * enum.
    */
   public static Object[] getEnumConstants(Property<Object> property) {
     return property.metaProperty().propertyType().getEnumConstants();
   }
 
+  public static List<String> getEnumConstantsList(Property<Object> property) {
+
+    return Arrays.asList(property.metaProperty().propertyType().getEnumConstants()).stream()
+        .map(o -> o.toString()).collect(
+            Collectors.toList());
+  }
 
 
   /**
-   * @param p
    * @return <code>true</code> if the given {@link Property} represents a {@link Pointer}.
    */
   public static boolean isPointer(Property<Object> p) {
@@ -221,21 +218,20 @@ public class PropertyUtil {
   /**
    * returns <code>true</code> if the given property represents a {@link Bean}, otherwise
    * <code>false</code>. It does not matter if the current content of the given Property is null.
-   * 
+   *
    * @param p the given property.
    * @return <code>true</code> if the given property represents a {@link Bean}, otherwise
-   *         <code>false</code>
+   * <code>false</code>
    */
   public static boolean isBean(Property<Object> p) {
     return Bean.class.isAssignableFrom(p.metaProperty().propertyType());
   }
 
 
-
   /**
    * given a property that holds a {@link Pointer}, returns the type to which the Pointer points.
    * TODO: check if argument is legal.
-   * 
+   *
    * @param p the {@link Property} to examine.
    * @return the type to which the Pointer points.
    */
@@ -259,10 +255,6 @@ public class PropertyUtil {
    * returns <code>true</code> if the property is annotated with the given annotation class,
    * <code>false</code> if the given property is not annotated with the given annotation or the
    * given property was <code>null</code>.
-   * 
-   * @param property
-   * @param annotation
-   * @return
    */
   public static boolean isPropertyAnnotatedWith(Property<Object> property, Class annotation) {
 
@@ -301,7 +293,6 @@ public class PropertyUtil {
   }
 
 
-
   public static List<Property<Object>> getPropertiesAnnotatedWith(Bean bean, Class annotation) {
     List<Property<Object>> ret = new ArrayList<>();
     for (String prop : bean.propertyNames()) {
@@ -315,7 +306,7 @@ public class PropertyUtil {
 
   /**
    * returns the property of the given bean that is annotated with {@link JmmoAppId}.
-   * 
+   *
    * @param bean the bean.
    * @return the property or <code>null</code> if no property is annotated with {@link JmmoAppId}.
    */
@@ -334,8 +325,7 @@ public class PropertyUtil {
   /**
    * returns the property of the given {@link Bean} that is annotated with {@link JmmoGivingName}
    * and {@link JmmoGivingName#main()} is set to <code>true</code>.
-   * 
-   * @param bean
+   *
    * @return the property or <code>null</code> if no matching property was found.
    */
   public static Property<Object> getGivingNameMainProperty(Bean bean) {
@@ -364,12 +354,11 @@ public class PropertyUtil {
 
   /**
    * Gets the full display name of a Bean. Bean Properties annotated with {@link JmmoGivingName} are
-   * taken into account and concatenated - separated by a space - in the order of their
-   * {@link JmmoGivingName#cardinality()}. This method also respects Intl. Strings.
-   * 
-   * @param bean
+   * taken into account and concatenated - separated by a space - in the order of their {@link
+   * JmmoGivingName#cardinality()}. This method also respects Intl. Strings.
+   *
    * @return the full name of a Bean or <code>null</code> if there was no {@link JmmoGivingName}
-   *         property.
+   * property.
    */
   public static String getFullName(Bean bean) {
 
@@ -402,7 +391,7 @@ public class PropertyUtil {
 
   /**
    * creates a new Instance of a given a Bean class using the no-arg constructor.
-   * 
+   *
    * @param c the Bean class
    * @return the new instance
    * @throws RuntimeException if no instance could be created.
@@ -421,20 +410,17 @@ public class PropertyUtil {
   }
 
 
-
   private static IntlStringService intlService() {
     return JmmoContext.getBean(IntlStringService.class);
   }
 
 
-
   /**
    * returns the appId of the given Bean or <code>null</code> if the Bean does not define such a
    * property or the property is <code>null</code>
-   * 
-   * @param bean
+   *
    * @return the appId of the given Bean or <code>null</code> if the Bean does not define such a
-   *         property or the property itself is <code>null</code>
+   * property or the property itself is <code>null</code>
    */
   public static String getAppId(Bean bean) {
 
@@ -471,9 +457,8 @@ public class PropertyUtil {
 
 
   /**
-   * @param beanClass
    * @return the name of the property annotated with {@link JmmoAppId} or <code>null</code> if there
-   *         is no such property.
+   * is no such property.
    */
   public static String getAppIdPropertyName(Class<? extends Bean> beanClass) {
     MetaProperty<?> appIdMetaProperty = getAppIdProperty(beanClass);
@@ -484,13 +469,10 @@ public class PropertyUtil {
   }
 
 
-
   /**
    * iterates over the properties of the given Bean. If a property is a pointer, initializes it.
    * This does not require DB interaction. TODO: is this a duplicate of the newly introduced visitor
    * pattern?
-   * 
-   * @param bean
    */
   public static void initPointers(Bean bean) {
 
@@ -541,8 +523,9 @@ public class PropertyUtil {
   }
 
   /**
-   * returns the properties of a bean except those that are annotated with {@link JmmoEditorHidden}.
-   * 
+   * returns the properties of a bean except those that are annotated with {@link
+   * JmmoEditorHidden}.
+   *
    * @param bean the bean to inspect.
    * @return the list of visible properties. Not <code>null</code>
    */
@@ -559,9 +542,6 @@ public class PropertyUtil {
   /**
    * returns the jmmodoc of a property or <code>null</code> if no jmmodoc is present on the
    * property.
-   * 
-   * @param property
-   * @return
    */
   public static String getJmmoDoc(Property<Object> property) {
     if (!isPropertyAnnotatedWith(property, JmmoDoc.class)) {
@@ -575,7 +555,7 @@ public class PropertyUtil {
   /**
    * a simple copy bean method. Iterates over properties and calls getters and setters. Skips
    * properties that do not exist in the target bean.
-   * 
+   *
    * @param sourceBean the source Bean
    * @param targetBeanClass the class of the desired targetBean
    * @param resolveIntl if internationalizable strings should be resolved.

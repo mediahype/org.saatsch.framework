@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <tabs>
-    <Tab text="Untitled Tab 1">
-         <content>
-            <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0">
-               <items>
-                  <SplitPane orientation="VERTICAL">
-                     <items>
+
+<HBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox>
+               <children>
+                  <Label text="Label" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
+                     <children>
                         <VBox>
                            <children>
-                              <TextField />
-                              <TreeView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                              <Label text="|||hfjreighjefdiopgnvedjiopvnwedvjweiopvhweuivdbwhjviowdbhjvipwehnvuewp" />
                            </children>
                         </VBox>
-                     </items>
-                  </SplitPane>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                        <VBox>
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="116.0" />
-                              <ComboBox prefWidth="150.0" />
+                              <Label text="|||hfjreighjefdiopgnvedjiopvnwedvjweiopvhweuivdbwhjviowdbhjvipwehnvuewp" />
                            </children>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </items>
-            </SplitPane>
-         </content></Tab>
-    <Tab text="Untitled Tab 2" />
-  </tabs>
-</TabPane>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label text="Labelfehjwiovhwedjivpdw" />
+         </children>
+      </FlowPane>
+   </children>
+</HBox>

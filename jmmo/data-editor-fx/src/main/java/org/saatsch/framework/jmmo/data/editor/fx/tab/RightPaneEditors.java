@@ -21,22 +21,17 @@ public class RightPaneEditors extends ScrollPane implements SelectionChanged<Bea
     setFitToWidth(true);
     setFitToHeight(true);
 
-    // clear();
-    flowPane = new FlowPane(Orientation.HORIZONTAL);
-    for (int i = 0; i < 100; i++) {
-      flowPane.getChildren().add(new Label("Label" + i));
 
-    }
-    getChildren().add(flowPane);
+    flowPane = new FlowPane(Orientation.HORIZONTAL);
+    setContent(flowPane);
+
     
-    // layout();
+
   }
 
 
   private void clear() {
-    getChildren().clear();
-    flowPane = new FlowPane(Orientation.HORIZONTAL);
-    getChildren().add(flowPane);
+    flowPane.getChildren().clear();
   }
 
   private void fill(Bean bean) {

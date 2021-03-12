@@ -16,7 +16,7 @@ import org.saatsch.framework.jmmo.data.editor.ui.types.AbstractEditorComposite;
 public class FloatEditor extends AbstractEditorComposite {
   private final Spinner spinner;
   private final Label lblRange;
-  private JmmoFloat meta;
+  private final JmmoFloat meta;
 
   public FloatEditor(Composite parent, Property<Object> property, Bean objectToEdit) {
     super(parent, property, SWT.NONE, objectToEdit);
