@@ -45,39 +45,39 @@ public class EditorCreatorUtil {
   private EditorCreatorUtil() {}
 
   /**
-   * creates editors for a Bean
+   * creates editors for a Bean toEdit
    * 
-   * @param composite the composite in which to create the editors.
-   * @param bean the Bean for which to create the editors.
-   * @param objectToEdit the top level, persistable Bean. This Bean will be persisted if any of the
+   * @param container the composite in which to create the editors.
+   * @param toEdit the Bean for which to create the editors.
+   * @param toSave the top level, persistable Bean. This Bean will be persisted if any of the
    *        property editors signals that the object to edit should be saved.
    */
-  public static void createEditors(Composite composite, Bean bean, Bean objectToEdit) {
+  public static void createEditors(Composite container, Bean toEdit, Bean toSave) {
 
     // in case of toggling the edit mode with no bean selected, the following can happen:
-    if (bean == null) {
+    if (toEdit == null) {
       return;
     }
 
-    EditorLayouter layouter = new EditorLayouter(composite);
+    EditorLayouter layouter = new EditorLayouter(container);
 
 
-    for (String prop : bean.propertyNames()) {
+    for (String prop : toEdit.propertyNames()) {
 
-      if (PropertyUtil.isPropertyAnnotatedWith(bean.property(prop), JmmoAppId.class)) {
+      if (PropertyUtil.isPropertyAnnotatedWith(toEdit.property(prop), JmmoAppId.class)) {
         continue;
       }
-      if (PropertyUtil.isPropertyAnnotatedWith(bean.property(prop), JmmoEditorHidden.class)) {
+      if (PropertyUtil.isPropertyAnnotatedWith(toEdit.property(prop), JmmoEditorHidden.class)) {
         continue;
       }
 
-      Property<Object> property = bean.property(prop);
+      Property<Object> property = toEdit.property(prop);
       if (PropertyUtil.isSupportedCollection(property) || property.get() instanceof Bean) {
         layouter.nextLayoutIsGrid();
       } else {
         layouter.nextLayoutIsRow();
       }
-      createEditorForField(layouter.getToDrawInto(), property, objectToEdit);
+      createEditorForField(layouter.getToDrawInto(), property, toSave);
     }
 
   }

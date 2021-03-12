@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -24,7 +26,16 @@
                         </VBox>
                      </items>
                   </SplitPane>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ComboBox prefHeight="25.0" prefWidth="116.0" />
+                              <ComboBox prefWidth="150.0" />
+                           </children>
+                        </FlowPane>
+                     </content>
+                  </ScrollPane>
                </items>
             </SplitPane>
          </content></Tab>

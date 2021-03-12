@@ -1,11 +1,14 @@
-package org.saatsch.framework.jmmo.data.editor.fx.base;
+package org.saatsch.framework.jmmo.data.editor.fx.beantree;
 
 import javafx.scene.control.TreeCell;
 import org.joda.beans.Bean;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BeanTreeCell extends TreeCell<Bean> {
 
+  private static final Logger LOG = LoggerFactory.getLogger(BeanTreeCell.class);
 
   @Override
   protected void updateItem(Bean item, boolean empty) {
@@ -17,4 +20,6 @@ public class BeanTreeCell extends TreeCell<Bean> {
     
 
   }
+
+
 }

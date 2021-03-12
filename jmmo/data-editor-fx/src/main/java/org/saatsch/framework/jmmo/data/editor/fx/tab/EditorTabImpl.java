@@ -5,7 +5,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.Pane;
 
 /**
- * a tab in the editor.
+ * a tab in the editor. It knows which class it should handle.
  */
 public class EditorTabImpl extends Tab implements EditorTab {
 
@@ -19,12 +19,13 @@ public class EditorTabImpl extends Tab implements EditorTab {
 
     this.clazz = clazz;
 
+    LeftPane leftPane = new LeftPane(this);
+    RightPaneEditors rightPane = new RightPaneEditors();
 
-    SplitPane sp = new SplitPane();
+    leftPane.setSelectionChangedListener(rightPane);
+
+    SplitPane sp = new SplitPane(leftPane,rightPane);
     sp.setDividerPositions(0.3);
-
-    sp.getItems().add(new LeftPane(this));
-    sp.getItems().add(new Pane());
 
     setContent(sp);
 
