@@ -6,15 +6,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
+import org.saatsch.framework.jmmo.data.editor.fx.Styles;
 
 public class NestedBeanEditor extends  AbstractEditor {
 
-  String cssLayout = "-fx-border-color: black;\n" +
-      "-fx-border-insets: 2;\n" +
-      "-fx-border-width: 1;\n" +
-      "-fx-border-style: dashed;\n";
-
-  private HBox content;
+  private FlowPane content;
 
   public NestedBeanEditor(Property<Object> property,
       Bean objectToEdit) {
@@ -22,9 +18,9 @@ public class NestedBeanEditor extends  AbstractEditor {
 
 
 
-    content = new HBox();
-    content.setStyle(cssLayout);
-    content.setPrefWidth(500);
+    content = new FlowPane();
+    content.setStyle(Styles.nestedBeanEditor);
+
 
     getChildren().add(content);
 

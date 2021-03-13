@@ -1,10 +1,7 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
-import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
@@ -12,14 +9,9 @@ import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.jmmo.data.annotations.JmmoDoc;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
+import org.saatsch.framework.jmmo.data.editor.fx.Styles;
 
 public abstract class AbstractEditor extends VBox {
-
-  String cssLayout = "-fx-border-color: red;\n" +
-      "-fx-border-insets: 2;\n" +
-      "-fx-border-width: 1;\n" +
-      "-fx-border-style: dashed;\n";
-
 
   protected final Bean objectToEdit;
   protected final Property<Object> property;
@@ -28,7 +20,7 @@ public abstract class AbstractEditor extends VBox {
     super();
     this.objectToEdit = objectToEdit;
     this.property = property;
-    setStyle(cssLayout);
+    setStyle(Styles.abstractEditor);
     createContents();
   }
 

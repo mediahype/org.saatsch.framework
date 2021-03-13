@@ -1,42 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 
-<HBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+      <TableView prefWidth="200.0" HBox.hgrow="ALWAYS" />
+      <VBox prefWidth="54.0" HBox.hgrow="NEVER">
          <children>
-            <VBox>
-               <children>
-                  <Label text="Label" />
-                  <TextField />
-               </children>
-            </VBox>
-            <VBox>
-               <children>
-                  <HBox maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
-                     <children>
-                        <VBox>
-                           <children>
-                              <Label text="|||hfjreighjefdiopgnvedjiopvnwedvjweiopvhweuivdbwhjviowdbhjvipwehnvuewp" />
-                           </children>
-                        </VBox>
-                        <VBox>
-                           <children>
-                              <Label text="|||hfjreighjefdiopgnvedjiopvnwedvjweiopvhweuivdbwhjviowdbhjvipwehnvuewp" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <Label text="Labelfehjwiovhwedjivpdw" />
+            <Button mnemonicParsing="false" text="Button" />
          </children>
-      </FlowPane>
+      </VBox>
    </children>
 </HBox>

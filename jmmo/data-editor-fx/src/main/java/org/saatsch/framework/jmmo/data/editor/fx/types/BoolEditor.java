@@ -15,6 +15,8 @@ public class BoolEditor extends AbstractEditor {
 
     check.setSelected((Boolean) property.get());
 
+    getChildren().add(check);
+
 //    check.selectedProperty().addListener(b -> {
 //      System.out.println("x");
 //    });

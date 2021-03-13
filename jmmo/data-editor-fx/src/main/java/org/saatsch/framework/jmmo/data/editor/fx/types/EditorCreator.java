@@ -13,6 +13,8 @@ import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
+import org.saatsch.framework.jmmo.data.editor.fx.types.list.PointerListEditor;
+import org.saatsch.framework.jmmo.data.editor.fx.types.list.TableEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,20 +53,25 @@ public class EditorCreator {
       // ... is a List of Pointer<>s
       if (Pointer.class.equals(PropertyUtil.firstTypeArg(property.metaProperty()))) {
         createPointerCollection(parent, property, toSave);
+        return;
       }
 
       // ... is a List of Enum Constants.
       Class<?> genericClass = PropertyUtil.genericClass(property.metaProperty());
       if (null != genericClass && genericClass.isEnum()) {
         createEnumCollection(parent, property, toSave);
+        return;
       }
 
+      // .. is a List of Strings
       if (null != genericClass && genericClass.equals(String.class)) {
         createStringCollection(parent, property, toSave);
+        return;
       }
 
-      // ...
+      // ... is any other supported Collection
       createTable(parent, property, toSave);
+      return;
     }
 
     if (null == property.get()) {
@@ -77,27 +84,34 @@ public class EditorCreator {
 
     if (propType.contains("java.lang.Integer") || propType.equals("int")) {
        createInteger(parent, property, toSave);
+       return;
     }
     if (propType.contains("java.lang.String")) {
        createString(parent, property, toSave);
+       return;
     }
     if (propType.contains("java.lang.Boolean") || propType.equals("boolean") ) {
        createBoolean(parent, property, toSave);
+       return;
     }
     if (propType.contains("java.lang.Float") || propType.equals("float")) {
        createFloat(parent, property, toSave);
+       return;
     }
 
     if (property.get() instanceof Pointer) {
        createPointer(parent, property, toSave);
+       return;
     }
 
     if (property.get().getClass().equals(JmmoImage.class)) {
        createImage(parent, property, toSave);
+       return;
     }
 
     if (property.get().getClass().isEnum()) {
        createEnum(parent, property, toSave);
+       return;
     }
 
 //    CustomTypes customTypes = JmmoContext.getBean(CustomTypes.class);
@@ -108,12 +122,12 @@ public class EditorCreator {
 
     if (property.get() instanceof Bean) {
        createNestedBean(parent, property, toSave);
+       return;
     }
 
 
 
     LOG.info("No Type Editor for class:{} --- property:{}", property.get().getClass().getName(), property.toString());
-
 
 
   }
@@ -159,7 +173,7 @@ public class EditorCreator {
   }
 
   private static void createTable(Pane parent, Property<Object> property, Bean toSave) {
-    parent.getChildren().add(new Label("|" +property.name() + ":createTable"  ));
+    parent.getChildren().add(new TableEditor(property,toSave));
   }
 
   private static void createStringCollection(Pane parent, Property<Object> property, Bean toSave) {
@@ -171,7 +185,7 @@ public class EditorCreator {
   }
 
   private static void createPointerCollection(Pane parent, Property<Object> property, Bean toSave) {
-    parent.getChildren().add(new Label("|" +property.name() + " : createPointerCollection "  ));
+    parent.getChildren().add(new PointerListEditor(property,toSave));
   }
 
 

@@ -21,7 +21,7 @@ public class EnumEditor extends AbstractEditor{
 
 
     if (!property.metaProperty().style().isWritable()) {
-
+      cmbList.setDisable(true);
     }
 
     enumToEdit = (Enum) property.get();
