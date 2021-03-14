@@ -2,7 +2,6 @@ package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 
 import javafx.geometry.Orientation;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import org.joda.beans.Bean;

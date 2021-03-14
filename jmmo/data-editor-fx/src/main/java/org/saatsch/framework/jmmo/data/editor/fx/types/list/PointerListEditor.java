@@ -2,17 +2,11 @@ package org.saatsch.framework.jmmo.data.editor.fx.types.list;
 
 import java.util.Collection;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
-import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.Pointer;
-import org.saatsch.framework.jmmo.data.api.PointerUtil;
 
 public class PointerListEditor extends AbstractListEditor<Pointer<?>> {
 

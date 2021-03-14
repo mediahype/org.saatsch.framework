@@ -2,7 +2,6 @@ package org.saatsch.framework.jmmo.data.editor.fx.beantree;
 
 import java.util.Optional;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import org.joda.beans.Bean;

@@ -1,10 +1,9 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
 import com.sun.javafx.scene.control.skin.Utils;
+import javafx.scene.control.TextField;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
-
-import javafx.scene.control.TextField;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.IntlStringService;
 

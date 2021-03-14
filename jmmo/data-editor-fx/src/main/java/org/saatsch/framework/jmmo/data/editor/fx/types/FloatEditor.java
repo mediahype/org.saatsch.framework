@@ -2,7 +2,6 @@ package org.saatsch.framework.jmmo.data.editor.fx.types;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;

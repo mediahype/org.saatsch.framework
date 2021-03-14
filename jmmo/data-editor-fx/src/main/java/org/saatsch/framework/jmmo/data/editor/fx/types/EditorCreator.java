@@ -1,13 +1,11 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
-import static org.saatsch.framework.jmmo.data.api.PropertyUtil.*;
+import static org.saatsch.framework.jmmo.data.api.PropertyUtil.isPropertyAnnotatedWith;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
-import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.annotations.JmmoAppId;
 import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
 import org.saatsch.framework.jmmo.data.api.Pointer;
@@ -133,7 +131,7 @@ public class EditorCreator {
   }
 
   private static void createNestedBean(Pane parent, Property<Object> property, Bean toSave) {
-    parent.getChildren().add(new NestedBeanEditor(property,toSave));
+    parent.getChildren().add(new NestedBeanEditor(parent, property,toSave));
   }
 
   private static void createEnum(Pane parent, Property<Object> property, Bean toSave) {

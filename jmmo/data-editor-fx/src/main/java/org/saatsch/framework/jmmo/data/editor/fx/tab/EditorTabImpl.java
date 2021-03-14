@@ -2,7 +2,6 @@ package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
-import javafx.scene.layout.Pane;
 
 /**
  * a tab in the editor. It knows which class it should handle.

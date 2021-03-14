@@ -2,8 +2,6 @@ package org.saatsch.framework.jmmo.data.editor.fx.types.list;
 
 import static org.saatsch.framework.jmmo.data.api.PropertyUtil.isPropertyAnnotatedWith;
 
-import java.awt.Composite;
-import java.util.Collection;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
