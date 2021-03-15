@@ -1,5 +1,7 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
@@ -24,6 +26,13 @@ public class StringEditor extends AbstractEditor {
     txtContent.setText((String) property.get());
 
     getChildren().add(txtContent);
+
+    txtContent.focusedProperty().addListener((observable, oldValue, newValue) -> {
+      if (newValue == false){
+        property.set(txtContent.textProperty().get());
+        saveObject();
+      }
+    });
 
   }
 }

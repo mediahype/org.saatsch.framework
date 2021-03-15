@@ -1,5 +1,7 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -15,17 +17,10 @@ public class EnumEditor extends AbstractEditor{
 
   public EnumEditor(Property<Object> property, Bean objectToEdit) {
     super(property, objectToEdit);
+    enumToEdit = (Enum) property.get();
 
     cmbList = new ComboBox();
     cmbList.setEditable(false);
-
-
-    if (!property.metaProperty().style().isWritable()) {
-      cmbList.setDisable(true);
-    }
-
-    enumToEdit = (Enum) property.get();
-
     getChildren().add(cmbList);
 
     fillContents();
@@ -38,6 +33,15 @@ public class EnumEditor extends AbstractEditor{
     cmbList.setItems(objects);
 
     cmbList.getSelectionModel().select(property.get().toString());
+
+    if (!property.metaProperty().style().isWritable()) {
+      cmbList.setDisable(true);
+    }
+
+    cmbList.valueProperty().addListener((observable, oldValue, newValue) -> {
+      property.set(PropertyUtil.getEnumInstance(newValue, enumToEdit.getDeclaringClass()));
+      saveObject();
+    });
 
   }
 }

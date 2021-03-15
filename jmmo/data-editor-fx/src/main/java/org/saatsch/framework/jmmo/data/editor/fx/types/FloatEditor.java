@@ -1,5 +1,7 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
@@ -15,6 +17,8 @@ public class FloatEditor extends AbstractEditor {
 
   private final Spinner spinner;
   private final Label lblRange;
+
+  // TODO: use this in setting the precision
   private final JmmoFloat meta;
 
   public FloatEditor(Property<Object> property, Bean objectToEdit) {
@@ -34,9 +38,6 @@ public class FloatEditor extends AbstractEditor {
 
   private void fillContents() {
 
-
-
-
     if (PropertyUtil.isPropertyAnnotatedWith(property, JmmoFloat.class)) {
 
       JmmoFloat meta = property.metaProperty().annotation(JmmoFloat.class);
@@ -49,6 +50,11 @@ public class FloatEditor extends AbstractEditor {
 
       lblRange.setText(makeRangeString(meta));
     }
+
+    spinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+      property.set(newValue);
+      saveObject();
+    });
 
   }
 

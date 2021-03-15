@@ -1,37 +1,23 @@
 package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
-import dev.morphia.Datastore;
-import java.util.List;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
-import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
-import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTree;
-import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTreeFactory;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.editor.fx.composite.FilterableBeanTree;
 
+/**
+ * the left pane on an editor tab.
+ */
 public class LeftPane extends VBox {
 
   private final EditorTab parent;
-  private final BeanTree beanTree;
-
+  private final FilterableBeanTree beanTree;
 
   public LeftPane(EditorTab parent){
 
     this.parent = parent;
-
-    beanTree = BeanTreeFactory.create(parent.getObjectClass());
-
-    VBox.setVgrow(beanTree, Priority.ALWAYS);
-
-    getChildren().add(new TextField());
+    beanTree = new FilterableBeanTree(parent.getObjectClass());
     getChildren().add(beanTree);
-
-
 
   }
 

@@ -10,6 +10,8 @@ import org.saatsch.framework.jmmo.data.api.IntlStringService;
 /**
  * editor that gets constructed for editing an Intl String property.
  *
+ * TODO: save
+ *
  * @author saatsch
  *
  */

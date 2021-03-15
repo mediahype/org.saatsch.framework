@@ -1,5 +1,6 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
@@ -10,6 +11,7 @@ import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.jmmo.data.annotations.JmmoDoc;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.editor.fx.Styles;
+import org.saatsch.framework.jmmo.data.editor.fx.base.Repaintable;
 
 public abstract class AbstractEditor extends VBox {
 
@@ -56,6 +58,14 @@ public abstract class AbstractEditor extends VBox {
 
   private void repaintParents() {
     //TODO
+    Parent p = getParent();
+    while (null != p) {
+      if (p instanceof Repaintable) {
+        ((Repaintable) p).repaint();
+      }
+
+      p = p.getParent();
+    }
   }
 
 }

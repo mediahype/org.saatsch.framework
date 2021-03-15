@@ -17,6 +17,7 @@ public class NestedBeanEditor extends  AbstractEditor {
     content = new FlowPane();
     content.setStyle(Styles.nestedBeanEditor);
 
+    setPrefWidth(parent.getWidth());
 
     getChildren().add(content);
 

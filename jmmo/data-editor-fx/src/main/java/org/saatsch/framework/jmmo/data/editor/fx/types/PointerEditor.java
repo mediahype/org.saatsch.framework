@@ -24,8 +24,6 @@ public class PointerEditor extends  AbstractEditor{
       Bean objectToEdit) {
     super(property, objectToEdit);
 
-    // getChildren().add(new Label("TODO: "+getClass().getSimpleName()+" prop: " + property.name()));
-
     txtContent = new TextField();
     txtContent.setDisable(true);
     getChildren().add(txtContent);
@@ -38,9 +36,11 @@ public class PointerEditor extends  AbstractEditor{
     box.getChildren().add(btnSelect);
 
     Button btnGo = new Button("Go");
+    btnGo.setOnAction(this::go);
     box.getChildren().add(btnGo);
 
     Button btnReset = new Button("-");
+    btnReset.setOnAction(this::resetPointer);
     box.getChildren().add(btnReset);
 
     fillContents();
@@ -48,24 +48,26 @@ public class PointerEditor extends  AbstractEditor{
 
   }
 
+
   private void fillContents() {
-
-    Pointer pointer = (Pointer) property.get();
-
+    Pointer<?> pointer = (Pointer<?>) property.get();
     if (null != pointer) {
-
       txtContent.setText(pointer.asString());
-
     } else {
       txtContent.setText("");
     }
   }
 
+
+  private void resetPointer(ActionEvent actionEvent) {
+    Pointer<?> pointer = (Pointer<?>) property.get();
+    pointer.setTargetCoodinate(pointer.getBaseClass(), null);
+    saveObject();
+    fillContents();
+  }
+
   private void selectObject(ActionEvent actionEvent) {
-
-
-
-    Dialog diag = null;
+    Dialog<Object> diag = null;
     // open select image dialog, if it is an image.
     Class<?> pointerType = PropertyUtil.getPointerType(property);
     if (pointerType.equals(JmmoImage.class)) {
@@ -77,15 +79,18 @@ public class PointerEditor extends  AbstractEditor{
 
     Optional<Object> result = diag.showAndWait();
     if (result.isPresent()){
-
-      Pointer pointer = (Pointer) property.get();
+      Pointer<?> pointer = (Pointer<?>) property.get();
       pointer.setTargetCoodinate(PropertyUtil.getPointerType(property),
           (String) PropertyUtil.getAppIdProperty((Bean) result.get()).get());
-
       property.set(pointer);
       saveObject();
       fillContents();
     }
+  }
+
+
+  private void go(ActionEvent actionevent) {
+    
   }
 
 

@@ -47,7 +47,10 @@ public class IntEditor extends AbstractEditor {
 
     }
 
-
+    spinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+      property.set(newValue);
+      saveObject();
+    });
 
 
   }

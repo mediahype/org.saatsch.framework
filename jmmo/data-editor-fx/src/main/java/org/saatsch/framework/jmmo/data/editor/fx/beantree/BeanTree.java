@@ -43,4 +43,14 @@ public class BeanTree extends TreeView<Bean> {
     this.listener = Optional.ofNullable(listener);
   }
 
+  /**
+   * @return the currently selected Bean or null if nothing is selected.
+   */
+  public Bean getSelection() {
+    if (getSelectionModel().getSelectedItem() != null) {
+      return getSelectionModel().getSelectedItem().getValue();
+    }
+    return null;
+  }
+
 }

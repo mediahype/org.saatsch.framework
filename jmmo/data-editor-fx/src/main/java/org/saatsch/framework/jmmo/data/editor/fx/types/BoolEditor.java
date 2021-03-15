@@ -1,5 +1,7 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
@@ -17,9 +19,11 @@ public class BoolEditor extends AbstractEditor {
 
     getChildren().add(check);
 
-//    check.selectedProperty().addListener(b -> {
-//      System.out.println("x");
-//    });
+    check.selectedProperty().addListener((observable, oldValue, newValue) -> {
+      property.set(newValue);
+      saveObject();
+    });
+
 
   }
 }

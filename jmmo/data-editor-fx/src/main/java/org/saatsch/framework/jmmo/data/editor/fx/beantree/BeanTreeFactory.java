@@ -10,6 +10,8 @@ import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
 
 public class BeanTreeFactory {
 
+  private BeanTreeFactory() {
+  }
 
   public static BeanTree create(Class<? extends Bean> clazz){
 
