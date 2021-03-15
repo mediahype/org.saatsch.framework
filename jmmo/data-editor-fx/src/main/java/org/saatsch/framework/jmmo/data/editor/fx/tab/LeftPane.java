@@ -2,6 +2,7 @@ package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
+import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 import org.saatsch.framework.jmmo.data.editor.fx.composite.FilterableBeanTree;
 
@@ -26,4 +27,15 @@ public class LeftPane extends VBox {
     beanTree.setSelectionChangedListener(listener);
   }
 
+  /**
+   * selects an object in the bean tree
+   *
+   * @param pointer the pointer to the object
+   * @return true if the object was selected.
+   */
+  public boolean selectObject(Pointer pointer) {
+
+    return beanTree.selectObject(pointer);
+
+  }
 }

@@ -5,6 +5,9 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import org.joda.beans.Bean;
+import org.joda.beans.MetaProperty;
+import org.saatsch.framework.jmmo.data.api.Pointer;
+import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,4 +56,35 @@ public class BeanTree extends TreeView<Bean> {
     return null;
   }
 
+  /**
+   * selects an object in the bean tree
+   *
+   * @param pointer the pointer to the object
+   * @return true if the object was selected.
+   */
+  public boolean selectObject(Pointer pointer) {
+
+    Optional<TreeItem<Bean>> beanTreeItem = getRoot().getChildren().stream()
+        .filter(item -> appIdFilter(pointer, item)).findFirst();
+
+    if (beanTreeItem.isPresent()){
+      getSelectionModel().select(beanTreeItem.get());
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  private boolean appIdFilter(Pointer pointer, TreeItem<Bean> item) {
+    Bean bean = item.getValue();
+
+    MetaProperty<?> appIdProperty = PropertyUtil.getAppIdProperty(bean.getClass());
+    if (appIdProperty == null) {
+      return false;
+    }
+
+    return appIdProperty.get(bean).equals(pointer.getAppId());
+  }
 }

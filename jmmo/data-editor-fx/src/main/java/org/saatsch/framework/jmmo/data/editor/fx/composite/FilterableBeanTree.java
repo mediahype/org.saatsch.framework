@@ -4,6 +4,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
+import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTree;
 import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTreeFactory;
@@ -14,6 +15,7 @@ public class FilterableBeanTree extends VBox {
   private final TextField txtFilter;
 
   public FilterableBeanTree(Class<? extends Bean> clazz) {
+
     beanTree = BeanTreeFactory.create(clazz);
     VBox.setVgrow(beanTree, Priority.ALWAYS);
 
@@ -31,4 +33,16 @@ public class FilterableBeanTree extends VBox {
     return beanTree.getSelection();
   }
 
+
+  /**
+   * selects an object in the bean tree
+   *
+   * @param pointer the pointer to the object
+   * @return true if the object was selected.
+   */
+  public boolean selectObject(Pointer pointer) {
+
+    return beanTree.selectObject(pointer);
+
+  }
 }

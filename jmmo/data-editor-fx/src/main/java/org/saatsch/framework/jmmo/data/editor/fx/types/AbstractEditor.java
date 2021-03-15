@@ -1,5 +1,6 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
+import java.util.Optional;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -63,9 +64,19 @@ public abstract class AbstractEditor extends VBox {
       if (p instanceof Repaintable) {
         ((Repaintable) p).repaint();
       }
-
       p = p.getParent();
     }
+  }
+
+  protected <Y> Optional<Y> getParent(Class<Y> clazz){
+    Parent p = getParent();
+    while (null != p) {
+      if (p.getClass().equals(clazz)) {
+        return Optional.of((Y) p);
+      }
+      p = p.getParent();
+    }
+    return Optional.empty();
   }
 
 }

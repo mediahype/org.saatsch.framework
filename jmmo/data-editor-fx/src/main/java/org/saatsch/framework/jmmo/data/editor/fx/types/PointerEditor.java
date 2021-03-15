@@ -2,10 +2,8 @@ package org.saatsch.framework.jmmo.data.editor.fx.types;
 
 import java.util.Optional;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import org.joda.beans.Bean;
@@ -15,9 +13,13 @@ import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
 import org.saatsch.framework.jmmo.data.editor.fx.dialog.ImagesWindow;
 import org.saatsch.framework.jmmo.data.editor.fx.dialog.ReferenceTargetSelectionDialog;
+import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTabPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class PointerEditor extends  AbstractEditor{
+public class PointerEditor extends AbstractEditor {
 
+  private static final Logger LOG = LoggerFactory.getLogger(PointerEditor.class);
   private final TextField txtContent;
 
   public PointerEditor(Property<Object> property,
@@ -73,12 +75,11 @@ public class PointerEditor extends  AbstractEditor{
     if (pointerType.equals(JmmoImage.class)) {
       diag = new ImagesWindow();
     } else {
-      diag = new ReferenceTargetSelectionDialog( property);
+      diag = new ReferenceTargetSelectionDialog(property);
     }
 
-
     Optional<Object> result = diag.showAndWait();
-    if (result.isPresent()){
+    if (result.isPresent()) {
       Pointer<?> pointer = (Pointer<?>) property.get();
       pointer.setTargetCoodinate(PropertyUtil.getPointerType(property),
           (String) PropertyUtil.getAppIdProperty((Bean) result.get()).get());
@@ -90,7 +91,10 @@ public class PointerEditor extends  AbstractEditor{
 
 
   private void go(ActionEvent actionevent) {
-    
+    Pointer<?> pointer = (Pointer<?>) property.get();
+    if (pointer.isValid()) {
+      getParent(EditorTabPane.class).ifPresent(p -> p.selectObject(pointer));
+    }
   }
 
 

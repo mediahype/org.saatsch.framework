@@ -22,7 +22,6 @@ public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
     VBox content = new VBox();
     getDialogPane().setContent(content);
 
-
     Label lblSelection = new Label("Selection:");
     TextField txtSelection = new TextField();
     txtSelection.setDisable(true);
@@ -32,19 +31,32 @@ public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
 
     content.getChildren().add(boxSelection);
 
-    tree = new FilterableBeanTree(
-        (Class<? extends Bean>) PropertyUtil.getPointerType(property));
+    if (PropertyUtil.isPointer(property)) {
+      tree = new FilterableBeanTree(
+          (Class<? extends Bean>) PropertyUtil.getPointerType(property));
+    } else {
+      // must be a Collection of Pointers.
+      // TODO: check if there are more possible use cases.
+      tree = new FilterableBeanTree(
+          (Class<? extends Bean>) PropertyUtil.firstTypeArgRecurse(property.metaProperty()));
+
+    }
 
     content.getChildren().add(tree);
 
-
     HBox buttons = new HBox();
     Button cmdOk = new Button("OK");
-    cmdOk.setOnAction(event -> ok());
+    cmdOk.setOnAction(event ->
 
-    buttons.getChildren().add(cmdOk);
+        ok());
 
-    content.getChildren().add(buttons);
+    buttons.getChildren().
+
+        add(cmdOk);
+
+    content.getChildren().
+
+        add(buttons);
 
   }
 

@@ -3,6 +3,7 @@ package org.saatsch.framework.jmmo.data.api;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -438,6 +439,13 @@ public class PropertyUtil {
 
   }
 
+  /**
+   * returns the first property annotated with the given annotation or null if if no such property exists.
+   *
+   * @param beanClass the bean class
+   * @param annotation the annotation
+   * @return the first property annotated with the given annotation or null if if no such property exists.
+   */
   public static MetaProperty<?> getPropertyAnnotatedWith(Class<?> beanClass, Class annotation) {
     MetaBean metaBean = MetaBean.of(beanClass);
     for (MetaProperty<?> metaProperty : metaBean.metaPropertyMap().values()) {
