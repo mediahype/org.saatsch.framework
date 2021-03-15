@@ -11,20 +11,15 @@ import org.saatsch.framework.jmmo.data.editor.fx.types.EditorCreator;
 /**
  * container for the field editors that are displayed on the right side of a tab.
  */
-public class RightPaneEditors extends ScrollPane implements SelectionChanged<Bean> {
+public class RightPaneEditors extends AbstractRightPane {
 
   private FlowPane flowPane;
 
   public RightPaneEditors() {
     super();
-    setFitToWidth(true);
-    setFitToHeight(true);
-
 
     flowPane = new FlowPane(Orientation.HORIZONTAL);
     setContent(flowPane);
-
-    
 
   }
 
@@ -40,6 +35,7 @@ public class RightPaneEditors extends ScrollPane implements SelectionChanged<Bea
 
   @Override
   public void selectionChanged(Bean newSelection) {
+    super.selectionChanged(newSelection);
     clear();
     fill(newSelection);
   }

@@ -10,4 +10,7 @@ public interface EditorTab {
    */
   Class<? extends Bean> getObjectClass();
 
+
+  void toggleEditMode();
+
 }

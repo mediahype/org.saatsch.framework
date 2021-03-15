@@ -3,11 +3,12 @@ package org.saatsch.framework.jmmo.data.editor.fx;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
+import org.saatsch.framework.jmmo.data.editor.fx.base.KeyCombinations;
+import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTab;
 import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTabImpl;
 import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTabPane;
 import org.slf4j.Logger;
@@ -29,6 +30,8 @@ public class DataEditorFxApp extends Application {
           .add(DataEditorFxApp.class.getResource("application.css").toExternalForm());
       primaryStage.setScene(scene);
 
+      new KeyCombinations(this, scene);
+
 //      JMetro jMetro = new JMetro(Style.LIGHT);
 //      jMetro.setScene(scene);
 
@@ -48,8 +51,21 @@ public class DataEditorFxApp extends Application {
   }
 
   private void addTab(Class<?> c) {
-    EditorTabPane tabPane = (EditorTabPane) root.getChildren().stream().filter(n -> n instanceof EditorTabPane).findFirst().get();
-    tabPane.getTabs().add(new EditorTabImpl(c));
+    getEditorTabPane().getTabs().add(new EditorTabImpl(c));
+  }
+
+  /**
+   * @return the {@link EditorTabPane}
+   */
+  private EditorTabPane getEditorTabPane(){
+    return (EditorTabPane) root.getChildren().stream().filter(n -> n instanceof EditorTabPane).findFirst().get();
+  }
+
+  /**
+   * @return the currently active {@link EditorTab}
+   */
+  public EditorTab getActiveTab(){
+    return (EditorTab) getEditorTabPane().getSelectionModel().getSelectedItem();
   }
 
 }
