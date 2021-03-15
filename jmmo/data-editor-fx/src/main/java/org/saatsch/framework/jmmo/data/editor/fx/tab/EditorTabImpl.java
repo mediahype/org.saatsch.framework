@@ -1,11 +1,8 @@
 package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
-import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
-import org.joda.beans.Bean;
 import org.saatsch.framework.jmmo.data.api.Pointer;
-import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 
 /**
  * a tab in the editor. It knows which class it should handle.

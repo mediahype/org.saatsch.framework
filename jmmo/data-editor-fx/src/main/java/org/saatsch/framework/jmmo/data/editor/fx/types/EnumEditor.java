@@ -1,7 +1,5 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;

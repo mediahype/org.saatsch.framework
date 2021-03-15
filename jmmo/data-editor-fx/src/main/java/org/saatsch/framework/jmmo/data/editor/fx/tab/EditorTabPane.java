@@ -1,9 +1,7 @@
 package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import org.saatsch.framework.jmmo.data.api.Pointer;
-import org.saatsch.framework.jmmo.data.editor.fx.types.PointerEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

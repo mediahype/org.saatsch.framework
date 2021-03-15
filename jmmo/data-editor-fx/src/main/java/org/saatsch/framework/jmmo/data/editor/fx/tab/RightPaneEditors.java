@@ -2,10 +2,8 @@ package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 
 import javafx.geometry.Orientation;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import org.joda.beans.Bean;
-import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 import org.saatsch.framework.jmmo.data.editor.fx.types.EditorCreator;
 
 /**

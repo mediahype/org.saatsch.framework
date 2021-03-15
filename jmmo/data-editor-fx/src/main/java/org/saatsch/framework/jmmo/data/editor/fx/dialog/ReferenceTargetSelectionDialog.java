@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
@@ -16,11 +15,7 @@ public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
   private final FilterableBeanTree tree;
 
   public ReferenceTargetSelectionDialog(Property<Object> property) {
-    super();
-
-    setTitle(property.name());
-    VBox content = new VBox();
-    getDialogPane().setContent(content);
+    super(property.name());
 
     Label lblSelection = new Label("Selection:");
     TextField txtSelection = new TextField();

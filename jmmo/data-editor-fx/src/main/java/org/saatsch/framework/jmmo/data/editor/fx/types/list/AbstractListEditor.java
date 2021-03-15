@@ -3,6 +3,7 @@ package org.saatsch.framework.jmmo.data.editor.fx.types.list;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
@@ -25,7 +26,6 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
    * the Collection that gets edited by this Editor.
    */
   protected Collection<T> collectionToEdit;
-
 
   /**
    * the table that displays the objects in the collection.
@@ -61,9 +61,9 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
 
   private void fillContent() {
 
-    if (collectionToEdit instanceof List) {
-      btnDown.setDisable(false);
-      btnUp.setDisable(false);
+    if (collectionToEdit instanceof Set) {
+      btnDown.setDisable(true);
+      btnUp.setDisable(true);
     }
 
     // the collection could be unmodifiable...
@@ -72,7 +72,8 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
     } catch (UnsupportedOperationException e) {
       btnAdd.setDisable(true);
       btnRemove.setDisable(true);
-
+      btnDown.setDisable(true);
+      btnUp.setDisable(true);
     }
 
 

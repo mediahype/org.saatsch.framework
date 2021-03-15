@@ -106,7 +106,6 @@ public class TableEditor extends AbstractListEditor<Object> implements Repaintab
         Bean bean = (Bean) item;
         if (bean.equals(toSelect)) {
           tblTable.getSelectionModel().select(item);
-          // rowSelect.selected();
           return;
         }
       }

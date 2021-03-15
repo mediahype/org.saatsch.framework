@@ -14,7 +14,6 @@ import org.joda.beans.Property;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.CustomEditorText;
 import org.saatsch.framework.jmmo.data.api.IntlStringService;
-import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 
 public class ValueLabelProvider implements
     Callback<CellDataFeatures<Object, String>, ObservableValue<String>> {

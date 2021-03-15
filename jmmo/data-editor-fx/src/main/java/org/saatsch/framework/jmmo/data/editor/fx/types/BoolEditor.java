@@ -1,7 +1,5 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;

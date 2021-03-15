@@ -1,12 +1,8 @@
 package org.saatsch.framework.jmmo.data.editor.fx.beantable;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTableView;
-import javafx.util.Callback;
 import org.joda.beans.Bean;
 
 public class BeanTable extends TreeTableView<Object> {
