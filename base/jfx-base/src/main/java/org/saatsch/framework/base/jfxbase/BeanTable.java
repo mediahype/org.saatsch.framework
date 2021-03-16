@@ -1,14 +1,20 @@
 package org.saatsch.framework.base.jfxbase;
 
+import org.joda.beans.Bean;
+import org.joda.beans.Property;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javafx.beans.binding.Binding;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import org.joda.beans.Bean;
+import javafx.scene.input.MouseEvent;
 
 public class BeanTable extends TreeTableView<Object> {
-
+  private static final Logger LOG = LoggerFactory.getLogger(BeanTable.class);
   private TreeItem<Object> root;
-  private Bean bean;
+
 
   public BeanTable() {
 
@@ -29,23 +35,26 @@ public class BeanTable extends TreeTableView<Object> {
 
     setShowRoot(false);
 
-//    addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
-//      if (click.getClickCount() == 2) {
-//        EditPropertyDialog diag = new EditPropertyDialog((Property<Object>) getSelectionModel().getSelectedItem().getValue(), bean);
-//        diag.showAndWait();
-//        refresh();
-//
-//      }
-//    });
-
+    addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+      if (click.getClickCount() == 2) {
+        
+        Object value = getSelectionModel().getSelectedItem().getValue();
+        if (value instanceof Property) {
+          Object object = ((Property<?>) value).get();
+          if (object instanceof Binding) {
+            ((Binding<?>) object).getDependencies().stream().forEach(dep -> {
+              LOG.info("Dependency: {}" , dep);                        
+            });
+          }
+        }
+        
+      }
+    });
   }
 
   public void setBean(Bean bean){
-    this.bean = bean;
-
     root = new BeanTableItem(bean);
     setRoot(root);
-
   }
 
 }

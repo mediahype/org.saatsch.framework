@@ -38,23 +38,16 @@ public class BeanTableItem extends TreeItem<Object> {
       isFirstTimeLeaf = false;
       Object itemValue =  getValue();
 
-      System.out.println("itemValue: " + itemValue);
-      
       isLeaf = true;
       if (itemValue instanceof Bean ) {
-        System.out.println("is a Bean !");
         isLeaf = false;
       }
       if (itemValue instanceof Property) {
-         System.out.println("is a Property !");
          Object propertyValue = ((Property) itemValue).get();
-         isLeaf = true;
          if (propertyValue instanceof Bean) {
-           System.out.println("which holds a Bean !");
            isLeaf = false;
          }
       }
-      System.out.println("------------------------------------");
     }
 
     return isLeaf;
