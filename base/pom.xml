@@ -24,6 +24,7 @@
     <module>expressions-base</module>
     <module>jface-base</module>
     <module>jface-support</module>
+    <module>jfx-base</module>
     <module>serializing</module>
     <module>simplescript</module>
     <module>simplescript-jface</module>

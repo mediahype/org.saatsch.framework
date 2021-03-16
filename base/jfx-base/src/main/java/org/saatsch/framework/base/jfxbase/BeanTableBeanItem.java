@@ -1,15 +1,14 @@
-package org.saatsch.framework.jmmo.data.editor.fx.beantable;
+package org.saatsch.framework.base.jfxbase;
 
-import org.joda.beans.Bean;
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
+import org.joda.beans.Bean;
 
 public class BeanTableBeanItem extends TreeItem<Object> {
 
 
   private final Bean bean;
-  private ObservableList<TreeItem<Object>> children;
 
   public BeanTableBeanItem(Bean bean) {
     this.bean = bean;
@@ -23,10 +22,12 @@ public class BeanTableBeanItem extends TreeItem<Object> {
   @Override
   public ObservableList<TreeItem<Object>> getChildren() {
 
-    if (children == null) {
-      children = Util.getChildren(bean);
-    }
+    ObservableList<TreeItem<Object>> ret = FXCollections.observableArrayList();
 
-    return children;
+    bean.propertyNames().forEach(name -> {
+      ret.add(new BeanTablePropertyItem(bean.property(name)));
+    });
+
+    return ret;
   }
 }

@@ -3,6 +3,7 @@ package org.saatsch.framework.jmmo.data.editor.fx;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
@@ -58,7 +59,11 @@ public class DataEditorFxApp extends Application {
    * @return the {@link EditorTabPane}
    */
   private EditorTabPane getEditorTabPane(){
-    return (EditorTabPane) root.getChildren().stream().filter(n -> n instanceof EditorTabPane).findFirst().get();
+    return getFirst(EditorTabPane.class);
+  }
+
+  private <T> T getFirst(Class<T> clazz) {
+    return (T) root.getChildren().stream().filter(n ->  clazz.isAssignableFrom(n.getClass())).findFirst().get();
   }
 
   /**
@@ -66,6 +71,10 @@ public class DataEditorFxApp extends Application {
    */
   public EditorTab getActiveTab(){
     return (EditorTab) getEditorTabPane().getSelectionModel().getSelectedItem();
+  }
+
+  public MenuBar getMenu(){
+    return getFirst(MenuBar.class);
   }
 
 }

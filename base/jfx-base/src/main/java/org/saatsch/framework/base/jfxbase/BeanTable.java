@@ -1,14 +1,9 @@
-package org.saatsch.framework.jmmo.data.editor.fx.beantable;
+package org.saatsch.framework.base.jfxbase;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.input.MouseEvent;
-
 import org.joda.beans.Bean;
-import org.joda.beans.Property;
-import org.saatsch.framework.jmmo.data.editor.fx.dialog.EditPropertyDialog;
 
 public class BeanTable extends TreeTableView<Object> {
 
@@ -23,22 +18,22 @@ public class BeanTable extends TreeTableView<Object> {
     valueColumn.setCellValueFactory(new ValueLabelProvider());
     nameColumn.setCellValueFactory(new NameLabelProvider());
 
-    valueColumn.setMaxWidth(500);
 
+    getColumns().clear();
+    
     getColumns().add(nameColumn);
     getColumns().add(valueColumn);
 
-    // setShowRoot(false);
+    setShowRoot(true);
 
-
-    addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
-      if (click.getClickCount() == 2) {
-        EditPropertyDialog diag = new EditPropertyDialog((Property<Object>) getSelectionModel().getSelectedItem().getValue(), bean);
-        diag.showAndWait();
-        refresh();
-
-      }
-    });
+//    addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+//      if (click.getClickCount() == 2) {
+//        EditPropertyDialog diag = new EditPropertyDialog((Property<Object>) getSelectionModel().getSelectedItem().getValue(), bean);
+//        diag.showAndWait();
+//        refresh();
+//
+//      }
+//    });
 
   }
 
@@ -46,9 +41,7 @@ public class BeanTable extends TreeTableView<Object> {
     this.bean = bean;
 
     root = new BeanTableBeanItem(bean);
-    root.setExpanded(true);
     setRoot(root);
-    
 
   }
 

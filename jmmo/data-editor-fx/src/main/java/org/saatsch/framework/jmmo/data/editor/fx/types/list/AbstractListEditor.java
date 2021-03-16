@@ -102,13 +102,11 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
     // button UP
     btnUp = new SmallButton("u");
     btnUp.setOnAction(this::moveUp);
-    btnUp.setDisable(true);
     buttons.getChildren().add(btnUp);
 
     // button DOWN
     btnDown = new SmallButton("d");
     btnDown.setOnAction(this::moveDown);
-    btnDown.setDisable(true);
     buttons.getChildren().add(btnDown);
 
     hBox.getChildren().add(buttons);

@@ -79,7 +79,7 @@ public class IntlStringsDialog extends Dialog {
     Combo cmbLanguage = new Combo(cmpLeft, SWT.NONE);
     cmbLanguage.addListener(SWT.Selection, e -> {
       cfg.get().setCurrentLanguage(cmbLanguage.getItem(cmbLanguage.getSelectionIndex()));
-      refreshTree();
+      refreshTable();
       editorC.languageChanged();
 
     });
@@ -145,7 +145,7 @@ public class IntlStringsDialog extends Dialog {
     editorC.setTextToEdit(data);
   }
 
-  void refreshTree() {
+  void refreshTable() {
     tvText.refresh();
   }
 

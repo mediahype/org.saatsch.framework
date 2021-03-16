@@ -1,29 +1,43 @@
 package org.saatsch.framework.jmmo.data.editor.fx.beantable;
 
-import javafx.event.EventHandler;
-import javafx.scene.control.TreeItem;
-import javafx.scene.input.MouseEvent;
+import org.joda.beans.Bean;
 import org.joda.beans.Property;
-import org.saatsch.framework.jmmo.data.editor.fx.dialog.EditPropertyDialog;
+
+import javafx.collections.ObservableList;
+import javafx.scene.control.TreeItem;
 
 public class BeanTablePropertyItem extends TreeItem<Object> {
 
-  public BeanTablePropertyItem(Property property) {
 
+  private Property<Object> property;
+  private ObservableList<TreeItem<Object>> children;
+  
+  
+
+  public BeanTablePropertyItem(Property<Object> property) {
     setValue(property);
-
-    addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
-      @Override
-      public void handle(MouseEvent click) {
-        if (click.getClickCount() == 2) {
-          EditPropertyDialog diag = new EditPropertyDialog(property, getParent().getValue());
-          diag.showAndWait();
-
-          // treeViewer.refresh();
-        }
-      }
-    });
-
+    this.property = property;
   }
+  
+  @Override
+  public boolean isLeaf() {
+    if ( property.get() instanceof Bean ) {
+      return false;
+    }
+    return true;
+  }
+  
+  @Override
+  public ObservableList<TreeItem<Object>> getChildren() {
+
+
+    if ( property.get() instanceof Bean && children == null ) {
+      children = Util.getChildren((Bean) property.get());
+      
+    }
+
+    return children;
+    
+  }
+  
 }

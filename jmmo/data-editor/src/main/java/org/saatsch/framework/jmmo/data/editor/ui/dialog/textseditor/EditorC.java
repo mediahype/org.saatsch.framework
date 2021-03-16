@@ -25,7 +25,7 @@ public class EditorC extends Composite {
 
   private IntlString currentString;
 
-  private DataSink data = JmmoContext.getBean(DataSink.class);
+  private Lazy<DataSink> data =  Lazy.of(() -> JmmoContext.getBean(DataSink.class));
   
   private Lazy<DataConfig> cfg =  Lazy.of(() -> JmmoContext.getBean(DataConfig.class));
 
@@ -52,8 +52,8 @@ public class EditorC extends Composite {
       @Override
       public void widgetSelected(SelectionEvent e) {
         currentString.setForLanguage(cfg.get().getCurrentLanguage(), txtEntry.getText());
-        data.save(currentString);
-        client.refreshTree();
+        data.get().save(currentString);
+        client.refreshTable();
       }
     });
     cmdSaveEntry.setText("Save");
