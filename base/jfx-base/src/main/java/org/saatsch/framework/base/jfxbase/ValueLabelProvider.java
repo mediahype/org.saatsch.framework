@@ -2,6 +2,8 @@ package org.saatsch.framework.base.jfxbase;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
@@ -12,6 +14,8 @@ import org.joda.beans.Property;
 public class ValueLabelProvider implements
     Callback<CellDataFeatures<Object, String>, ObservableValue<String>> {
 
+  private static final SimpleStringProperty NULL = new SimpleStringProperty("null");
+  
   @Override
   public ObservableValue<String> call(CellDataFeatures<Object, String> param) {
 
@@ -28,12 +32,20 @@ public class ValueLabelProvider implements
       if (p.get() instanceof Bean) {
         return new SimpleStringProperty( buildForBean(p));
       } else {
-        return new SimpleStringProperty(p.get().toString());
+        if (p.get() != null) {
+          if (p.get() instanceof ObservableValue) {
+            return Bindings.convert((ObservableValue<?>) p.get());
+          }else {
+            return new SimpleStringProperty(p.get().toString());                      
+          }
+        } else {
+          return NULL;
+        }
       }
 
     }
 
-    return null;
+    return NULL;
 
   }
 

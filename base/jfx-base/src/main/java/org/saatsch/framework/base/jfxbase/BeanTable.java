@@ -13,18 +13,21 @@ public class BeanTable extends TreeTableView<Object> {
   public BeanTable() {
 
     TreeTableColumn<Object, String> nameColumn = new TreeTableColumn<>("Property Name");
+    TreeTableColumn<Object, String> typeColumn = new TreeTableColumn<>("Type");
     TreeTableColumn<Object, String> valueColumn = new TreeTableColumn<>("Property Value");
-
+    
     valueColumn.setCellValueFactory(new ValueLabelProvider());
+    typeColumn.setCellValueFactory(new TypeLabelProvider());
     nameColumn.setCellValueFactory(new NameLabelProvider());
 
 
     getColumns().clear();
     
     getColumns().add(nameColumn);
+    getColumns().add(typeColumn);
     getColumns().add(valueColumn);
 
-    setShowRoot(true);
+    setShowRoot(false);
 
 //    addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
 //      if (click.getClickCount() == 2) {
@@ -40,7 +43,7 @@ public class BeanTable extends TreeTableView<Object> {
   public void setBean(Bean bean){
     this.bean = bean;
 
-    root = new BeanTableBeanItem(bean);
+    root = new BeanTableItem(bean);
     setRoot(root);
 
   }
