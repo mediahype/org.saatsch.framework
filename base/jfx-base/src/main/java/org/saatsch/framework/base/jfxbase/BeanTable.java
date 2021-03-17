@@ -35,6 +35,7 @@ public class BeanTable extends TreeTableView<Object> {
 
     setShowRoot(false);
 
+    // informational functionality
     addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
       if (click.getClickCount() == 2) {
         
