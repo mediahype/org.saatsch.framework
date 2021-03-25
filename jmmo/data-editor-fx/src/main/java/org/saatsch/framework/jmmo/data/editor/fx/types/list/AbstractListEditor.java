@@ -90,22 +90,22 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
     buttons.setPrefWidth(50);
 
     // button add
-    btnAdd = new SmallButton("+");
+    btnAdd = new SmallButton("add");
     btnAdd.setOnAction(this::btnAddPressed);
     buttons.getChildren().add(btnAdd);
 
     // button remove
-    btnRemove = new SmallButton("-");
+    btnRemove = new SmallButton("remove");
     btnRemove.setOnAction(this::btnRemovePressed);
     buttons.getChildren().add(btnRemove);
 
     // button UP
-    btnUp = new SmallButton("u");
+    btnUp = new SmallButton("up");
     btnUp.setOnAction(this::moveUp);
     buttons.getChildren().add(btnUp);
 
     // button DOWN
-    btnDown = new SmallButton("d");
+    btnDown = new SmallButton("down");
     btnDown.setOnAction(this::moveDown);
     buttons.getChildren().add(btnDown);
 

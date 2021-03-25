@@ -19,6 +19,7 @@ public class LeftPane extends VBox {
     this.parent = parent;
     beanTree = new FilterableBeanTree(parent.getObjectClass());
     getChildren().add(beanTree);
+    setId(parent.getObjectClass() + "LeftPane");
 
   }
 

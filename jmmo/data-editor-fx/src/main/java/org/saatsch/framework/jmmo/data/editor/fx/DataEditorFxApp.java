@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.editor.fx.base.KeyCombinations;
@@ -33,8 +35,8 @@ public class DataEditorFxApp extends Application {
 
       new KeyCombinations(this, scene);
 
-//      JMetro jMetro = new JMetro(Style.LIGHT);
-//      jMetro.setScene(scene);
+      JMetro jMetro = new JMetro(Style.LIGHT);
+      jMetro.setScene(scene);
 
       fillContents();
       primaryStage.show();
