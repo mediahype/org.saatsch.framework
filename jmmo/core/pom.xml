@@ -8,7 +8,7 @@
   <parent>
     <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.jmmo.pom</artifactId>
-    <version>0.1.4</version>
+    <version>0.1.5-SNAPSHOT</version>
   </parent>
 
   <modules>
