@@ -4,7 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.saatsch.framework</groupId>
   <artifactId>saatsch.framework.pom</artifactId>
-  
+
+  <description>Framework for rapid application development in Java</description>
+  <url>https://github.com/mediahype/org.saatsch.framework</url>
   <version>0.1.2-SNAPSHOT</version>
 
   <scm>
@@ -43,6 +45,15 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+ <developers>
+    <developer>
+      <name>Thomas Hahn</name>
+      <email>saatsch@gmail.com</email>
+      <organization>saatsch.org</organization>
+      <organizationUrl>https://saatsch.org</organizationUrl>
+    </developer>
+  </developers>
 
   <dependencyManagement>
     <dependencies>
@@ -208,6 +219,17 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -285,6 +307,11 @@
     </profile>
   </profiles>
 
-
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 </project>

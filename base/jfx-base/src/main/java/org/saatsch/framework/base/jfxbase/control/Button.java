@@ -27,7 +27,7 @@ public class Button extends javafx.scene.control.Button {
   /**
    * adds this Button to a pane.
    *
-   * @param parent to pane to add this Button to.
+   * @param parent the pane to add this Button to.
    * @return this.
    */
   public Button addTo(Pane parent) {
