@@ -4,6 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.saatsch</groupId>
   <artifactId>saatsch.framework.pom</artifactId>
+  
   <version>0.1.2-SNAPSHOT</version>
 
   <scm>
@@ -33,6 +34,15 @@
     <module>base</module>
     <module>jmmo</module>
   </modules>
+
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
   <dependencyManagement>
     <dependencies>
