@@ -19,6 +19,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.scm.id>github</project.scm.id>
+    
     <maven.test.skip>true</maven.test.skip>
 
     <hazelcast.version>3.7.4</hazelcast.version>
@@ -46,7 +48,7 @@
     </license>
   </licenses>
 
- <developers>
+  <developers>
     <developer>
       <name>Thomas Hahn</name>
       <email>saatsch@gmail.com</email>
@@ -123,6 +125,10 @@
     <finalName>${project.artifactId}</finalName>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
