@@ -11,4 +11,5 @@ bin
 .idea
 jmmoclient.properties
 jmmoserver.properties
+testDataSink.properties
 autoconfig
