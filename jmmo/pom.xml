@@ -6,7 +6,7 @@
   <name>${project.artifactId}</name>
 
   <parent>
-    <groupId>org.saatsch</groupId>
+    <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.pom</artifactId>
     <version>0.1.2-SNAPSHOT</version>
   </parent>

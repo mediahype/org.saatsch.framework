@@ -5,7 +5,7 @@
   <packaging>pom</packaging>
 
   <parent>
-    <groupId>org.saatsch</groupId>
+    <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.base.pom</artifactId>
     <version>0.1.2-SNAPSHOT</version>
   </parent>

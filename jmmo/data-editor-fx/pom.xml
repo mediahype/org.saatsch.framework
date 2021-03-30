@@ -8,7 +8,7 @@
 
 
   <parent>
-    <groupId>org.saatsch</groupId>
+    <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.jmmo.pom</artifactId>
     <version>0.1.2-SNAPSHOT</version>
   </parent>
@@ -31,19 +31,19 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.saatsch</groupId>
+      <groupId>org.saatsch.framework</groupId>
       <artifactId>saatsch.framework.jmmo.core.data</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.saatsch</groupId>
+      <groupId>org.saatsch.framework</groupId>
       <artifactId>saatsch.framework.base.classpath-support</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.saatsch</groupId>
+      <groupId>org.saatsch.framework</groupId>
       <artifactId>saatsch.framework.base.jfx-base</artifactId>
       <version>${project.version}</version>
     </dependency>

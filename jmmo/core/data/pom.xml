@@ -6,7 +6,7 @@
    <description>the jmmo core data module. It has a hard dependency to mongo (via the morphia dependency).</description>
 
   <parent>
-    <groupId>org.saatsch</groupId>
+    <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.jmmo.core.pom</artifactId>
     <version>0.1.2-SNAPSHOT</version>
   </parent>
@@ -30,28 +30,28 @@
 
    <dependencies>
       <dependency>
-         <groupId>org.saatsch</groupId>
+         <groupId>org.saatsch.framework</groupId>
          <artifactId>saatsch.framework.jmmo.core.data.meta</artifactId>
          <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>org.saatsch</groupId>
+         <groupId>org.saatsch.framework</groupId>
          <artifactId>saatsch.framework.jmmo.core.cdi</artifactId>
          <version>${project.version}</version>
       </dependency>
 
       <dependency>
-         <groupId>org.saatsch</groupId>
+         <groupId>org.saatsch.framework</groupId>
          <artifactId>saatsch.framework.base.beans-support</artifactId>
          <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>org.saatsch</groupId>
+         <groupId>org.saatsch.framework</groupId>
          <artifactId>saatsch.framework.base.serializing</artifactId>
          <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>org.saatsch</groupId>
+         <groupId>org.saatsch.framework</groupId>
          <artifactId>saatsch.framework.base.util</artifactId>
          <version>${project.version}</version>
       </dependency>
