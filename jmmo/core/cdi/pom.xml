@@ -9,7 +9,7 @@
   <parent>
     <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.jmmo.core.pom</artifactId>
-    <version>0.1.3-SNAPSHOT</version>
+    <version>0.1.3</version>
   </parent>
 
   <dependencies>
