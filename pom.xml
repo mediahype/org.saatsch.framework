@@ -288,6 +288,7 @@
             <configuration>
               <doclint>none</doclint>
               <source>8</source>
+              <noindex>true</noindex>
             </configuration>
             <executions>
               <execution>
