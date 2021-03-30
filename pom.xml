@@ -5,11 +5,11 @@
 
   <description>Framework for rapid application development in Java</description>
   <url>https://github.com/mediahype/org.saatsch.framework</url>
-  <version>0.1.2</version>
+  <version>0.1.3-SNAPSHOT</version>
 
   <scm>
     <developerConnection>scm:git:https://github.com/mediahype/org.saatsch.framework.git</developerConnection>
-    <tag>saatsch.framework.pom-0.1.2</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <packaging>pom</packaging>
