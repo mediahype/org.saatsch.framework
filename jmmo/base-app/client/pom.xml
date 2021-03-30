@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.saatsch.framework</groupId>
     <artifactId>saatsch.framework.jmmo.base-app.pom</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4-SNAPSHOT</version>
   </parent>
 
 
