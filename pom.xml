@@ -32,6 +32,7 @@
     <javafx.version>13</javafx.version>
     <morphia.version>1.5.3</morphia.version>
     <guava.version>11.0.2</guava.version>
+    <slf4j-api.version>1.7.30</slf4j-api.version>
 
   </properties>
 
@@ -81,7 +82,7 @@
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>1.7.4</version>
+        <version>${slf4j-api.version}</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>

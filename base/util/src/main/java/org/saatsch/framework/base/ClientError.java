@@ -1,7 +1,7 @@
 package org.saatsch.framework.base;
 
 /**
- * equivalent of http 4XX return codes.
+ * Reports an error that a client has made. Equivalent of http 4XX return codes.
  * 
  * @author saatsch
  *

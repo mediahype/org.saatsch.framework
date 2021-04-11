@@ -46,14 +46,17 @@ public class JmmoContext {
   }
 
   /**
-   * Lookup a bean.
+   * Lookup a bean. Respects aliases.
    *
    * @param type the type of bean to lookup.
    * @return the bean or <code>null</code> if it could not be found.
+   * 
+   * @see #alias(Class, Class)
+   * 
    */
   public static <T> T getBean(Class<T> type) {
 
-    // find actual Type to get
+    // respect aliases. Find actual Type to get
     Class<?> typeToGet;
     if (aliases.containsKey(type)) {
       typeToGet = aliases.get(type);
@@ -94,7 +97,12 @@ public class JmmoContext {
    */
   public static void putBean(Object bean) {
 
+    if (beans.get(bean) != null) {
+      LOG.warn("Bean {} already present. Will be overwritten!", bean.getClass().getSimpleName());
+    }
+    
     beans.put(bean.getClass(), bean);
+    
 
   }
 

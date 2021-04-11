@@ -11,6 +11,8 @@ import org.saatsch.framework.base.util.properties.AbstractProperties;
  * JVM was started. If the file is not present, it will be created and populated with default
  * properties.
  * 
+ * The ClientConfig maintains a list of servers: {@link #getServerLocations()}.
+ * 
  * 
  * 
  * @author saatsch

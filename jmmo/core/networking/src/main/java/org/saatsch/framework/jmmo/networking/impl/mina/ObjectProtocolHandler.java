@@ -2,15 +2,13 @@ package org.saatsch.framework.jmmo.networking.impl.mina;
 
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
-import org.saatsch.framework.jmmo.networking.impl.MessageHandlers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.saatsch.framework.base.serializing.JsonSerializer;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.networking.api.AllNetworkMessagesHandler;
 import org.saatsch.framework.jmmo.networking.api.ConnectionListener;
-import org.saatsch.framework.base.serializing.JsonSerializer;
-import org.saatsch.framework.base.serializing.SerializerFactory;
+import org.saatsch.framework.jmmo.networking.impl.MessageHandlers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * this is currently running on the server as well as on the client.
@@ -20,7 +18,7 @@ import org.saatsch.framework.base.serializing.SerializerFactory;
  */
 public class ObjectProtocolHandler extends IoHandlerAdapter {
 
-  private static final JsonSerializer SERIALIZER = SerializerFactory.newJsonSerializer();
+  // private static final JsonSerializer SERIALIZER = SerializerFactory.newJsonSerializer();
   
   private static final Logger LOG = LoggerFactory.getLogger(ObjectProtocolHandler.class);
 
@@ -36,7 +34,7 @@ public class ObjectProtocolHandler extends IoHandlerAdapter {
 
 
     LOG.debug("Message received: {}", message.getClass().getSimpleName());
-    LOG.debug("{} : {}", message.getClass().getSimpleName(), SERIALIZER.objectToString(message));
+    // LOG.debug("{} : {}", message.getClass().getSimpleName(), SERIALIZER.objectToString(message));
 
     if (handlers.getHandlersForMessage(message).isEmpty()) {
       LOG.warn("Unhandled Message: No specific handler found for message: {} (sending to AllHandler nevertheless)", message.getClass());
@@ -80,11 +78,11 @@ public class ObjectProtocolHandler extends IoHandlerAdapter {
     connectionListener.sessionClosed(session);
   }
 
-  /**
-   * @return the serializer. Can be customized.
-   */
-  public JsonSerializer getSerializer(){
-    return SERIALIZER;
-  }
+//  /**
+//   * @return the serializer. Can be customized.
+//   */
+//  public JsonSerializer getSerializer(){
+//    return SERIALIZER;
+//  }
 
 }

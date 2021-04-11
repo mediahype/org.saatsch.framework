@@ -2,6 +2,7 @@ package org.saatsch.framework.jmmo.data.mongo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,7 @@ public abstract class MorphiaMongoDataSink implements DataSink {
 
   private void initMorphia() {
     morphia = new Morphia();
+    
     
     morphia.getMapper().setOptions(MapperOptions.builder().storeEmpties(false).build());
     morphia.mapPackage("org.saatsch.framework.jmmo.data.api.model");

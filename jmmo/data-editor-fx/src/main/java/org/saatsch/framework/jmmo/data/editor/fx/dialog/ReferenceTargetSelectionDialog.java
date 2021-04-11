@@ -27,8 +27,7 @@ public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
     content.getChildren().add(boxSelection);
 
     if (PropertyUtil.isPointer(property)) {
-      tree = new FilterableBeanTree(
-          (Class<? extends Bean>) PropertyUtil.getPointerType(property));
+      tree = new FilterableBeanTree((Class<? extends Bean>) PropertyUtil.getPointerType(property));
     } else {
       // must be a Collection of Pointers.
       // TODO: check if there are more possible use cases.
@@ -41,17 +40,10 @@ public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
 
     HBox buttons = new HBox();
     Button cmdOk = new Button("OK");
-    cmdOk.setOnAction(event ->
+    cmdOk.setOnAction(event -> ok());
 
-        ok());
-
-    buttons.getChildren().
-
-        add(cmdOk);
-
-    content.getChildren().
-
-        add(buttons);
+    buttons.getChildren().add(cmdOk);
+    content.getChildren().add(buttons);
 
   }
 
