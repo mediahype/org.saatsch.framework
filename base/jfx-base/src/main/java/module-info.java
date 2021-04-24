@@ -5,6 +5,7 @@ module saatsch.framework.base.jfxbase {
   
   
   exports org.saatsch.framework.base.jfxbase;
+  exports org.saatsch.framework.base.jfxbase.demo;
   exports org.saatsch.framework.base.jfxbase.control;
   
 }
