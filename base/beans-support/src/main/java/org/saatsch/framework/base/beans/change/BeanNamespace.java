@@ -3,7 +3,7 @@ package org.saatsch.framework.base.beans.change;
 import org.joda.beans.Bean;
 
 /**
- *
+ * describes a namespace of {@link Bean}s.
  */
 public interface BeanNamespace {
 

@@ -21,7 +21,6 @@ public class BeanNamespaceImpl extends Expressions implements BeanNamespace {
 
   @Override
   public Bean getBean(String name) {
-    // at this point we can only hope that it is a bean. Maybe we need an ObjectNamespace instead of the BeanNamespace
     return (Bean) evaluateToObject("#{" + name + "}") ;
   }
 
