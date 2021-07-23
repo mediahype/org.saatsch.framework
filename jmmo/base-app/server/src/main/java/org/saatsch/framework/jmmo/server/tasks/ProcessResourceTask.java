@@ -58,15 +58,13 @@ public class ProcessResourceTask extends SessionLocalTask {
   }
 
   /**
-   * responds with all available strings. maybe
+   * responds with all available strings.
    */
   private void giveStrings() {
-    GiveStringsRequest r = (GiveStringsRequest) request;
-    
+
     MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
-    GiveStringsResponse response = new GiveStringsResponse(data.getAll(IntlString.class));
     
-    respond(response);
+    respond(new GiveStringsResponse(data.getAll(IntlString.class)));
     
   }
 

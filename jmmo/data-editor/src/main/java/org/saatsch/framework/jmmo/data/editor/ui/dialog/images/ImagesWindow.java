@@ -71,7 +71,9 @@ public class ImagesWindow extends OpenableDialog {
       @Override
       public void selectionChanged(SelectionChangedEvent event) {
         JmmoImage firstElement = getSelectedImage();
-        load(firstElement.getFilename());
+        if (firstElement != null) {
+          load(firstElement.getFilename());          
+        }
       }
     });
 
@@ -155,6 +157,9 @@ public class ImagesWindow extends OpenableDialog {
 
   }
 
+  /**
+   * @return the selected image or <code>null</code> if nothing is selected.
+   */
   private JmmoImage getSelectedImage() {
     return (JmmoImage) listViewer.getStructuredSelection().getFirstElement();
   }

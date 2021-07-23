@@ -11,6 +11,7 @@ import com.mongodb.gridfs.GridFSInputFile;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.DataException;
+import org.saatsch.framework.jmmo.data.DupKeyException;
 import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
 import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
 import org.saatsch.framework.base.UserException;
@@ -32,9 +33,12 @@ public class ImageService {
    * create a new Image from a fully qualified filename on the file system
    * 
    * @param fileName
-   * @return 
+   * @return
    */
   public JmmoImage newImage(String fileName) {
+
+    requireImageDoesNotExist(fileName);
+
     try {
       GridFSInputFile createFile = data.getFiles().createFile(new File(fileName));
       return _newImage(createFile, fileName);
@@ -44,6 +48,9 @@ public class ImageService {
   }
 
   public JmmoImage newImage(InputStream image, String name) {
+
+    requireImageDoesNotExist(name);
+
     GridFSInputFile createFile = data.getFiles().createFile(image);
     return _newImage(createFile, name);
   }
@@ -106,12 +113,19 @@ public class ImageService {
     return data.store().createQuery(JmmoImage.class).asList();
   }
 
-  public JmmoImage getJmmoImage(String filename){
-    return data.store().createQuery(JmmoImage.class).filter(JmmoImage.meta().filename().name() + " = ", filename ).get();
+  public JmmoImage getJmmoImage(String filename) {
+    return data.store().createQuery(JmmoImage.class)
+        .filter(JmmoImage.meta().filename().name() + " = ", filename).get();
   }
 
   private static String imageNameOf(String fileName) {
     return "images://" + fileName;
+  }
+
+  private void requireImageDoesNotExist(String fileName) {
+    if (getImage(fileName) != null) {
+      throw new DupKeyException("image " + fileName + " already exists");
+    }
   }
 
 }
