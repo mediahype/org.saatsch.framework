@@ -49,7 +49,7 @@ public class JmmoAccount extends MongoDataObject implements Bean {
   private Long onlineTime = 0L;
 
   /**
-   * the unique identifier of the user.
+   * the unique identifier of the account.
    */
   @PropertyDefinition(validate = "notEmpty")
   private String userId = "";
@@ -129,7 +129,7 @@ public class JmmoAccount extends MongoDataObject implements Bean {
 
     //-----------------------------------------------------------------------
     /**
-     * Gets the unique identifier of the user.
+     * Gets the unique identifier of the account.
      * @return the value of the property, not empty
      */
     public String getUserId() {
@@ -137,7 +137,7 @@ public class JmmoAccount extends MongoDataObject implements Bean {
     }
 
     /**
-     * Sets the unique identifier of the user.
+     * Sets the unique identifier of the account.
      * @param userId  the new value of the property, not empty
      */
     public void setUserId(String userId) {

@@ -3,6 +3,7 @@ package org.saatsch.framework.jmmo.networking.impl.mina;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 import org.saatsch.framework.base.serializing.JsonSerializer;
+import org.saatsch.framework.base.serializing.SerializerFactory;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.networking.api.AllNetworkMessagesHandler;
 import org.saatsch.framework.jmmo.networking.api.ConnectionListener;
@@ -18,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ObjectProtocolHandler extends IoHandlerAdapter {
 
-  // private static final JsonSerializer SERIALIZER = SerializerFactory.newJsonSerializer();
+  private static final JsonSerializer SERIALIZER = SerializerFactory.newJsonSerializer();
   
   private static final Logger LOG = LoggerFactory.getLogger(ObjectProtocolHandler.class);
 
@@ -78,11 +79,11 @@ public class ObjectProtocolHandler extends IoHandlerAdapter {
     connectionListener.sessionClosed(session);
   }
 
-//  /**
-//   * @return the serializer. Can be customized.
-//   */
-//  public JsonSerializer getSerializer(){
-//    return SERIALIZER;
-//  }
+  /**
+   * @return the serializer. Can be customized.
+   */
+  public JsonSerializer getSerializer(){
+    return SERIALIZER;
+  }
 
 }
