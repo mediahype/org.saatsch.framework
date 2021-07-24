@@ -11,7 +11,7 @@ import org.saatsch.framework.jmmo.data.annotations.JmmoAppId;
 import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
-import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
+import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 import org.saatsch.framework.jmmo.data.editor.fx.types.custom.CustomTypes;
 import org.saatsch.framework.jmmo.data.editor.fx.types.list.PointerListEditor;
 import org.saatsch.framework.jmmo.data.editor.fx.types.list.TableEditor;
@@ -103,7 +103,7 @@ public class EditorCreator {
       return;
     }
 
-    if (property.get().getClass().equals(JmmoImage.class)) {
+    if (property.get().getClass().equals(JmmoFile.class)) {
       createImage(parent, property, toSave);
       return;
     }

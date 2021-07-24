@@ -13,6 +13,7 @@ import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
 import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
+import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 
 public class Assets {
 
@@ -32,8 +33,7 @@ public class Assets {
     // new Assets("e:/dev/ws_all/osrg.assets").checkout().pull();
     Assets assets = new Assets("e:/dev/ws_all/osrg.assets").open().pull();
     
-   
-    
+  
   }
   
   
@@ -64,6 +64,10 @@ public class Assets {
   }
   
   public void getFile(String filename) {
+    
+  }
+  
+  public void getImage(JmmoFile image) {
     
   }
   

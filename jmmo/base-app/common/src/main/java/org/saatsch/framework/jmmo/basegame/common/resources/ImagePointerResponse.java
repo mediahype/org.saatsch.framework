@@ -3,7 +3,7 @@ package org.saatsch.framework.jmmo.basegame.common.resources;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import java.io.Serializable;
 
-import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
+import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 
 /**
  * Response to a {@link ResolveImagePointerRequest}
@@ -17,9 +17,9 @@ public class ImagePointerResponse implements Serializable {
 
   private final byte[] content;
 
-  private final Pointer<JmmoImage> pointer;
+  private final Pointer<JmmoFile> pointer;
 
-  public ImagePointerResponse(byte[] content, Pointer<JmmoImage> image) {
+  public ImagePointerResponse(byte[] content, Pointer<JmmoFile> image) {
     this.content = content;
     this.pointer = image;
   }
@@ -28,7 +28,7 @@ public class ImagePointerResponse implements Serializable {
     return content;
   }
 
-  public Pointer<JmmoImage> getImagePointer() {
+  public Pointer<JmmoFile> getImagePointer() {
     return pointer;
   }
   

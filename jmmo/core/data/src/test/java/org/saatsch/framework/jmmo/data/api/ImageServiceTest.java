@@ -12,9 +12,9 @@ public class ImageServiceTest {
   
   @Test(expected = DataException.class)
   public void test() {
-    ImageService service = ctx.getBean(ImageService.class);
+    FileService service = ctx.getBean(FileService.class);
     
-    service.getImageAsStream("doesNotExist");
+    service.getFileAsStream("doesNotExist");
     
   }
   

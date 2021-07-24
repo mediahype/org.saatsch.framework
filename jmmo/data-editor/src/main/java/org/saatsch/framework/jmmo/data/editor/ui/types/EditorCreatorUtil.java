@@ -12,7 +12,7 @@ import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
 import org.saatsch.framework.jmmo.data.annotations.JmmoFloat;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
-import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
+import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 import org.saatsch.framework.jmmo.data.editor.ui.types.builtin.BoolEditor;
 import org.saatsch.framework.jmmo.data.editor.ui.types.builtin.EnumEditor;
 import org.saatsch.framework.jmmo.data.editor.ui.types.builtin.FloatEditor;
@@ -147,7 +147,7 @@ public class EditorCreatorUtil {
       return createPointer(parent, property, objectToEdit);
     }
 
-    if (property.get().getClass().equals(JmmoImage.class)) {
+    if (property.get().getClass().equals(JmmoFile.class)) {
       return createImage(parent, property, objectToEdit);
     }
 

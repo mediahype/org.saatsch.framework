@@ -10,7 +10,7 @@ import org.joda.beans.Bean;
 import org.joda.beans.Property;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
-import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
+import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 import org.saatsch.framework.jmmo.data.editor.fx.dialog.ImagesWindow;
 import org.saatsch.framework.jmmo.data.editor.fx.dialog.ReferenceTargetSelectionDialog;
 import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTabPane;
@@ -72,7 +72,7 @@ public class PointerEditor extends AbstractEditor {
     Dialog<Object> diag = null;
     // open select image dialog, if it is an image.
     Class<?> pointerType = PropertyUtil.getPointerType(property);
-    if (pointerType.equals(JmmoImage.class)) {
+    if (pointerType.equals(JmmoFile.class)) {
       diag = new ImagesWindow();
     } else {
       diag = new ReferenceTargetSelectionDialog(property);

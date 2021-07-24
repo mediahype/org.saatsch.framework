@@ -20,11 +20,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-
-import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.jmmo.data.api.ImageService;
-import org.saatsch.framework.jmmo.data.api.model.JmmoImage;
 import org.saatsch.framework.base.swt.OpenableDialog;
+import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
+import org.saatsch.framework.jmmo.data.api.FileService;
+import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 
 public class ImagesWindow extends OpenableDialog {
 
@@ -70,7 +69,7 @@ public class ImagesWindow extends OpenableDialog {
 
       @Override
       public void selectionChanged(SelectionChangedEvent event) {
-        JmmoImage firstElement = getSelectedImage();
+        JmmoFile firstElement = getSelectedImage();
         if (firstElement != null) {
           load(firstElement.getFilename());          
         }
@@ -120,7 +119,7 @@ public class ImagesWindow extends OpenableDialog {
     fd.setFilterExtensions(filterExt);
     String selected = fd.open();
     if (selected != null) {
-      JmmoContext.getBean(ImageService.class).newImage(selected);
+      JmmoContext.getBean(FileService.class).newFile(selected);
       updateImages();
     }
   }
@@ -133,7 +132,7 @@ public class ImagesWindow extends OpenableDialog {
   }
 
   private void updateImages() {
-    listViewer.setInput(JmmoContext.getBean(ImageService.class).getImages());
+    listViewer.setInput(JmmoContext.getBean(FileService.class).getFiles());
   }
 
   public class ImagesContentProvider implements IStructuredContentProvider {
@@ -150,7 +149,7 @@ public class ImagesWindow extends OpenableDialog {
       image.dispose();
     }
 
-    InputStream stream = JmmoContext.getBean(ImageService.class).getImageAsStream(fileName);
+    InputStream stream = JmmoContext.getBean(FileService.class).getFileAsStream(fileName);
     image = new Image(Display.getDefault(), stream);
     lblSize.setText("H:" + image.getBounds().height + "/W:" + image.getBounds().width);
     lblImage.setImage(image);
@@ -160,8 +159,8 @@ public class ImagesWindow extends OpenableDialog {
   /**
    * @return the selected image or <code>null</code> if nothing is selected.
    */
-  private JmmoImage getSelectedImage() {
-    return (JmmoImage) listViewer.getStructuredSelection().getFirstElement();
+  private JmmoFile getSelectedImage() {
+    return (JmmoFile) listViewer.getStructuredSelection().getFirstElement();
   }
 
 }
