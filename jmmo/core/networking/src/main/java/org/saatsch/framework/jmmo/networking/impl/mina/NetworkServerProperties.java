@@ -20,6 +20,7 @@ public class NetworkServerProperties extends AbstractProperties {
 
 
   private static final String SERVER_TCP_PORT = "serverTcpPort";
+  private static final String SERVER_ASSETS_DIR = "assetsDir";
 
   public NetworkServerProperties() {
     super.init();
@@ -46,11 +47,14 @@ public class NetworkServerProperties extends AbstractProperties {
   @Override
   protected void defaultProps(Properties props) {
     props.put(SERVER_TCP_PORT, "54555");
-
   }
 
   public Integer getServerTcpPort() {
     return Integer.parseInt(getProperty(SERVER_TCP_PORT));
+  }
+  
+  public String getAssetsDir() {
+    return getProperty(SERVER_ASSETS_DIR);
   }
 
 }

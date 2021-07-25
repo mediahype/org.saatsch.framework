@@ -12,7 +12,7 @@ import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.base.swt.DialogUtil;
 
 /**
- * the login dialog
+ * the create account dialog.
  * 
  * @author saatsch
  *
