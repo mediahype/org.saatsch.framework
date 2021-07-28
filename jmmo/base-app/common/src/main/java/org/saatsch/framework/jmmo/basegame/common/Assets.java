@@ -3,18 +3,11 @@ package org.saatsch.framework.jmmo.basegame.common;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.CanceledException;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidConfigurationException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
-import org.eclipse.jgit.api.errors.NoHeadException;
-import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
-import org.eclipse.jgit.api.errors.RefNotFoundException;
-import org.eclipse.jgit.api.errors.TransportException;
-import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.FileService;
 import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
@@ -31,7 +24,19 @@ public class Assets {
     this.basedir = basedir;
   }
 
-  public Assets checkout() throws InvalidRemoteException, TransportException, GitAPIException {
+  public Assets init() throws GitAPIException, IOException {
+    
+    File x = new File(basedir);
+    if (x.exists()) {
+      return open().pull();
+    }else {
+      return checkout();
+    }
+    
+ 
+  }
+  
+  public Assets checkout() throws GitAPIException {
 
     File checkout = new File(basedir);
     checkout.mkdirs();
@@ -45,9 +50,7 @@ public class Assets {
   }
 
 
-  public Assets pull() throws WrongRepositoryStateException, InvalidConfigurationException,
-      InvalidRemoteException, CanceledException, RefNotFoundException, RefNotAdvertisedException,
-      NoHeadException, TransportException, GitAPIException {
+  public Assets pull() throws GitAPIException {
     git.pull().call();
     return this;
   }
@@ -58,12 +61,12 @@ public class Assets {
     return this;
   }
 
-  public void getFile(String filename) {
+  public byte[] getFile(JmmoFile file) throws IOException {
 
-  }
-
-  public void getImage(JmmoFile image) {
-
+    byte[] bytes = Files.readAllBytes(new File(dir() + file.getFilename()).toPath());
+    
+     return bytes;
+    
   }
 
 
@@ -72,7 +75,7 @@ public class Assets {
     FileService fileService = JmmoContext.getBean(FileService.class);
     InputStream initialStream = fileService.getFileAsStream(file);
 
-    File targetFile = new File(basedir + "/files/" + file.getFilename());
+    File targetFile = new File( dir() + file.getFilename());
 
     java.nio.file.Files.copy(initialStream, targetFile.toPath(),
         StandardCopyOption.REPLACE_EXISTING);
@@ -84,6 +87,8 @@ public class Assets {
 
   }
 
-
+  private String dir() {
+    return basedir + "/files/";
+  }
 
 }

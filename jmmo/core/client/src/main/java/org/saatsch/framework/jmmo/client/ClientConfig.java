@@ -40,6 +40,9 @@ public class ClientConfig extends AbstractProperties {
 
   private static final String SERVER_LOCATIONS = "jmmoclient.serverLocations";
   
+  private static final String ASSETS_DIR = "jmmoclient.assetsDir";
+  
+  
   /**
    * we check the props here so that an exception is thrown very early.
    * @param props2Check
@@ -81,6 +84,10 @@ public class ClientConfig extends AbstractProperties {
 
   public Integer getServerTcpPort() {
     return Integer.parseInt(getProperty(SERVER_TCP_PORT));
+  }
+
+  public String getAssetsDir() {
+    return getProperty(ASSETS_DIR);
   }
 
 
