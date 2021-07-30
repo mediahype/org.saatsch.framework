@@ -14,13 +14,12 @@ public class JfxUtil {
    * uses FXMLLoader.
    * 
    * @param componentClass
-   * @param contentRootRegion
-   * @return
+   * @return the loaded component.
    * 
    * @throws RuntimeException if loading failed.
    * 
    */
-  public static VBox load(Class<VBox> componentClass) {
+  public static VBox load(Class<? extends VBox> componentClass) {
     
     URL resource = componentClass.getResource(componentClass.getSimpleName() + ".fxml");
     FXMLLoader fxmlLoader = new FXMLLoader(resource);

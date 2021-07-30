@@ -16,8 +16,8 @@ public class BeanTableItem extends TreeItem<Object> {
   private boolean isFirstTimeChildren = true;
   private boolean isFirstTimeLeaf = true;
 
-  public BeanTableItem(Object childFile) {
-    super(childFile);
+  public BeanTableItem(Object value) {
+    super(value);
   }
 
   @Override
@@ -26,7 +26,7 @@ public class BeanTableItem extends TreeItem<Object> {
       isFirstTimeChildren = false;
 
       // First getChildren() call, so we actually go off and
-      // determine the children of the File contained in this TreeItem.
+      // determine the children.
       super.getChildren().setAll(buildChildren(this));
     }
     return super.getChildren();
@@ -53,8 +53,8 @@ public class BeanTableItem extends TreeItem<Object> {
     return isLeaf;
   }
 
-  private ObservableList<TreeItem<Object>> buildChildren(TreeItem<Object> TreeItem) {
-    Object o = TreeItem.getValue();
+  private ObservableList<TreeItem<Object>> buildChildren(TreeItem<Object> treeItem) {
+    Object o = treeItem.getValue();
     Object toBuild = null;
     if (o instanceof Bean) {
       toBuild = o;
@@ -74,8 +74,8 @@ public class BeanTableItem extends TreeItem<Object> {
       if (properties != null) {
         ObservableList<TreeItem<Object>> children = FXCollections.observableArrayList();
 
-        for (Property childFile : properties) {
-          children.add( new BeanTableItem(childFile));
+        for (Property childProp : properties) {
+          children.add( new BeanTableItem(childProp));
         }
 
         return children;

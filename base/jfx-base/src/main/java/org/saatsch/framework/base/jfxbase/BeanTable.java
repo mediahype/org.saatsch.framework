@@ -6,6 +6,12 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 
+/**
+ * table that displays a bean.
+ * 
+ * @author saatsch
+ *
+ */
 public class BeanTable extends TreeTableView<Object> {
 
   private TreeItem<Object> root;

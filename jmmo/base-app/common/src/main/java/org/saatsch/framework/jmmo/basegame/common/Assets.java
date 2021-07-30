@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -21,6 +22,7 @@ public class Assets {
  
 
   public Assets(String basedir) {
+    Objects.requireNonNull(basedir);
     this.basedir = basedir;
   }
 
