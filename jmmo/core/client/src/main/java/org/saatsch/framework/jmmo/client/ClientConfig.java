@@ -1,5 +1,6 @@
 package org.saatsch.framework.jmmo.client;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -66,6 +67,7 @@ public class ClientConfig extends AbstractProperties {
     props.put(SERVER_TCP_PORT, "54555");
     // TODO: set this to false sometime.
     props.put(IGNORE_SERVER_DOWN, "true");
+    props.put(ASSETS_DIR, "true");
   }
 
   /**
@@ -87,6 +89,7 @@ public class ClientConfig extends AbstractProperties {
   }
 
   public String getAssetsDir() {
+    Objects.requireNonNull(getProperty(ASSETS_DIR), "Asset directory not configured. please configure: " + ASSETS_DIR);
     return getProperty(ASSETS_DIR);
   }
 
