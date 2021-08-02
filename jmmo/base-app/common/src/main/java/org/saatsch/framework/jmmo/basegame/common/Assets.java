@@ -38,7 +38,7 @@ public class Assets {
  
   }
   
-  public Assets checkout() throws GitAPIException {
+  private Assets checkout() throws GitAPIException {
 
     File checkout = new File(basedir);
     checkout.mkdirs();
@@ -52,13 +52,13 @@ public class Assets {
   }
 
 
-  public Assets pull() throws GitAPIException {
+  private Assets pull() throws GitAPIException {
     git.pull().call();
     return this;
   }
 
 
-  public Assets open() throws IOException {
+  private Assets open() throws IOException {
     git = Git.open(new File(basedir));
     return this;
   }
@@ -78,7 +78,9 @@ public class Assets {
     InputStream initialStream = fileService.getFileAsStream(file);
 
     File targetFile = new File( dir() + file.getFilename());
-
+    targetFile.mkdirs();
+    
+    
     java.nio.file.Files.copy(initialStream, targetFile.toPath(),
         StandardCopyOption.REPLACE_EXISTING);
 

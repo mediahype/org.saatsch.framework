@@ -9,17 +9,22 @@ import org.eclipse.swt.widgets.Event;
 
 public class HtmlTooltip extends ToolTip {
 
-  private String text;
+  private String _text;
+  private Browser browser;
 
-  public HtmlTooltip(Control control, String text) {
+  public HtmlTooltip(Control control) {
     super(control);
-    this.text = text;
+    
   }
 
+  public void setText(String text) {
+    _text = text;
+  }
+  
   @Override
   protected Composite createToolTipContentArea(Event event, Composite parent) {
-    Browser browser = new Browser( parent, SWT.NONE );
-    browser.setText(text);
+    browser = new Browser( parent, SWT.NONE );
+    browser.setText(_text);
     browser.setBounds(0, 0, 200, 64);
     return browser;
   }
