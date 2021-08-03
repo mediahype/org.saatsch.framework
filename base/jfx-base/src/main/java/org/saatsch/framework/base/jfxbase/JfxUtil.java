@@ -1,6 +1,5 @@
 package org.saatsch.framework.base.jfxbase;
 
-import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
@@ -27,7 +26,7 @@ public class JfxUtil {
     
     try {
       return fxmlLoader.load();
-    } catch (IOException exception) {
+    } catch (Exception exception) {
       throw new RuntimeException(exception);
     }
 
