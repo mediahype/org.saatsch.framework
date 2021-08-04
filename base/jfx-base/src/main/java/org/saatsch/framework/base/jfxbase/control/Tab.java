@@ -19,6 +19,9 @@ public class Tab extends javafx.scene.control.Tab implements ExtendedControl<Tab
     setClosable(false);
   }
 
-  
+  public Tab withContent(Node node) {
+    setContent(node);
+    return this;
+  }
   
 }
