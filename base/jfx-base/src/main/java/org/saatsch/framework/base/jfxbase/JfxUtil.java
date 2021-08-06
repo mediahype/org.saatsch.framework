@@ -5,7 +5,7 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
-public class JfxUtil {
+class JfxUtil {
 
   
   /**

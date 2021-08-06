@@ -10,6 +10,12 @@ import org.joda.beans.Bean;
 import org.joda.beans.Property;
 import org.saatsch.framework.jmmo.data.editor.fx.dialog.EditPropertyDialog;
 
+/**
+ * BeanTable is used to display the properties of a Bean and open Ediros when a property is clicked.
+ * 
+ * @author saatsch
+ *
+ */
 public class BeanTable extends TreeTableView<Object> {
 
   private TreeItem<Object> root;
