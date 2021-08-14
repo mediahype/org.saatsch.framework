@@ -1,5 +1,6 @@
 package org.saatsch.framework.jmmo.client;
 
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
@@ -37,11 +38,11 @@ public class ClientConfig extends AbstractProperties {
 
   private static final String SERVER_TCP_PORT = "jmmoclient.serverTcpPort";
   private static final String SERVER_NAME = "jmmoclient.serverName";
-  private static final String IGNORE_SERVER_DOWN = "jmmoclient.ignoreServerDown";
-
+  
   private static final String SERVER_LOCATIONS = "jmmoclient.serverLocations";
   
   private static final String ASSETS_DIR = "jmmoclient.assetsDir";
+  private static final String LANGUAGE = "jmmoclient.assetsDir";
   
   
   /**
@@ -66,19 +67,12 @@ public class ClientConfig extends AbstractProperties {
     props.put(SERVER_NAME, "localhost");
     props.put(SERVER_TCP_PORT, "54555");
     // TODO: set this to false sometime.
-    props.put(IGNORE_SERVER_DOWN, "true");
-    props.put(ASSETS_DIR, "true");
+    
+    props.put(ASSETS_DIR, "data/assets");
+    props.put(LANGUAGE, defaultLanguage());
   }
 
-  /**
-   * if during startup of the network client the absence of the server should be ignored. This is a
-   * feature for testing, when you dont't need a server.
-   * 
-   * @return
-   */
-  public boolean isIgnoreServerDown() {
-    return Boolean.parseBoolean(getProperty(IGNORE_SERVER_DOWN));
-  }
+
 
   public String getServerName() {
     return getProperty(SERVER_NAME);
@@ -101,6 +95,18 @@ public class ClientConfig extends AbstractProperties {
 
   public Optional<String> getServerLocations() {
     return Optional.ofNullable(getProperty(SERVER_LOCATIONS));
+  }
+
+  public String getLanguage() {
+    String property = getProperty(LANGUAGE);
+    if (null == property) {
+      return defaultLanguage();
+    }
+    return property;
+  }
+
+  private String defaultLanguage() {
+    return Locale.getDefault().getLanguage();
   }
   
 }
