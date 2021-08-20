@@ -3,7 +3,7 @@ package org.saatsch.framework.base.jfxbase.control;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class MenuItem extends javafx.scene.control.MenuItem implements ExtendedControl<MenuItem> {
+public class MenuItem extends javafx.scene.control.MenuItem  {
 
   public MenuItem(String text) {
     super(text);

@@ -9,7 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
-public class EnumCombo extends ComboBox<String> implements ExtendedControl<EnumCombo> {
+public class EnumCombo extends ComboBox<String> implements ExtendedNode<EnumCombo> {
 
   private Class<? extends Enum> e;
 

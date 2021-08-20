@@ -10,7 +10,7 @@ import javafx.scene.Node;
  * @author saatsch
  *
  */
-public class Button extends javafx.scene.control.Button implements ExtendedControl<Button> {
+public class Button extends javafx.scene.control.Button implements ExtendedNode<Button> {
 
   public Button() {
     super();
@@ -24,10 +24,10 @@ public class Button extends javafx.scene.control.Button implements ExtendedContr
     super(text);
   }
 
-  public Button withAction(@SuppressWarnings("exports") EventHandler<ActionEvent> value) {
+  public Button withAction(EventHandler<ActionEvent> value) {
     super.setOnAction(value);
     return this;
   }
 
-   
+  
 }

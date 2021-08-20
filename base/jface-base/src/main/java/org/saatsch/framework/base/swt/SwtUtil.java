@@ -65,7 +65,7 @@ public class SwtUtil {
 
 
   /**
-   * resized table columns to fit containing text.
+   * resizes table columns to fit containing text.
    * 
    * @param table
    */

@@ -2,7 +2,7 @@ package org.saatsch.framework.base.jfxbase.control;
 
 import javafx.scene.Node;
 
-public class Label extends javafx.scene.control.Label implements ExtendedControl<Label> {
+public class Label extends javafx.scene.control.Label implements ExtendedNode<Label> {
   
   public Label() {
     super();
