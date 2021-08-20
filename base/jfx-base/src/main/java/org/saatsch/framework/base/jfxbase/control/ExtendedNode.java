@@ -19,8 +19,7 @@ public interface ExtendedNode<T extends Node> {
   }
   
   /**
-   * Sets the column,row indeces for the child when contained in a gridpane. Only works if this is a
-   * {@link Node}.
+   * Sets the column,row indices for the child when contained in a gridpane.
    * 
    * @param columnIndex the column index position for the child
    * @param rowIndex the row index position for the child
@@ -32,10 +31,10 @@ public interface ExtendedNode<T extends Node> {
   }
 
   /**
-   * Only works if this is a {@link Node}.
+   * Sets the horizontal alignment for this {@link Node} when contained by a {@link GridPane}.
    * 
-   * @param value
-   * @return
+   * @param value the horizontal alignment
+   * @return this
    */
   default T withLayoutHalign(HPos value) {
     GridPane.setHalignment((Node) this, value);
