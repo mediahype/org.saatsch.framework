@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public abstract class AbstractDemo extends Application {
 
   @Override
-  public void start(Stage stage) throws Exception {
+  public void start(Stage stage) {
 
     VBox contentRootRegion = new VBox();
     

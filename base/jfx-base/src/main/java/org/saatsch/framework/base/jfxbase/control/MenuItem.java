@@ -14,7 +14,7 @@ public class MenuItem extends javafx.scene.control.MenuItem  {
     return this;
   }
 
-  public MenuItem withAction(@SuppressWarnings("exports") EventHandler<ActionEvent> value) {
+  public MenuItem withAction(EventHandler<ActionEvent> value) {
     super.setOnAction(value);
     return this;
   }

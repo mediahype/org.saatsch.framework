@@ -27,7 +27,7 @@ public class Loading extends Dialog implements Openable<Void> {
 
   private Shell loading;
 
-  private Display display;
+  private final Display display;
 
   private Runnable task;
 
@@ -42,8 +42,7 @@ public class Loading extends Dialog implements Openable<Void> {
   /**
    * Create the dialog.
    * 
-   * @param parent
-   * @param question
+   * @param parent the parent shell
    */
   public Loading(Shell parent) {
     super(parent);
