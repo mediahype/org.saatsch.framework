@@ -45,7 +45,9 @@ public class ValueLabelProvider implements
 
     }
 
-    return NULL;
+    return new SimpleStringProperty(value.toString());
+
+    //return NULL;
 
   }
 
@@ -71,7 +73,7 @@ public class ValueLabelProvider implements
   private void handleBeanProperty(StringBuilder buffer, Bean object) {
 
     List<Property<Object>> collect = object.propertyNames().stream()
-        .map(pName -> object.property(pName)).collect(Collectors.toList());
+        .map(object::property).collect(Collectors.toList());
 
     for (Property p : collect) {
       buildPropertyRepresentation(buffer, p);

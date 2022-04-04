@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
+/**
+ * edits a single Text Entry.
+ */
 public class TextEditor extends VBox {
 
   public TextEditor() {

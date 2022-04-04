@@ -29,14 +29,16 @@ public class TypeLabelProvider implements
         if (!simpleStringProperty.get().isBlank()) {
           return simpleStringProperty;          
         }
-        return new SimpleStringProperty(valueGet.getClass().toGenericString());
+        return new SimpleStringProperty(valueGet.getClass().getSimpleName());
          
       } else {
-        return NULL;
+        Property p = (Property) value;
+        return new SimpleStringProperty  (p.metaProperty().propertyType().getSimpleName());
+        // return NULL;
       }
         
     }
     
-    return new SimpleStringProperty(value.getClass().toGenericString());
+    return new SimpleStringProperty(value.getClass().getSimpleName());
   }
 }

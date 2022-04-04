@@ -16,7 +16,13 @@ public class LoadingDemo extends AbstractDemo{
   @Override
   protected void fill(VBox root) {
 
-    Loading x = new Loading();
+    Loading x = new Loading().withTask( () ->  {
+		
+    	for (int i= 0 ; i<10000; i++) {
+    		
+    	}
+    	
+	} );
 
     x.showAndWait();
 

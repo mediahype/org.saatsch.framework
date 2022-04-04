@@ -35,8 +35,8 @@ public class DataEditorFxApp extends Application {
 
       new KeyCombinations(this, scene);
 
-      JMetro jMetro = new JMetro(Style.LIGHT);
-      jMetro.setScene(scene);
+//      JMetro jMetro = new JMetro(Style.LIGHT);
+//      jMetro.setScene(scene);
 
       fillContents();
       primaryStage.show();

@@ -6,6 +6,9 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * table that displays a bean.
  * 
@@ -15,6 +18,7 @@ import javafx.scene.control.TreeTableView;
 public class BeanTable extends TreeTableView<Object> {
 
   private TreeItem<Object> root;
+
 
 
   public BeanTable() {
@@ -57,6 +61,10 @@ public class BeanTable extends TreeTableView<Object> {
   public void setBean(Bean bean){
     root = new BeanTableItem(bean);
     setRoot(root);
+  }
+
+  public void  setColWidth(int col , int width){
+    getColumns().get(col).setPrefWidth(width);
   }
 
 }

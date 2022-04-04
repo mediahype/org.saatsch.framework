@@ -1,7 +1,9 @@
 package org.saatsch.framework.base.jfxbase;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
@@ -47,6 +49,11 @@ public class BeanTableItem extends TreeItem<Object> {
          if (propertyValue instanceof Bean) {
            isLeaf = false;
          }
+        if (isCollection(propertyValue)){
+          if (((Collection) propertyValue).size() > 0){
+            isLeaf = false;
+          }
+        }
       }
     }
 
@@ -56,19 +63,20 @@ public class BeanTableItem extends TreeItem<Object> {
   private ObservableList<TreeItem<Object>> buildChildren(TreeItem<Object> treeItem) {
     Object o = treeItem.getValue();
     Object toBuild = null;
-    if (o instanceof Bean) {
+    if (o instanceof Bean || isCollection(o)) {
       toBuild = o;
-    }else {
+    } else {
       if (o instanceof Property ) {
-        if (((Property) o).get() instanceof Bean) {
-          toBuild = ((Property) o).get();
+        Object p = ((Property) o).get();
+        if (p instanceof Bean || isCollection(p)) {
+          toBuild = p;
         }
       }
     }
     
     
     
-    if (toBuild != null && toBuild instanceof Bean) {
+    if (toBuild instanceof Bean) {
       
       List<Property> properties = getProperties((Bean) toBuild) ;
       if (properties != null) {
@@ -82,6 +90,12 @@ public class BeanTableItem extends TreeItem<Object> {
       }
     }
 
+    if (isCollection(toBuild)){
+      ObservableList<TreeItem<Object>> children = FXCollections.observableArrayList();
+      ((Collection) toBuild).forEach( elem -> children.add(new BeanTableItem(elem)) );
+      return children;
+    }
+
     return FXCollections.emptyObservableList();
   }
 
@@ -90,5 +104,13 @@ public class BeanTableItem extends TreeItem<Object> {
     bean.propertyNames().forEach(pName -> ret.add(bean.property(pName)));
     return ret;
   }
-  
+
+  private boolean isCollection(Object o){
+    if (o == null){
+      return false;
+    }
+    return List.class.isAssignableFrom(o.getClass()) || Set.class.isAssignableFrom(o.getClass());
+    // return o instanceof List || o instanceof Set;
+  }
+
 }

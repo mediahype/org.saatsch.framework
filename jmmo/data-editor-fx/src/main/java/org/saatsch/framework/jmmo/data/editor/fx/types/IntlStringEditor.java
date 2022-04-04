@@ -1,9 +1,11 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types;
 
 import com.sun.javafx.scene.control.skin.Utils;
-import javafx.scene.control.TextField;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
+import org.saatsch.framework.base.jfxbase.control.Button;
+import org.saatsch.framework.base.jfxbase.control.HBox;
+import org.saatsch.framework.base.jfxbase.control.TextField;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.IntlStringService;
 
@@ -26,7 +28,11 @@ public class IntlStringEditor extends AbstractEditor{
   public IntlStringEditor(Property<Object> property, Bean objectToEdit) {
     super(property, objectToEdit);
 
-    getChildren().add(txtReference);
+    txtReference.setDisable(true);
+
+    HBox hBoxReference = new HBox().withChildren(txtReference, new Button("..."));
+
+    getChildren().add(hBoxReference);
     getChildren().add(txtContent);
 
     fillContents();

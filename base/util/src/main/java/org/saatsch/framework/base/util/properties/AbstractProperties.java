@@ -40,7 +40,7 @@ public abstract class AbstractProperties {
       readProps();
       checkProps(props);
     } else {
-      LOG.warn("Properties File: {} not found. Creating default...", getPropertiesFileName());
+      LOG.warn("Properties File: {} not found. Creating default at: {}", getPropertiesFileName(), propsFile.getAbsolutePath());
       defaultProps(props);
       writeProps();
     }
@@ -103,7 +103,7 @@ public abstract class AbstractProperties {
 
   private void writeProps() {
     try (FileOutputStream fos = new FileOutputStream(propsFile)) {
-      props.store(fos, "properties");
+      props.store(fos, "created by " + getClass().getName());
     } catch (IOException e) {
       LOG.error("", e);
     }

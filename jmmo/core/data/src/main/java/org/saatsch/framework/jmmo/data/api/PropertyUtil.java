@@ -1,35 +1,19 @@
 package org.saatsch.framework.jmmo.data.api;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
-
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.beans.Bean;
-import org.joda.beans.JodaBeanUtils;
-import org.joda.beans.MetaBean;
-import org.joda.beans.MetaProperty;
-import org.joda.beans.Property;
+import org.joda.beans.*;
+import org.saatsch.framework.base.util.Assert;
+import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.GivingNameComparator;
-import org.saatsch.framework.jmmo.data.annotations.JmmoAppId;
-import org.saatsch.framework.jmmo.data.annotations.JmmoDoc;
-import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
-import org.saatsch.framework.jmmo.data.annotations.JmmoGivingName;
-import org.saatsch.framework.jmmo.data.annotations.JmmoString;
-import org.saatsch.framework.jmmo.data.annotations.StringStyle;
+import org.saatsch.framework.jmmo.data.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.base.util.Assert;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PropertyUtil {
 
