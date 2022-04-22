@@ -3,7 +3,7 @@ package org.saatsch.framework.base.jfxbase;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.VBox;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 
 class JfxUtil {
 

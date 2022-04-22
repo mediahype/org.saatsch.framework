@@ -2,8 +2,8 @@ package org.saatsch.framework.base.jfxbase.demo;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 
 public abstract class AbstractDemo extends Application {
 

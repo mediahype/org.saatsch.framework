@@ -9,6 +9,8 @@ import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTree;
 import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTreeFactory;
 
+import java.util.Optional;
+
 public class FilterableBeanTree extends VBox {
 
   private final BeanTree beanTree;
@@ -33,6 +35,9 @@ public class FilterableBeanTree extends VBox {
     return beanTree.getSelection();
   }
 
+  public Optional<Bean> getSelectionOptional(){
+    return Optional.ofNullable(beanTree.getSelection());
+  }
 
   /**
    * selects an object in the bean tree

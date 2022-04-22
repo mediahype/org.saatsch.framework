@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.saatsch.framework.base.jfxbase.control.EnumCombo;
 
 import javafx.application.Application;
-import javafx.scene.layout.VBox;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 
 public class EnumComboDemo extends AbstractDemo {
 

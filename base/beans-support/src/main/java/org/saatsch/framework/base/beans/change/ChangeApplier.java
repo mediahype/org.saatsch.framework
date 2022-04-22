@@ -30,7 +30,7 @@ public class ChangeApplier {
     }
 
 
-    if (change.getOperation().equals(ChangeOp.SET)) {
+    if (change.isSet()) {
       localTarget.property(lastPathElem(change).getPropName()).set(change.getValue());
     } else {
       ((List)localTarget.property(lastPathElem(change).getPropName()).get()).add(change.getValue());

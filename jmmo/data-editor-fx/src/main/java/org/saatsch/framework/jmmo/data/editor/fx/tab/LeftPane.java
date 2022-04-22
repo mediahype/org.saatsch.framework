@@ -35,8 +35,11 @@ public class LeftPane extends VBox {
    * @return true if the object was selected.
    */
   public boolean selectObject(Pointer pointer) {
-
     return beanTree.selectObject(pointer);
-
   }
+
+  public boolean hasSelection(){
+    return beanTree.getSelectionOptional().isPresent();
+  }
+
 }

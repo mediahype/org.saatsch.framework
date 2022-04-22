@@ -1,10 +1,11 @@
 package org.saatsch.framework.base.jfxbase;
 
+import org.saatsch.framework.base.jfxbase.control.VBox;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.scene.layout.VBox;
 
 /**
  * a caching loader.

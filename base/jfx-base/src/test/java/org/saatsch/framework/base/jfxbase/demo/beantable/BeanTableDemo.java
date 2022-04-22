@@ -1,9 +1,9 @@
 package org.saatsch.framework.base.jfxbase.demo.beantable;
 
 import javafx.application.Application;
-import javafx.scene.layout.VBox;
 import org.junit.Test;
 import org.saatsch.framework.base.jfxbase.BeanTable;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 import org.saatsch.framework.base.jfxbase.demo.AbstractDemo;
 
 public class BeanTableDemo extends AbstractDemo {

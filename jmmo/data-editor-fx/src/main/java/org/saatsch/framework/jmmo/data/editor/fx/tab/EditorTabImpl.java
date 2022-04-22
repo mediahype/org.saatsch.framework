@@ -54,6 +54,8 @@ public class EditorTabImpl extends Tab implements EditorTab {
 
 
   public void toggleEditMode(){
+    if (!leftPane.hasSelection()) return;
+
     if (editMode == EditMode.EDITORS){
       setRightPane(new RightPaneTable());
       editMode = EditMode.TABLE;

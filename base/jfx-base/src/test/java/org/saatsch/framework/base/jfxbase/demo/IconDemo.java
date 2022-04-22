@@ -5,11 +5,11 @@ import org.junit.Test;
 import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.javafx.IconFontFX;
 import jiconfont.javafx.IconNode;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 
 public class IconDemo extends AbstractDemo{
 

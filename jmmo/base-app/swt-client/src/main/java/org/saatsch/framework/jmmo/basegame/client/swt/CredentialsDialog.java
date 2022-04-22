@@ -51,7 +51,7 @@ public abstract class CredentialsDialog extends Dialog {
     lblUser.setText("user");
 
     txtUser = new Text(shell, SWT.BORDER);
-    txtUser.setText("user");
+    txtUser.setText("user2");
     txtUser.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
     DialogUtil.execOnEnter(this::ok, txtUser);
 
