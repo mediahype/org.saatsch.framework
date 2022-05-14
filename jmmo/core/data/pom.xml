@@ -55,6 +55,11 @@
          <artifactId>saatsch.framework.base.util</artifactId>
          <version>${project.version}</version>
       </dependency>
+      <dependency>
+         <groupId>org.saatsch.framework</groupId>
+         <artifactId>saatsch.framework.base.jfx-base</artifactId>
+         <version>${project.version}</version>
+      </dependency>
 
       <dependency>
          <groupId>dev.morphia.morphia</groupId>

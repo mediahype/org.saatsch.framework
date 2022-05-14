@@ -6,31 +6,34 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * table that displays a bean.
+ * table that displays the properties of a {@link Bean}.
  * 
  * @author saatsch
  *
  */
 public class BeanTable extends TreeTableView<Object> {
 
-  private TreeItem<Object> root;
+  private final TreeTableColumn<Object, String> typeColumn;
+  private Bean bean;
 
+  private final boolean expandCollections;
 
-
-  public BeanTable() {
+  /**
+   * Creates a new {@link BeanTable}
+   *
+   * @param expandCollections if collections should be expandable.
+   */
+  public BeanTable(boolean expandCollections) {
+    this.expandCollections = expandCollections;
 
     TreeTableColumn<Object, String> nameColumn = new TreeTableColumn<>("Property Name");
-    TreeTableColumn<Object, String> typeColumn = new TreeTableColumn<>("Type");
+    typeColumn = new TreeTableColumn<>("Type");
     TreeTableColumn<Object, String> valueColumn = new TreeTableColumn<>("Property Value");
     
     valueColumn.setCellValueFactory(new ValueLabelProvider());
     typeColumn.setCellValueFactory(new TypeLabelProvider());
     nameColumn.setCellValueFactory(new NameLabelProvider());
-
 
     getColumns().clear();
     
@@ -40,31 +43,30 @@ public class BeanTable extends TreeTableView<Object> {
 
     setShowRoot(false);
 
-    // informational functionality
-//    addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
-//      if (click.getClickCount() == 2) {
-//        
-//        Object value = getSelectionModel().getSelectedItem().getValue();
-//        if (value instanceof Property) {
-//          Object object = ((Property<?>) value).get();
-//          if (object instanceof Binding) {
-//            ((Binding<?>) object).getDependencies().stream().forEach(dep -> {
-//              LOG.info("Dependency: {}" , dep);                        
-//            });
-//          }
-//        }
-//        
-//      }
-//    });
   }
 
-  public void setBean(Bean bean){
-    root = new BeanTableItem(bean);
+  public BeanTable setBean(Bean bean){
+    TreeItem<Object> root = new BeanTableItem(bean, expandCollections);
     setRoot(root);
+    this.bean = bean;
+    return this;
   }
 
-  public void  setColWidth(int col , int width){
+  public Bean getBean() {
+    return bean;
+  }
+
+  public void setColWidth(int col , int width){
     getColumns().get(col).setPrefWidth(width);
+  }
+
+  /**
+   * @param displayType true if the type column should be displayed.
+   * @return this.
+   */
+  public BeanTable displayType(boolean displayType){
+    typeColumn.setVisible(displayType);
+    return this;
   }
 
 }

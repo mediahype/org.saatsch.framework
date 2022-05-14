@@ -6,10 +6,11 @@ import javafx.stage.Stage;
 import org.saatsch.framework.base.jfxbase.control.VBox;
 
 public abstract class AbstractDemo extends Application {
+  protected Stage stage;
 
   @Override
   public void start(Stage stage) {
-
+    this.stage = stage;
     VBox contentRootRegion = new VBox();
     
     Scene scene = new Scene(contentRootRegion);
@@ -22,7 +23,12 @@ public abstract class AbstractDemo extends Application {
     
   }
 
-  
+
+  /**
+   * called before the stage is shown
+   *
+   * @param root the root
+   */
   protected abstract void fill(VBox root);
   
   

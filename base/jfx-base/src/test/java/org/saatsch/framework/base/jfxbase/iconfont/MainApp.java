@@ -39,12 +39,11 @@ public class MainApp extends Application {
 
     for (IconCode icon : Bundle.getIcons()) {
 
-      System.out.println();
+      catalogPane.register(icon);
 
-      if ("FontAwesome".equals(icon.getFontFamily())) {
-        catalogPane.register(icon);
-
-      }
+//      if ("FontAwesome".equals(icon.getFontFamily())) {
+//        catalogPane.register(icon);
+//      }
     }
 
     catalogPane.update();
@@ -56,5 +55,6 @@ public class MainApp extends Application {
     stage.show();
     stage.centerOnScreen();
   }
+
 
 }

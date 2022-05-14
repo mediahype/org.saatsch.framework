@@ -1,7 +1,11 @@
 package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
+import javafx.scene.control.TreeItem;
+import javafx.scene.input.MouseEvent;
 import org.joda.beans.Bean;
-import org.saatsch.framework.jmmo.data.editor.fx.beantable.BeanTable;
+import org.joda.beans.Property;
+import org.saatsch.framework.base.jfxbase.BeanTable;
+import org.saatsch.framework.jmmo.data.editor.fx.dialog.EditPropertyDialog;
 
 public class RightPaneTable extends AbstractRightPane {
 
@@ -10,9 +14,28 @@ public class RightPaneTable extends AbstractRightPane {
   public RightPaneTable() {
     super();
 
-    table = new BeanTable();
+    table = new BeanTable(false).displayType(false);
     setContent(table);
 
+
+    table.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+      if (click.getClickCount() == 2) {
+        TreeItem<Object> selectedItem = table.getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null){
+          return;
+        }
+
+        if (!(selectedItem.getValue() instanceof Property)){
+          return;
+        }
+
+        EditPropertyDialog diag = new EditPropertyDialog((Property<Object>) selectedItem.getValue(), table.getBean());
+        diag.showAndWait();
+        table.refresh();
+
+      }
+    });
 
 
   }

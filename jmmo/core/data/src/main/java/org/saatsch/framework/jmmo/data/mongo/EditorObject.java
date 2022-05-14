@@ -16,6 +16,7 @@ import org.joda.beans.impl.direct.DirectMetaBean;
 import org.joda.beans.impl.direct.DirectMetaProperty;
 import org.joda.beans.impl.direct.DirectMetaPropertyMap;
 
+import org.saatsch.framework.base.jfxbase.dataeditor.DataEditor;
 import org.saatsch.framework.jmmo.data.annotations.JmmoAppId;
 import org.saatsch.framework.jmmo.data.annotations.JmmoDoc;
 import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
@@ -44,6 +45,7 @@ public class EditorObject extends MongoDataObject implements Bean, BeanVisitable
   @PropertyDefinition(validate = "notEmpty")
   @JmmoAppId
   @JmmoEditorHidden
+  @DataEditor(hidden = true)
   protected String appId = "";
 
   /**

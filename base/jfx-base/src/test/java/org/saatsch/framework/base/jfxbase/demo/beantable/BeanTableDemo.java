@@ -16,7 +16,7 @@ public class BeanTableDemo extends AbstractDemo {
     demoBean.getNestedBean().getStringList().add("String 2");
 
 
-    BeanTable table = new BeanTable();
+    BeanTable table = new BeanTable(false);
     table.setBean(demoBean);
 
 

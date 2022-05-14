@@ -7,11 +7,16 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.javafx.IconFontFX;
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
+import org.saatsch.framework.base.jfxbase.control.Button;
+import org.saatsch.framework.base.jfxbase.control.HBox;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.editor.fx.types.AbstractEditor;
 
@@ -32,10 +37,10 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
    */
   protected TableView<T> tblTable;
 
-  private SmallButton btnAdd;
-  private SmallButton btnRemove;
-  private SmallButton btnUp;
-  private SmallButton btnDown;
+  private Button btnAdd;
+  private Button btnRemove;
+  private Button btnUp;
+  private Button btnDown;
 
   public AbstractListEditor(Property<Object> property, Bean objectToEdit) {
     super(property, objectToEdit);
@@ -82,34 +87,31 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
 
   private HBox createContent() {
 
-    HBox hBox = new HBox();
-    hBox.getChildren().add(tblTable);
-    HBox.setHgrow(tblTable, Priority.ALWAYS);
 
-    VBox buttons = new VBox();
-    buttons.setPrefWidth(50);
 
     // button add
-    btnAdd = new SmallButton("add");
-    btnAdd.setOnAction(this::btnAddPressed);
-    buttons.getChildren().add(btnAdd);
+    btnAdd = new SmallButton("add").withGraphic(new ImageView(
+        IconFontFX.buildImage(FontAwesome.PLUS, 15,  Color.GREEN))).withAction(this::btnAddPressed);
 
     // button remove
-    btnRemove = new SmallButton("remove");
-    btnRemove.setOnAction(this::btnRemovePressed);
-    buttons.getChildren().add(btnRemove);
+    btnRemove = new SmallButton("remove").withGraphic(new ImageView(
+        IconFontFX.buildImage(FontAwesome.MINUS, 15,  Color.RED))).withAction(this::btnRemovePressed);
 
     // button UP
-    btnUp = new SmallButton("up");
-    btnUp.setOnAction(this::moveUp);
-    buttons.getChildren().add(btnUp);
+    btnUp = new SmallButton("up").withGraphic(new ImageView(
+        IconFontFX.buildImage(FontAwesome.ARROW_UP, 15,  Color.BLACK))).withAction(this::moveUp);
 
     // button DOWN
-    btnDown = new SmallButton("down");
-    btnDown.setOnAction(this::moveDown);
-    buttons.getChildren().add(btnDown);
+    btnDown = new SmallButton("down").withGraphic(new ImageView(
+        IconFontFX.buildImage(FontAwesome.ARROW_DOWN, 15,  Color.BLACK))).withAction(this::moveDown);
 
-    hBox.getChildren().add(buttons);
+    // container for buttons
+    VBox buttons = new VBox().withChildren(btnAdd,btnRemove, btnUp, btnDown);
+    buttons.setPrefWidth(50);
+
+    // container for table and buttons
+    HBox hBox = new HBox().withChildren(tblTable, buttons);
+    HBox.setHgrow(tblTable, Priority.ALWAYS);
     HBox.setHgrow(buttons, Priority.NEVER);
 
     return hBox;

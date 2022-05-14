@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 
 /**
- * extension of JFX Button. Provides a fluent API.
+ * extension of JFX {@link javafx.scene.control.Button Button}. Provides a fluent API.
  * 
  * @author saatsch
  *

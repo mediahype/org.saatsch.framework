@@ -1,25 +1,27 @@
 package org.saatsch.framework.base.jfxbase;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TreeItem;
+import org.joda.beans.Bean;
+import org.joda.beans.Property;
+import org.saatsch.framework.base.jfxbase.dataeditor.PropertyUtil;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.joda.beans.Bean;
-import org.joda.beans.Property;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TreeItem;
-
 public class BeanTableItem extends TreeItem<Object> {
 
+  private final boolean expandCollections;
   private boolean isLeaf;
   private boolean isFirstTimeChildren = true;
   private boolean isFirstTimeLeaf = true;
 
-  public BeanTableItem(Object value) {
+  public BeanTableItem(Object value, boolean expandColletions) {
     super(value);
+    this.expandCollections = expandColletions;
   }
 
   @Override
@@ -39,18 +41,14 @@ public class BeanTableItem extends TreeItem<Object> {
     if (isFirstTimeLeaf) {
       isFirstTimeLeaf = false;
       Object itemValue =  getValue();
-
-      isLeaf = true;
-      if (itemValue instanceof Bean ) {
-        isLeaf = false;
-      }
+      isLeaf = !(itemValue instanceof Bean);
       if (itemValue instanceof Property) {
-         Object propertyValue = ((Property) itemValue).get();
+         Object propertyValue = ((Property<?>) itemValue).get();
          if (propertyValue instanceof Bean) {
            isLeaf = false;
          }
-        if (isCollection(propertyValue)){
-          if (((Collection) propertyValue).size() > 0){
+        if (isCollection(propertyValue) && expandCollections){
+          if (((Collection<?>) propertyValue).size() > 0){
             isLeaf = false;
           }
         }
@@ -60,6 +58,7 @@ public class BeanTableItem extends TreeItem<Object> {
     return isLeaf;
   }
 
+
   private ObservableList<TreeItem<Object>> buildChildren(TreeItem<Object> treeItem) {
     Object o = treeItem.getValue();
     Object toBuild = null;
@@ -67,7 +66,7 @@ public class BeanTableItem extends TreeItem<Object> {
       toBuild = o;
     } else {
       if (o instanceof Property ) {
-        Object p = ((Property) o).get();
+        Object p = ((Property<?>) o).get();
         if (p instanceof Bean || isCollection(p)) {
           toBuild = p;
         }
@@ -77,30 +76,28 @@ public class BeanTableItem extends TreeItem<Object> {
     
     
     if (toBuild instanceof Bean) {
-      
-      List<Property> properties = getProperties((Bean) toBuild) ;
-      if (properties != null) {
-        ObservableList<TreeItem<Object>> children = FXCollections.observableArrayList();
-
-        for (Property childProp : properties) {
-          children.add( new BeanTableItem(childProp));
+      List<Property<?>> properties = getProperties((Bean) toBuild) ;
+      ObservableList<TreeItem<Object>> children = FXCollections.observableArrayList();
+      for (Property<?> childProp : properties) {
+        if (PropertyUtil.isHidden(childProp.metaProperty())){
+          continue;
         }
-
-        return children;
+        children.add( new BeanTableItem(childProp, expandCollections));
       }
+      return children;
     }
 
     if (isCollection(toBuild)){
       ObservableList<TreeItem<Object>> children = FXCollections.observableArrayList();
-      ((Collection) toBuild).forEach( elem -> children.add(new BeanTableItem(elem)) );
+      ((Collection<?>) toBuild).forEach( elem -> children.add(new BeanTableItem(elem, expandCollections)) );
       return children;
     }
 
     return FXCollections.emptyObservableList();
   }
 
-  private List<Property> getProperties(Bean bean) {
-    List<Property> ret = new ArrayList<>();
+  private List<Property<?>> getProperties(Bean bean) {
+    List<Property<?>> ret = new ArrayList<>();
     bean.propertyNames().forEach(pName -> ret.add(bean.property(pName)));
     return ret;
   }
@@ -110,7 +107,6 @@ public class BeanTableItem extends TreeItem<Object> {
       return false;
     }
     return List.class.isAssignableFrom(o.getClass()) || Set.class.isAssignableFrom(o.getClass());
-    // return o instanceof List || o instanceof Set;
   }
 
 }

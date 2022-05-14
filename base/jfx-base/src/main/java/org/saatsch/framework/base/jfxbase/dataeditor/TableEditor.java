@@ -1,8 +1,5 @@
-package org.saatsch.framework.jmmo.data.editor.fx.types.list;
+package org.saatsch.framework.base.jfxbase.dataeditor;
 
-import static org.saatsch.framework.jmmo.data.api.PropertyUtil.isPropertyAnnotatedWith;
-
-import java.util.Collection;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
@@ -11,24 +8,27 @@ import org.joda.beans.Bean;
 import org.joda.beans.MetaBean;
 import org.joda.beans.MetaProperty;
 import org.joda.beans.Property;
-import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.jmmo.data.DataSink;
-import org.saatsch.framework.jmmo.data.annotations.JmmoEditorHidden;
-import org.saatsch.framework.jmmo.data.api.Pointer;
-import org.saatsch.framework.jmmo.data.api.PropertyUtil;
-import org.saatsch.framework.jmmo.data.editor.fx.base.Repaintable;
-import org.saatsch.framework.jmmo.data.editor.fx.types.EditorCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
+
+import static org.saatsch.framework.base.jfxbase.dataeditor.PropertyUtil.isPropertyAnnotatedWith;
+import static org.saatsch.framework.base.jfxbase.dataeditor.PropertyUtil.isHidden;
+
+/**
+ * used on List of Beans
+ */
 public class TableEditor extends AbstractListEditor<Object> implements Repaintable {
 
   private static final Logger LOG = LoggerFactory.getLogger(TableEditor.class);
 
   FlowPane editorsPane = new FlowPane();
 
-  public TableEditor(Property<Object> property, Bean objectToEdit) {
+  public TableEditor(Property<Object> property,
+                     Bean objectToEdit) {
     super(property, objectToEdit);
+
     addColumns();
     repaintTable();
     getChildren().add(editorsPane);
@@ -42,16 +42,14 @@ public class TableEditor extends AbstractListEditor<Object> implements Repaintab
     try {
       metaBean = MetaBean.of(genericClass);
     } catch (IllegalArgumentException e) {
-      LOG.error("cannot create editor for {}", property.name());
+      LOG.error("cannot create editor for {}: metaBean not found.", property.name());
       return;
     }
 
     for (MetaProperty<?> m : metaBean.metaPropertyIterable()) {
-
-      if (!isPropertyAnnotatedWith(m, JmmoEditorHidden.class)) {
+      if (!isHidden(m)) {
         addColumn(m);
       }
-
     }
   }
 
@@ -64,13 +62,14 @@ public class TableEditor extends AbstractListEditor<Object> implements Repaintab
 
     TableColumn<Object, String> col = new TableColumn<>(m.name());
     col.setSortable(false);
+
+    if (isPropertyAnnotatedWith(m, DataEditor.class)){
+      DataEditor annotation = m.annotation(DataEditor.class);
+      col.setPrefWidth(annotation.columnWidth());
+    }
+
     col.setCellValueFactory(data -> {
-
       Object o = m.get((Bean) data.getValue());
-      if (o instanceof Pointer) {
-        return new SimpleStringProperty(((Pointer<?>) o).asString());
-      }
-
       return new SimpleStringProperty(o.toString());
     });
     tblTable.getColumns().add(col);
@@ -80,14 +79,14 @@ public class TableEditor extends AbstractListEditor<Object> implements Repaintab
   @Override
   protected void btnRemovePressed(ActionEvent event) {
     collectionToEdit.remove(getSelection());
-    JmmoContext.getBean(DataSink.class).save(property.bean());
+    saveObject();
     repaintTable();
   }
 
   @Override
   protected void btnAddPressed(ActionEvent event) {
     Bean newInstance = PropertyUtil.newInstance(genericClass);
-    PropertyUtil.initPointers(newInstance);
+
 
     // add it to the list and save the containing Bean
     ((Collection<Bean>) property.get()).add(newInstance);

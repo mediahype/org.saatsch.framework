@@ -8,6 +8,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.javafx.IconFontFX;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.editor.fx.base.KeyCombinations;
@@ -25,6 +27,8 @@ public class DataEditorFxApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+
+    IconFontFX.register(FontAwesome.getIconFont());
 
     try {
       root = FXMLLoader.load(DataEditorFxApp.class.getResource("Editor.fxml"));

@@ -20,6 +20,13 @@
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-swing</artifactId>
+      <version>13</version>
+    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -31,19 +38,23 @@
       <version>1.0.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.github.jiconfont</groupId>
-      <artifactId>jiconfont-font_awesome</artifactId>
-      <version>4.7.0.1</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.github.jiconfont</groupId>-->
+<!--      <artifactId>jiconfont-font_awesome</artifactId>-->
+<!--      <version>4.7.0.1</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>com.github.jiconfont</groupId>
       <artifactId>jiconfont-bundle</artifactId>
       <version>1.4.0</version>
+
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
