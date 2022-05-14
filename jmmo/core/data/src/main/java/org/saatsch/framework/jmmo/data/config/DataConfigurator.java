@@ -48,6 +48,10 @@ public class DataConfigurator {
       
     } else {
       InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(DataConfig.CONFIG_FILE_NAME);
+      if (is == null){
+        LOG.error("config file {} not found.", DataConfig.CONFIG_FILE_NAME);
+        throw new FatalDataConfigException("Could not load config file.");
+      }
       try {
         return SERIALIZER.load(DataConfigModel.class, is);
       } catch (SerializerException e) {

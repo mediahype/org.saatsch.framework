@@ -59,7 +59,11 @@
       </exclusions>
     </dependency>
 
-
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -81,6 +85,12 @@
       <artifactId>javafx-controls</artifactId>
       <version>14</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>

@@ -1,0 +1,10 @@
+<org.saatsch.framework.jmmo.data.config.DataConfigModel>
+  <classMappings class="linked-hash-map">
+    <entry>
+      <string>org.saatsch.framework.jmmo.data.editor.fx.model.UnitBase</string>
+      <list>
+        <string>org.saatsch.framework.jmmo.data.editor.fx.model.UnitBase</string>
+      </list>
+    </entry>
+  </classMappings>
+</org.saatsch.framework.jmmo.data.config.DataConfigModel>

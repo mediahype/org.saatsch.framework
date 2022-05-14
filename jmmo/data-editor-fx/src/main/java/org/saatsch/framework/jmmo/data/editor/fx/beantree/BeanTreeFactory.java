@@ -16,9 +16,7 @@ public class BeanTreeFactory {
   public static BeanTree create(Class<? extends Bean> clazz){
 
     BeanTree tree = new BeanTree();
-
-
-    ObservableList uiList = tree.getRoot().getChildren();
+    ObservableList<TreeItem<Bean>> uiList = tree.getRoot().getChildren();
 
 
     Datastore store = JmmoContext.getBean(MorphiaMongoDataSink.class).store();

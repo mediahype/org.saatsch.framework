@@ -13,6 +13,7 @@ import org.saatsch.framework.jmmo.data.api.IntlStringService;
 import org.saatsch.framework.jmmo.data.api.model.IntlString;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Presents the selection of an internationalizable Text
@@ -21,10 +22,8 @@ public class TextSelection extends VBox {
 
   private final TableView<IntlString> tblTexts = new TableView<>();
 
-  private Lazy<DataConfig> cfg = Lazy.of(() -> JmmoContext.getBean(DataConfig.class));
-  private Lazy<IntlStringService> service = Lazy.of(() -> JmmoContext.getBean(IntlStringService.class));
-
-
+  private final Lazy<DataConfig> cfg = Lazy.of(() -> JmmoContext.getBean(DataConfig.class));
+  private final Lazy<IntlStringService> service = Lazy.of(() -> JmmoContext.getBean(IntlStringService.class));
 
   /**
    * callback that gets the text for the current language
@@ -36,7 +35,7 @@ public class TextSelection extends VBox {
       param -> new SimpleStringProperty(param.getValue().getStrings().keySet().toString());
 
 
-  public TextSelection(TextWindow client) {
+  public TextSelection(Optional<TextWindow> client) {
 
     GridPane input = new GridPane();
 
@@ -46,7 +45,7 @@ public class TextSelection extends VBox {
     cmbLanguage.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       cfg.get().setCurrentLanguage(cmbLanguage.getSelectionModel().selectedItemProperty().getValue());
       refreshTable();
-      client.languageChanged();
+      client.ifPresent(TextWindow::languageChanged);
     });
 
 
@@ -62,7 +61,8 @@ public class TextSelection extends VBox {
     withChildren(input, tblTexts);
 
     tblTexts.withStretchVertical();
-    tblTexts.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> client.setTextToEdit(newValue));
+    tblTexts.withSelectionChangedListener((observable, oldValue, newValue) -> client.ifPresent(c -> c.setTextToEdit(newValue)));
+
 
     setStrings(loadAll());
   }
@@ -77,11 +77,11 @@ public class TextSelection extends VBox {
   }
 
   private List<IntlString> filter(String newValue) {
-    return JmmoContext.getBean(IntlStringService.class).search(newValue);
+    return service.get().search(newValue);
   }
 
   private List<IntlString> loadAll() {
-    return JmmoContext.getBean(IntlStringService.class).loadAll();
+    return service.get().loadAll();
   }
 
   void refreshTable() {
@@ -92,6 +92,9 @@ public class TextSelection extends VBox {
     tblTexts.setItems(FXCollections.observableArrayList(intlStrings));
   }
 
+  public Optional<IntlString> getSelected(){
+     return Optional.ofNullable(tblTexts.getSelectionModel().selectedItemProperty().get());
+  }
 
   /**
    * this is purely an abbreviation

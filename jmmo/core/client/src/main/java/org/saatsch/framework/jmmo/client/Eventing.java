@@ -15,9 +15,7 @@ public class Eventing extends EventBus {
   private static final Logger LOG = LoggerFactory.getLogger(Eventing.class);
 
   public Eventing() {
-
     super("jmmoEventing");
-
   }
 
   @Override

@@ -212,6 +212,12 @@ public class IntlStringService {
     data.store().delete(query);
   }
 
+  /**
+   * TODO: also search in the content of {@link IntlString}s.
+   *
+   * @param term the search term
+   * @return the result
+   */
   public List<IntlString> search(String term){
     return data.store().createQuery(IntlString.class).field(COORDINATE).contains(term).asList();
   }
