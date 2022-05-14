@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.saatsch.framework.jmmo.data.action.CreateObjectAction;
 import org.saatsch.framework.jmmo.data.editor.fx.model.UnitBase;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 
 public class Launch {
 
@@ -19,7 +19,7 @@ public class Launch {
     Try.of( ()-> new CreateObjectAction("Unit1", UnitBase.class).execute() );
 
 
-    MorphiaMongoDataSink dataSink = ctx.getBean(MorphiaMongoDataSink.class);
+    DataSink dataSink = ctx.getBean(DataSink.class);
     System.out.println(dataSink.getAll(UnitBase.class).size());
 
     Application.launch(DataEditorFxApp.class);

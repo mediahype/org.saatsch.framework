@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.joda.beans.Bean;
 import org.joda.beans.MetaProperty;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.jmmo.data.api.BeanReference;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.api.ReferenceDirection;
@@ -23,7 +24,7 @@ class ModelReferenceUtil {
 
 
   public static Set<BeanReference> resolveIncomingReferences(Set<ModelReference> modelReferences,
-      Bean bean, MorphiaMongoDataSink data) {
+      Bean bean, DataSink data) {
 
     Set<BeanReference> result = new HashSet<>();
 

@@ -3,7 +3,7 @@ package org.saatsch.framework.jmmo.data.editor.fx;
 import dev.morphia.Morphia;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.cdi.container.Lazy;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 
 /**
  * data sink scoped to the unit tests of jmmo.data-editor-fx.
@@ -11,7 +11,7 @@ import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
  * @author saatsch
  *
  */
-public class TestDataSink extends MorphiaMongoDataSink {
+public class TestDataSink extends DataSink {
 
   private Lazy<TestDataSinkProperties> props =
       Lazy.of(() -> JmmoContext.getBean(TestDataSinkProperties.class));

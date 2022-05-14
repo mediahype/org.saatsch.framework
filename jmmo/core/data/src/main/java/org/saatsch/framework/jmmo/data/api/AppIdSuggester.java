@@ -3,7 +3,7 @@ package org.saatsch.framework.jmmo.data.api;
 import org.joda.beans.Bean;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 
 /**
  * 
@@ -16,7 +16,7 @@ public class AppIdSuggester {
 
 
 
-  private MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+  private DataSink data = JmmoContext.getBean(DataSink.class);
 
   /**
    * @param desiredId the desired id

@@ -9,7 +9,7 @@ import com.mongodb.BasicDBObject;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.annotations.JmmoCategories;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +59,7 @@ public class CategorizingDataProvider {
 
   public List getChildren() {
 
-    Datastore store = JmmoContext.getBean(MorphiaMongoDataSink.class).store();
+    Datastore store = JmmoContext.getBean(DataSink.class).store();
 
     // return Beans
     if (distinct == null) {

@@ -10,7 +10,7 @@ import org.saatsch.framework.jmmo.data.api.AppIdSuggester;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.api.IntlStringService;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 
 /**
  * upon executing this IAction it creates a new Object and saves it to the database. The newly
@@ -27,7 +27,7 @@ public class CreateObjectAction implements IAction {
    * the name of the object that is created.
    */
   private final String name;
-  private final MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+  private final DataSink data = JmmoContext.getBean(DataSink.class);
   private final AppIdSuggester suggester = JmmoContext.getBean(AppIdSuggester.class);
   private final List<Class<?>> subclasses;
   private final String desiredId;

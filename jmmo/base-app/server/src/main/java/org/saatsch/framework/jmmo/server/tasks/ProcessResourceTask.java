@@ -7,7 +7,7 @@ import org.saatsch.framework.jmmo.basegame.common.resources.GiveStringsResponse;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.clustering.SessionLocalTask;
 import org.saatsch.framework.jmmo.data.api.model.IntlString;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +43,7 @@ public class ProcessResourceTask extends SessionLocalTask {
    */
   private void giveStrings() {
 
-    MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+    DataSink data = JmmoContext.getBean(DataSink.class);
     
     respond(new GiveStringsResponse(data.getAll(IntlString.class)));
     

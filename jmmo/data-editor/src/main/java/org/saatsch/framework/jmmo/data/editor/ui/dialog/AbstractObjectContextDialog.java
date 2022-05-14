@@ -19,7 +19,7 @@ import org.saatsch.framework.jmmo.data.api.AppIdSuggester;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.api.IntlStringService;
 import org.saatsch.framework.jmmo.data.editor.ui.tabcontent.EditorTabContent;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.base.swt.DialogUtil;
 
 /**
@@ -40,7 +40,7 @@ public abstract class AbstractObjectContextDialog extends Dialog {
   protected Object ret;
   protected final EditorTabContent parentTab;
 
-  protected MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+  protected DataSink data = JmmoContext.getBean(DataSink.class);
   protected AppIdSuggester suggester = JmmoContext.getBean(AppIdSuggester.class);
 
   protected IntlStringService stringService =

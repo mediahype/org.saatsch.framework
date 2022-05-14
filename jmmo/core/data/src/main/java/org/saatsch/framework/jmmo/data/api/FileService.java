@@ -13,7 +13,7 @@ import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.DataException;
 import org.saatsch.framework.jmmo.data.DupKeyException;
 import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.base.UserException;
 
 /**
@@ -24,7 +24,7 @@ import org.saatsch.framework.base.UserException;
  */
 public class FileService {
 
-  private MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+  private DataSink data = JmmoContext.getBean(DataSink.class);
 
 
   /**

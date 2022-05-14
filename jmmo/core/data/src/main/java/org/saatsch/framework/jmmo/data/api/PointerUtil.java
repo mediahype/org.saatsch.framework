@@ -10,7 +10,7 @@ import org.joda.beans.Bean;
 import org.joda.beans.MetaProperty;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import dev.morphia.annotations.Id;
 
 /**
@@ -34,7 +34,7 @@ public class PointerUtil {
 
 
 
-    MorphiaMongoDataSink dataSink = JmmoContext.getBean(MorphiaMongoDataSink.class);
+    DataSink dataSink = JmmoContext.getBean(DataSink.class);
     T object = null;
     if (dataSink.isInitialized()) {
       object = (T) dataSink.store().createQuery(pointer.getBaseClass())
@@ -67,7 +67,7 @@ public class PointerUtil {
 
 
 
-    MorphiaMongoDataSink dataSink = JmmoContext.getBean(MorphiaMongoDataSink.class);
+    DataSink dataSink = JmmoContext.getBean(DataSink.class);
     T object = null;
     if (dataSink.isInitialized()) {
       object = (T) dataSink.store().createQuery(pointer.getBaseClass())
@@ -101,7 +101,7 @@ public class PointerUtil {
     MetaProperty<?> idProperty = PropertyUtil
         .getPropertyAnnotatedWith((Class<? extends Bean>) pointer.getBaseClass(), Id.class);
 
-    T object = (T) JmmoContext.getBean(MorphiaMongoDataSink.class).store()
+    T object = (T) JmmoContext.getBean(DataSink.class).store()
         .createQuery(pointer.getBaseClass())
         .filter(idProperty.name() + " = ", pointer.getObjectId()).get();
 

@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Reference;
 
@@ -63,7 +63,7 @@ public class DepthDeleter extends AbstractBeanVisitor {
     // itself.
     if (bean.getClass().isAnnotationPresent(Entity.class)) {
       LOG.debug("deleting {}", bean);
-      JmmoContext.getBean(MorphiaMongoDataSink.class).delete(bean);
+      JmmoContext.getBean(DataSink.class).delete(bean);
     }
 
     return false;

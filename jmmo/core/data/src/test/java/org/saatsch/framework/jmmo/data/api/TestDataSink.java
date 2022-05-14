@@ -2,7 +2,7 @@ package org.saatsch.framework.jmmo.data.api;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.cdi.container.Lazy;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 
 import dev.morphia.Morphia;
 
@@ -12,7 +12,7 @@ import dev.morphia.Morphia;
  * @author saatsch
  *
  */
-public class TestDataSink extends MorphiaMongoDataSink {
+public class TestDataSink extends DataSink {
 
   private Lazy<TestDataSinkProperties> props =
       Lazy.of(() -> JmmoContext.getBean(TestDataSinkProperties.class));

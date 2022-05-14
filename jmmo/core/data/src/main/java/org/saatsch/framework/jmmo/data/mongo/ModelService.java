@@ -7,6 +7,7 @@ import java.util.Set;
 import org.joda.beans.Bean;
 
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.jmmo.data.api.BeanReference;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
 import org.saatsch.framework.jmmo.data.api.Pointer;
@@ -19,7 +20,7 @@ public class ModelService {
 
   private DataConfig config = JmmoContext.getBean(DataConfig.class);
 
-  private MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+  private DataSink data = JmmoContext.getBean(DataSink.class);
 
   private BeanService beanService = JmmoContext.getBean(BeanService.class);
 

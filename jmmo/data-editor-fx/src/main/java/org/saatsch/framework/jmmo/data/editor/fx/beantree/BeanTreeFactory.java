@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import org.joda.beans.Bean;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 
 public class BeanTreeFactory {
 
@@ -19,7 +19,7 @@ public class BeanTreeFactory {
     ObservableList<TreeItem<Bean>> uiList = tree.getRoot().getChildren();
 
 
-    Datastore store = JmmoContext.getBean(MorphiaMongoDataSink.class).store();
+    Datastore store = JmmoContext.getBean(DataSink.class).store();
 
     List<Bean> dbObjects = (List<Bean>) store.createQuery(clazz).find().toList();
 

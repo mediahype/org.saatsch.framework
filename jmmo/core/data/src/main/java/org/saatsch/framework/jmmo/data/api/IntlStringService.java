@@ -13,7 +13,7 @@ import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.beans.BeanService;
 import org.saatsch.framework.jmmo.data.api.model.IntlString;
 import org.saatsch.framework.jmmo.data.impl.BeanServiceImpl;
-import org.saatsch.framework.jmmo.data.mongo.MorphiaMongoDataSink;
+import org.saatsch.framework.jmmo.data.DataSink;
 import dev.morphia.query.Query;
 
 /**
@@ -37,7 +37,7 @@ public class IntlStringService {
    */
   private static final String COORDINATE_CONDITION = COORDINATE + " = ";
 
-  private MorphiaMongoDataSink data = JmmoContext.getBean(MorphiaMongoDataSink.class);
+  private DataSink data = JmmoContext.getBean(DataSink.class);
 
   private DataConfig config = JmmoContext.getBean(DataConfig.class);
 
