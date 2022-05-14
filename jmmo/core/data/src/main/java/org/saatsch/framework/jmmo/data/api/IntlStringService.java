@@ -3,11 +3,8 @@ package org.saatsch.framework.jmmo.data.api;
 import static org.saatsch.framework.jmmo.data.api.PropertyUtil.getStringPropertyCoordinate;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.joda.beans.Bean;
-import org.joda.beans.JodaBeanUtils;
 import org.joda.beans.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +29,8 @@ public class IntlStringService {
   /**
   * the name of the coordinate property inside the {@link IntlString} class.
   */
-  private static final String COORDINATE =
-  JodaBeanUtils.metaBean(IntlString.class).metaProperty("coordinate").name();
+  private static final String COORDINATE = IntlString.meta().coordinate().name();
+
   
   /**
    * the condition when filtering for the coordinate against the mongodb
@@ -121,44 +118,17 @@ public class IntlStringService {
   }
 
   private String selectIntlString(IntlString string) {
-    
     return string.getForLanguage(config.getCurrentLanguage()); 
-    
-//    Map<String, String> strings = string.getStrings();
-//    // if the desired language is not present
-//    if (null == strings.get(language)) {
-//      // and no locale is present
-//      if (strings.size() == 0) {
-//        return "";
-//      }
-//
-//      // and 1 language is present
-//      if (strings.size() == 1) {
-//        return strings.entrySet().iterator().next().getValue();
-//      }
-//
-//      // and more than 1 language is present
-//      if ( null != strings.get(Locale.ENGLISH)) {
-//        return strings.get(Locale.ENGLISH);
-//      }
-//
-//      return strings.entrySet().iterator().next().getValue();
-//
-//    } else {
-//      return strings.get(language);
-//    }
   }
 
   public synchronized void saveLocalizedText(String coordinate, String content) {
     saveLocalizedText(coordinate, content, config.getCurrentLanguage());
   }
 
-  
   public synchronized void saveLocalizedText(String coordinate, String content, String language) {
     IntlString iString = getOrCreateIntlString(coordinate);
     iString.getStrings().put(language, content);
     data.save(iString);
-    
   }
   
 
@@ -236,14 +206,14 @@ public class IntlStringService {
     });
   }
 
-
   public void delete(Bean bean, Property<Object> prop) {
     Query<IntlString> query =
         data.store().createQuery(IntlString.class).filter(COORDINATE_CONDITION, prop.get());
     data.store().delete(query);
   }
 
-  
-  
-  
+  public List<IntlString> search(String term){
+    return data.store().createQuery(IntlString.class).field(COORDINATE).contains(term).asList();
+  }
+
 }

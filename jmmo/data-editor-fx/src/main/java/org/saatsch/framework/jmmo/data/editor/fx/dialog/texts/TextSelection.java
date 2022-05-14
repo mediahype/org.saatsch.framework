@@ -1,7 +1,6 @@
 package org.saatsch.framework.jmmo.data.editor.fx.dialog.texts;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.HPos;
@@ -10,6 +9,7 @@ import org.saatsch.framework.base.jfxbase.control.*;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.cdi.container.Lazy;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
+import org.saatsch.framework.jmmo.data.api.IntlStringService;
 import org.saatsch.framework.jmmo.data.api.model.IntlString;
 
 import java.util.List;
@@ -20,7 +20,11 @@ import java.util.List;
 public class TextSelection extends VBox {
 
   private final TableView<IntlString> tblTexts = new TableView<>();
+
   private Lazy<DataConfig> cfg = Lazy.of(() -> JmmoContext.getBean(DataConfig.class));
+  private Lazy<IntlStringService> service = Lazy.of(() -> JmmoContext.getBean(IntlStringService.class));
+
+
 
   /**
    * callback that gets the text for the current language
@@ -32,25 +36,22 @@ public class TextSelection extends VBox {
       param -> new SimpleStringProperty(param.getValue().getStrings().keySet().toString());
 
 
-  public TextSelection() {
+  public TextSelection(TextWindow client) {
 
     GridPane input = new GridPane();
 
     new Label("Language:").withParent(input).withLayoutColRow(0, 0).withLayoutHalign(HPos.CENTER);
     ComboBox<String> cmbLanguage = new ComboBox<String>().withParent(input).withLayoutColRow(1, 0).withItems("de", "en");
     cmbLanguage.getSelectionModel().select(cfg.get().getCurrentLanguage());
-    cmbLanguage.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-      @Override
-      public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        cfg.get().setCurrentLanguage(cmbLanguage.getSelectionModel().selectedItemProperty().getValue());
-        refreshTable();
-        // TODO: callback to the parent.
-      }
+    cmbLanguage.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+      cfg.get().setCurrentLanguage(cmbLanguage.getSelectionModel().selectedItemProperty().getValue());
+      refreshTable();
+      client.languageChanged();
     });
 
 
     new Label("Search:").withParent(input).withLayoutColRow(0, 1).withLayoutHalign(HPos.CENTER);
-    new TextField().withParent(input).withLayoutColRow(1, 1);
+    new TextField().withParent(input).withLayoutColRow(1, 1).withChangeListener(this::search);
 
 
     new TableColumn<IntlString, String>("Text").withCellValueFactory(getText).withTable(tblTexts);
@@ -61,14 +62,33 @@ public class TextSelection extends VBox {
     withChildren(input, tblTexts);
 
     tblTexts.withStretchVertical();
+    tblTexts.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> client.setTextToEdit(newValue));
 
+    setStrings(loadAll());
   }
 
-  private void refreshTable() {
+  private void search(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+    if (newValue.isEmpty()){
+      setStrings(loadAll());
+    }else {
+      setStrings(filter(newValue));
+    }
+    refreshTable();
+  }
+
+  private List<IntlString> filter(String newValue) {
+    return JmmoContext.getBean(IntlStringService.class).search(newValue);
+  }
+
+  private List<IntlString> loadAll() {
+    return JmmoContext.getBean(IntlStringService.class).loadAll();
+  }
+
+  void refreshTable() {
     tblTexts.refresh();
   }
 
-  public void setStrings(List<IntlString> intlStrings) {
+  private void setStrings(List<IntlString> intlStrings) {
     tblTexts.setItems(FXCollections.observableArrayList(intlStrings));
   }
 
