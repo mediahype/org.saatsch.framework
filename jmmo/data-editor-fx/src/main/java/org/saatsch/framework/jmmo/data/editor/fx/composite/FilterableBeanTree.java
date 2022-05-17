@@ -1,34 +1,46 @@
 package org.saatsch.framework.jmmo.data.editor.fx.composite;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
+import org.saatsch.framework.base.jfxbase.control.VBox;
+import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
+import org.saatsch.framework.jmmo.data.DataSink;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTree;
-import org.saatsch.framework.jmmo.data.editor.fx.beantree.BeanTreeFactory;
+import org.saatsch.framework.jmmo.data.editor.fx.tab.LeftPaneContextMenu;
 
 import java.util.Optional;
 
-public class FilterableBeanTree extends VBox {
+public class FilterableBeanTree extends VBox implements SelectionChanged<Bean> {
 
-  private final BeanTree beanTree;
-  private final TextField txtFilter;
+  private final BeanTree beanTree = new BeanTree();
+  private final TextField txtFilter = new TextField();
+  private final ObservableList<TreeItem<Bean>> uiList = beanTree.getRoot().getChildren();
+  private final DataSink data = JmmoContext.getBean(DataSink.class);
+  private final Class<? extends Bean> clazz;
+
+  private SelectionChanged<Bean> selectionChangedListener;
 
   public FilterableBeanTree(Class<? extends Bean> clazz) {
-
-    beanTree = BeanTreeFactory.create(clazz);
+    this.clazz = clazz;
     VBox.setVgrow(beanTree, Priority.ALWAYS);
+    withChildren(txtFilter, beanTree);
+    beanTree.withSelectionChangeListener(this).setContextMenu(new LeftPaneContextMenu(clazz));
 
-    txtFilter = new TextField();
-    getChildren().add(txtFilter);
-    getChildren().add(beanTree);
 
+    load();
   }
 
-  public void setSelectionChangedListener(SelectionChanged<Bean> listener) {
-    beanTree.setSelectionChangedListener(listener);
+  private void load(){
+    uiList.clear();
+    for (Bean obj : data.store().createQuery(clazz).find().toList()){
+      TreeItem<Bean> item = new TreeItem<>(obj);
+      uiList.add(item);
+    }
   }
 
   public Bean getSelection(){
@@ -46,8 +58,25 @@ public class FilterableBeanTree extends VBox {
    * @return true if the object was selected.
    */
   public boolean selectObject(Pointer pointer) {
-
     return beanTree.selectObject(pointer);
-
   }
+
+  public void reload() {
+    load();
+  }
+
+  // this is called by the child beanTree
+  @Override
+  public void selectionChanged(Bean newSelection) {
+    if (selectionChangedListener != null){
+      selectionChangedListener.selectionChanged(newSelection);
+    }
+  }
+
+  public FilterableBeanTree withSelectionChangedListener(SelectionChanged<Bean> selectionChangedListener) {
+    this.selectionChangedListener = selectionChangedListener;
+    return this;
+  }
+
+
 }

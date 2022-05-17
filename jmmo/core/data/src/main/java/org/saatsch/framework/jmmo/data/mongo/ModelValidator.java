@@ -1,13 +1,6 @@
 package org.saatsch.framework.jmmo.data.mongo;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Set;
-
+import dev.morphia.annotations.Entity;
 import org.joda.beans.Bean;
 import org.joda.beans.MetaBean;
 import org.joda.beans.MetaProperty;
@@ -18,7 +11,8 @@ import org.saatsch.framework.jmmo.data.annotations.JmmoCategories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.morphia.annotations.Entity;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 /**
  * Validates an object model.
@@ -36,19 +30,19 @@ class ModelValidator {
    * this field is given by the constructor of this class. It maps the fully qualified class names
    * of the model baseClasses to the fully qualified class names of specialization classes.
    */
-  private Map<String, List<String>> classMappings;
+  private final Map<String, List<String>> classMappings;
 
   /**
    * Map of classes that appear in {@link #classMappings}. Keys are the Base Classes, values are the
    * Lists of their respective specializations.
    */
-  private Map<Class<?>, List<Class<?>>> classes = new LinkedHashMap<>();
+  private final Map<Class<?>, List<Class<?>>> classes = new LinkedHashMap<>();
 
 
   /**
    * Map of instances
    */
-  private Map<Object, List<Object>> instances = new LinkedHashMap<>();
+  private final Map<Object, List<Object>> instances = new LinkedHashMap<>();
 
   /**
    * <code>true</code> if {@link #validate()} was called and succeeded.
@@ -209,7 +203,7 @@ class ModelValidator {
         if (metaProperty.propertyType().equals(String.class)) {
           return true;
         }
-      } catch (NoSuchElementException e) {
+      } catch (NoSuchElementException ignored) {
       }
     }
     return false;
@@ -271,7 +265,7 @@ class ModelValidator {
   /**
    * tries to create one instance of each of the classes that are mentioned in the model.
    * 
-   * @return
+   * @return true if all went well.
    */
   private boolean instantiate() {
     boolean errorOccured = false;
@@ -318,8 +312,10 @@ class ModelValidator {
 
 
   /**
-   * @param baseClass
-   * @return
+   * create a new instance of a class, using the no arg constructor.
+   *
+   * @param baseClass the class
+   * @return the instantiated object or null if it could not be instantiated.
    */
   private Object newInstance(Class<?> baseClass) {
 
@@ -384,7 +380,7 @@ class ModelValidator {
       clazz.getConstructor();
       return true;
     } catch (NoSuchMethodException e) {
-      LOG.error(LOG_PREFIX + "class {} does not have a no arg constructor");
+      LOG.error(LOG_PREFIX + "class {} does not have a no arg constructor", clazz);
     } catch (SecurityException e) {
       LOG.error(LOG_PREFIX + " security exception. ", e);
     }
@@ -420,8 +416,8 @@ class ModelValidator {
    * returns the base class of the given class or <code>null</code> if no base class could be found
    * in the known classes.
    * 
-   * @param clazz
-   * @return
+   * @param clazz the class
+   * @return the base class of the given class or <code>null</code> if no base class could be found.
    */
   public Class<?> getBaseClassOf(Class<?> clazz) {
     for (Class<?> c : getBaseClasses()) {

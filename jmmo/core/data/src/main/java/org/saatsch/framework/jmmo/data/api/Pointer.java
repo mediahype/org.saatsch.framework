@@ -2,6 +2,7 @@ package org.saatsch.framework.jmmo.data.api;
 
 import java.io.Serializable;
 
+import dev.morphia.annotations.Reference;
 import org.saatsch.framework.jmmo.data.annotations.JmmoAppId;
 
 
@@ -58,7 +59,7 @@ public interface Pointer<T> extends Serializable {
    * a Pointer is valid, if baseClass and appId are set to non null values.
    * A valid pointer is not neccessarily resolvable.
    * 
-   * @return
+   * @return true if the pointer's fields are non null.
    */
   boolean isValid();
 

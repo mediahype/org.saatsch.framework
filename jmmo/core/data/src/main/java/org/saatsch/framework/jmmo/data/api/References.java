@@ -36,5 +36,9 @@ public class References {
   public Object[] toArray() {
     return refs.toArray();
   }
+
+  public Set<BeanReference> get(){
+    return refs;
+  }
   
 }

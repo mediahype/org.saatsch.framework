@@ -1,8 +1,8 @@
 package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 import com.google.common.eventbus.Subscribe;
-import javafx.scene.layout.VBox;
 import org.joda.beans.Bean;
+import org.saatsch.framework.base.jfxbase.control.VBox;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
@@ -15,27 +15,25 @@ import org.slf4j.LoggerFactory;
 /**
  * the left pane on an editor tab.
  */
-public class LeftPane extends VBox {
+public class LeftPane extends VBox implements SelectionChanged<Bean> {
 
   private static final Logger LOG = LoggerFactory.getLogger(LeftPane.class);
   private final EditorTab parent;
   private final FilterableBeanTree beanTree;
+  private final Inspect cmpInspect = new Inspect();
 
-  public LeftPane(EditorTab parent){
+  private SelectionChanged<Bean> listener;
+
+  public LeftPane(EditorTab parent) {
     this.parent = parent;
-    beanTree = new FilterableBeanTree(parent.getObjectClass());
-    getChildren().add(beanTree);
+    beanTree = new FilterableBeanTree(parent.getObjectClass()).withSelectionChangedListener(this);
+    withStretchedChild(beanTree).withChildren(cmpInspect);
     setId(parent.getObjectClass() + "LeftPane");
     JmmoContext.getBean(Eventing.class).register(this);
   }
 
-
-  public void setSelectionChangedListener(SelectionChanged<Bean> listener) {
-    beanTree.setSelectionChangedListener(listener);
-  }
-
   @Subscribe
-  public void onNameChanged(NameChanged event){
+  public void onNameChanged(NameChanged event) {
     // TODO
     LOG.info("Name change!");
   }
@@ -50,8 +48,34 @@ public class LeftPane extends VBox {
     return beanTree.selectObject(pointer);
   }
 
-  public boolean hasSelection(){
+  public boolean hasSelection() {
     return beanTree.getSelectionOptional().isPresent();
   }
 
+  public void reload() {
+    beanTree.reload();
+  }
+
+  public void setInspectVisible(boolean inspectMode) {
+    cmpInspect.setVisible(inspectMode);
+  }
+
+  public void inspect() {
+    if (cmpInspect.isVisible()) {
+      cmpInspect.inspect(beanTree.getSelection());
+    }
+  }
+
+  public void setListener(SelectionChanged<Bean> listener) {
+    this.listener = listener;
+  }
+
+
+  @Override
+  public void selectionChanged(Bean newSelection) {
+    if (listener != null){
+      listener.selectionChanged(newSelection);
+    }
+    cmpInspect.inspect(newSelection);
+  }
 }

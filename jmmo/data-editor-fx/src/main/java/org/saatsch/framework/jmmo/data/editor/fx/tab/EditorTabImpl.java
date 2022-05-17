@@ -2,18 +2,22 @@ package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
+import org.joda.beans.Bean;
 import org.saatsch.framework.jmmo.data.api.Pointer;
+import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
 
 /**
  * a tab in the editor. It knows which class it should handle.
  */
-public class EditorTabImpl extends Tab implements EditorTab {
+public class EditorTabImpl extends Tab implements EditorTab, SelectionChanged<Bean> {
 
   private final Class<?> clazz;
-  private final LeftPane leftPane;
+  private final LeftPane cmpLeft;
   private EditMode editMode = EditMode.EDITORS;
   private final SplitPane splitPane;
+  private boolean inspectMode = false;
 
+  private AbstractRightPane currentRightPane;
 
 
   /**
@@ -24,12 +28,15 @@ public class EditorTabImpl extends Tab implements EditorTab {
 
     this.clazz = clazz;
 
-    leftPane = new LeftPane(this);
-    splitPane = new SplitPane(leftPane);
+    cmpLeft = new LeftPane(this);
+    splitPane = new SplitPane(cmpLeft);
     splitPane.setDividerPositions(0.3);
 
     RightPaneEditors rightPaneEditors = new RightPaneEditors();
-    leftPane.setSelectionChangedListener(rightPaneEditors);
+    currentRightPane = rightPaneEditors;
+
+    cmpLeft.setListener(this);
+
     splitPane.getItems().add(rightPaneEditors);
 
     setContent(splitPane);
@@ -49,12 +56,12 @@ public class EditorTabImpl extends Tab implements EditorTab {
    * @return true if the object was selected.
    */
   public boolean selectObject(Pointer pointer) {
-    return leftPane.selectObject(pointer);
+    return cmpLeft.selectObject(pointer);
   }
 
 
   public void toggleEditMode(){
-    if (!leftPane.hasSelection()) return;
+    if (!cmpLeft.hasSelection()) return;
 
     if (editMode == EditMode.EDITORS){
       setRightPane(new RightPaneTable());
@@ -63,6 +70,29 @@ public class EditorTabImpl extends Tab implements EditorTab {
       setRightPane(new RightPaneEditors());
       editMode = EditMode.EDITORS;
     }
+  }
+
+  @Override
+  public void reload() {
+    cmpLeft.reload();
+  }
+
+  @Override
+  public void toggleInspect() {
+    inspectMode = !inspectMode;
+    drawInspect();
+  }
+
+  private void drawInspect() {
+    cmpLeft.setInspectVisible(inspectMode);
+    if (inspectMode) {
+      cmpLeft.inspect();
+    }
+  }
+
+  @Override
+  public void selectionChanged(Bean newSelection) {
+    currentRightPane.selectionChanged(newSelection);
   }
 
 
@@ -77,11 +107,11 @@ public class EditorTabImpl extends Tab implements EditorTab {
    * @param newRightPane the new right pane.
    */
   private void setRightPane(AbstractRightPane newRightPane){
+    this.currentRightPane = newRightPane;
     double[] dividerPositions = splitPane.getDividerPositions();
     AbstractRightPane oldRightPane = (AbstractRightPane) splitPane.getItems().get(1);
     splitPane.getItems().remove(oldRightPane);
     newRightPane.selectionChanged(oldRightPane.getCurrentSelection());
-    leftPane.setSelectionChangedListener(newRightPane);
     splitPane.getItems().add(newRightPane);
     splitPane.setDividerPositions(dividerPositions);
   }

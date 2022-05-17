@@ -10,8 +10,8 @@ public class MenuItem extends javafx.scene.control.MenuItem  {
     super(text);
   }
 
-  public MenuItem withParent(Menu menuMain) {
-    menuMain.getItems().add(this);
+  public MenuItem withParent(Menu menu) {
+    menu.getItems().add(this);
     return this;
   }
 

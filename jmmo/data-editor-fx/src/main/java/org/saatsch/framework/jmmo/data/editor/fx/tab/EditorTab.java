@@ -13,4 +13,7 @@ public interface EditorTab {
 
   void toggleEditMode();
 
+  void reload();
+
+  void toggleInspect();
 }

@@ -18,10 +18,6 @@ public class Launch {
 
     Try.of( ()-> new CreateObjectAction("Unit1", UnitBase.class).execute() );
 
-
-    DataSink dataSink = ctx.getBean(DataSink.class);
-    System.out.println(dataSink.getAll(UnitBase.class).size());
-
     Application.launch(DataEditorFxApp.class);
 
   }

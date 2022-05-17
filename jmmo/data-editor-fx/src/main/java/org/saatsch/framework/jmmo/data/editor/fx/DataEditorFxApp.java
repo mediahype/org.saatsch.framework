@@ -12,10 +12,12 @@ import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.javafx.IconFontFX;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.DataConfig;
+import org.saatsch.framework.jmmo.data.api.beans.BeanService;
 import org.saatsch.framework.jmmo.data.editor.fx.base.KeyCombinations;
 import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTab;
 import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTabImpl;
 import org.saatsch.framework.jmmo.data.editor.fx.tab.EditorTabPane;
+import org.saatsch.framework.jmmo.data.impl.BeanServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +29,8 @@ public class DataEditorFxApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+
+    JmmoContext.alias(BeanService.class, BeanServiceImpl.class);
 
     IconFontFX.register(FontAwesome.getIconFont());
 
@@ -48,7 +52,8 @@ public class DataEditorFxApp extends Application {
     } catch (Exception e) {
       LOG.error("Error: ", e);
     }
-    
+
+    JmmoContext.putBean(this);
   }
 
   private void fillContents() {

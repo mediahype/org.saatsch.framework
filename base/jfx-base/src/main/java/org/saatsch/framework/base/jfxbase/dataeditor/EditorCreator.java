@@ -48,11 +48,6 @@ public class EditorCreator {
       return;
     }
 
-    if (null == property.get()) {
-      LOG.warn("property.get() on property:{} returned null. No editor will be created.",
-          property.name());
-
-    }
 
     String propType = property.metaProperty().propertyType().toString();
 

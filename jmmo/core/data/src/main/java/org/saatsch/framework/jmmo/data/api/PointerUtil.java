@@ -58,6 +58,8 @@ public class PointerUtil {
    */
   public static <T> Optional<T> resolveOptional(Pointer<T> pointer) {
     requireNonNull(pointer);
+    if (!pointer.isValid()) return Optional.empty();
+
     String appIdPropertyName =
         PropertyUtil.getAppIdPropertyName((Class<? extends Bean>) pointer.getBaseClass());
 

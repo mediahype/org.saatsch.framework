@@ -1,6 +1,7 @@
 package org.saatsch.framework.jmmo.data.action;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.joda.beans.Bean;
 import org.joda.beans.Property;
@@ -73,7 +74,7 @@ public class CreateObjectAction implements IAction {
 
     // create the new instance
     if (null != subclass) {
-      newInstance = PropertyUtil.newInstance((Class<? extends Bean>) findInSubclasses(subclass));
+      newInstance = PropertyUtil.newInstance((Class<? extends Bean>) findInSubclasses(subclass).get());
     } else {
       newInstance = PropertyUtil.newInstance(objectClass);
     }
@@ -113,13 +114,14 @@ public class CreateObjectAction implements IAction {
 
 
 
-  private Class<?> findInSubclasses(String className) {
-    for (Class<?> c : subclasses) {
-      if (c.getSimpleName().equals(className)) {
-        return c;
-      }
-    }
-    return null;
+  private Optional<Class<?>> findInSubclasses(String className) {
+    return subclasses.stream().filter(c -> c.getSimpleName().equals(className)).findFirst();
+//    for (Class<?> c : subclasses) {
+//      if (c.getSimpleName().equals(className)) {
+//        return c;
+//      }
+//    }
+//    return null;
   }
 
 }

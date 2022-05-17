@@ -25,8 +25,8 @@ public class KeyCombinations {
     KeyCodeCombination images_accel = new KeyCodeCombination(KeyCode.I, KeyCombination.CONTROL_DOWN);
     KeyCodeCombination texts_accel = new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN);
 
-    scene.getAccelerators().put(copy, () -> LOG.info(">>> copy... {}", copy));
-    scene.getAccelerators().put(paste, () -> LOG.info(">>> paste... {}", paste));
+    scene.getAccelerators().put(copy, () -> LOG.info(">>> copy... {} ... NYI", copy));
+    scene.getAccelerators().put(paste, () -> LOG.info(">>> paste... {} ... NYI", paste));
 
 
     Menu view = new Menu("View");
@@ -36,7 +36,7 @@ public class KeyCombinations {
     view.getItems().add(toggle_inspect_menu);
     toggle_inspect_menu.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
     // TODO:
-    toggle_inspect_menu.setOnAction(event -> {});
+    toggle_inspect_menu.setOnAction(event -> app.getActiveTab().toggleInspect());
 
     MenuItem toggle_edit_mode_menu = new MenuItem("Toggle Edit Mode");
     view.getItems().add(toggle_edit_mode_menu);

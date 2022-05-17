@@ -33,7 +33,9 @@ public class ModelService {
   public References resolveReferences(Bean bean) {
 
     Set<BeanReference> refs = new HashSet<>();
-    
+
+    if (bean == null) return new References(null, refs );
+
     refs.addAll(resolveIncomingReferences(bean));
     refs.addAll(resolveOutgoingReferences(bean));
 

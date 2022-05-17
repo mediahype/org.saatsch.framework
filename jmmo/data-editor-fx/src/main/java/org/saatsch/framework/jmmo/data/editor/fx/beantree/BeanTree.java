@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * a {@link TreeView} of {@link Bean}s. Informs an optional {@link #listener} when a selection
+ * a {@link TreeView} of {@link Bean}s.
  * change occurs.
  */
 public class BeanTree extends TreeView<Bean> {
 
   private static final Logger LOG = LoggerFactory.getLogger(BeanTree.class);
 
-  private Optional<SelectionChanged> listener = Optional.empty();
+  private SelectionChanged<Bean> listener;
 
   public BeanTree() {
 
@@ -30,20 +30,22 @@ public class BeanTree extends TreeView<Bean> {
 
     getSelectionModel().getSelectedItems()
         .addListener((ListChangeListener<TreeItem<Bean>>) change -> {
-          Bean newSelection = change.getList().get(0).getValue();
-          listener.ifPresent(l -> l.selectionChanged(newSelection));
+          if (listener != null){
+            Bean newSelection = change.getList().get(0).getValue();
+            listener.selectionChanged(newSelection);
+          }
         });
-
-
   }
 
   /**
    * sets a listener to inform when the selection has changed.
    *
    * @param listener the listener to set. Can be null (to stop listening).
+   * @return this.
    */
-  public void setSelectionChangedListener(SelectionChanged<Bean> listener) {
-    this.listener = Optional.ofNullable(listener);
+  public BeanTree withSelectionChangeListener(SelectionChanged<Bean> listener) {
+    this.listener= listener;
+    return this;
   }
 
   /**
