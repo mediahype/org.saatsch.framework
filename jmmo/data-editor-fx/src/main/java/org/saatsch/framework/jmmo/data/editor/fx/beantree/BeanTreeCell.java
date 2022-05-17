@@ -16,10 +16,10 @@ public class BeanTreeCell extends TreeCell<Bean> {
 
     if (item != null) {
       setText(PropertyUtil.getFullName(item));      
+    } else {
+      setText(null);
     }
-    
 
   }
-
 
 }

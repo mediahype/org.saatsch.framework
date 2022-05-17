@@ -89,4 +89,6 @@ public class BeanTree extends TreeView<Bean> {
 
     return appIdProperty.get(bean).equals(pointer.getAppId());
   }
+
+
 }

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
@@ -57,9 +59,7 @@ public abstract class AbstractListEditor<T> extends AbstractEditor {
     });
 
     getChildren().add(createContent());
-
     fillContent();
-
     setPrefHeight(200);
 
   }

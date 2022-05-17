@@ -1,8 +1,5 @@
 package org.saatsch.framework.jmmo.data.editor.fx.types.list;
 
-import static org.saatsch.framework.jmmo.data.api.PropertyUtil.isPropertyAnnotatedWith;
-
-import java.util.Collection;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
@@ -20,6 +17,8 @@ import org.saatsch.framework.jmmo.data.editor.fx.base.Repaintable;
 import org.saatsch.framework.jmmo.data.editor.fx.types.EditorCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.saatsch.framework.jmmo.data.api.PropertyUtil.isPropertyAnnotatedWith;
 
 public class TableEditor extends AbstractListEditor<Object> implements Repaintable {
 
@@ -90,7 +89,7 @@ public class TableEditor extends AbstractListEditor<Object> implements Repaintab
     PropertyUtil.initPointers(newInstance);
 
     // add it to the list and save the containing Bean
-    ((Collection<Bean>) property.get()).add(newInstance);
+    collectionToEdit.add(newInstance);
     saveObject();
     repaintTable();
 
@@ -111,15 +110,10 @@ public class TableEditor extends AbstractListEditor<Object> implements Repaintab
 
   @Override
   protected void repaintTable() {
-    if (collectionToEdit.isEmpty()) {
-      return;
-    }
+    if (collectionToEdit.isEmpty()) return;
 
     tblTable.getItems().clear();
-
-    for (Object bean : collectionToEdit) {
-      tblTable.getItems().add(bean);
-    }
+    collectionToEdit.forEach(bean -> tblTable.getItems().add(bean));
 
   }
 

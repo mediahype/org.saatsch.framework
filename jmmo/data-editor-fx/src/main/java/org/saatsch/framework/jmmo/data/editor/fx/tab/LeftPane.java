@@ -2,6 +2,7 @@ package org.saatsch.framework.jmmo.data.editor.fx.tab;
 
 import com.google.common.eventbus.Subscribe;
 import org.joda.beans.Bean;
+import org.saatsch.framework.base.jfxbase.control.SplitPane;
 import org.saatsch.framework.base.jfxbase.control.VBox;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.Pointer;
@@ -27,7 +28,8 @@ public class LeftPane extends VBox implements SelectionChanged<Bean> {
   public LeftPane(EditorTab parent) {
     this.parent = parent;
     beanTree = new FilterableBeanTree(parent.getObjectClass()).withSelectionChangedListener(this);
-    withStretchedChild(beanTree).withChildren(cmpInspect);
+    new SplitPane().vertical().withParent(this).withChildren(beanTree, cmpInspect);
+
     setId(parent.getObjectClass() + "LeftPane");
     JmmoContext.getBean(Eventing.class).register(this);
   }

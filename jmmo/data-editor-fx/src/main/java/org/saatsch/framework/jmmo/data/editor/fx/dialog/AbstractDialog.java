@@ -1,8 +1,9 @@
 package org.saatsch.framework.jmmo.data.editor.fx.dialog;
 
 
-import javafx.scene.control.Dialog;
+import javafx.scene.Node;
 import javafx.stage.Window;
+import org.saatsch.framework.base.jfxbase.control.Dialog;
 import org.saatsch.framework.base.jfxbase.control.VBox;
 
 public abstract class AbstractDialog<T> extends Dialog<T> {
@@ -18,6 +19,11 @@ public abstract class AbstractDialog<T> extends Dialog<T> {
     getDialogPane().setContent(content);
 
 
+  }
+
+  public AbstractDialog<T> withChildren(Node... children){
+    content.withChildren(children);
+    return this;
   }
 
 }

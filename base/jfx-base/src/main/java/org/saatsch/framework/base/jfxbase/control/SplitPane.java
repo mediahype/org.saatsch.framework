@@ -1,6 +1,7 @@
 package org.saatsch.framework.base.jfxbase.control;
 
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
 
 public class SplitPane extends javafx.scene.control.SplitPane implements ExtendedNode<SplitPane> {
 
@@ -14,5 +15,10 @@ public class SplitPane extends javafx.scene.control.SplitPane implements Extende
     setOrientation(Orientation.VERTICAL);
     return this;
   }
-  
+
+  public SplitPane withChildren(Node... elements) {
+    getItems().addAll(elements);
+    return this;
+  }
+
 }

@@ -78,5 +78,8 @@ public class FilterableBeanTree extends VBox implements SelectionChanged<Bean> {
     return this;
   }
 
+  public BeanTree getBeanTree(){
+    return beanTree;
+  }
 
 }

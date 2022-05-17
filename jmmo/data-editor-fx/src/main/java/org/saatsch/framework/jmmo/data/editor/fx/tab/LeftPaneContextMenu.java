@@ -30,4 +30,8 @@ public class LeftPaneContextMenu extends ContextMenu {
       JmmoContext.getBean(DataEditorFxApp.class).getActiveTab().reload();
     });
   }
+
+  private void deleteObject(ActionEvent actionEvent) {
+
+  }
 }

@@ -14,6 +14,7 @@ import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.saatsch.framework.jmmo.data.api.model.JmmoFile;
 import org.saatsch.framework.jmmo.data.editor.fx.types.custom.CustomTypes;
 import org.saatsch.framework.jmmo.data.editor.fx.types.list.PointerListEditor;
+import org.saatsch.framework.jmmo.data.editor.fx.types.list.StringCollectionEditor;
 import org.saatsch.framework.jmmo.data.editor.fx.types.list.TableEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,7 +121,6 @@ public class EditorCreator {
     }
 
 
-
     LOG.info("No Type Editor for class:{} --- property:{}", property.get().getClass().getName(),
         property.toString());
 
@@ -172,11 +172,11 @@ public class EditorCreator {
   }
 
   private static void createStringCollection(Pane parent, Property<Object> property, Bean toSave) {
-    parent.getChildren().add(new Label("|" + property.name() + ":createEnumCollection"));
+    parent.getChildren().add(new StringCollectionEditor(property, toSave));
   }
 
   private static void createEnumCollection(Pane parent, Property<Object> property, Bean toSave) {
-    parent.getChildren().add(new Label("|" + property.name() + ":createStringCollection"));
+    parent.getChildren().add(new Label("|" + property.name() + ":createEnumCollection"));
   }
 
   private static void createPointerCollection(Pane parent, Property<Object> property, Bean toSave) {
