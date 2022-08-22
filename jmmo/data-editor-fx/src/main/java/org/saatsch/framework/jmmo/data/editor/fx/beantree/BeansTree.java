@@ -14,19 +14,18 @@ import org.slf4j.LoggerFactory;
 
 /**
  * a {@link TreeView} of {@link Bean}s.
- * change occurs.
  */
-public class BeanTree extends TreeView<Bean> {
+public class BeansTree extends TreeView<Bean> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(BeanTree.class);
+  private static final Logger LOG = LoggerFactory.getLogger(BeansTree.class);
 
   private SelectionChanged<Bean> listener;
 
-  public BeanTree() {
+  public BeansTree() {
 
     setShowRoot(false);
     setRoot(new TreeItem("root"));
-    setCellFactory(param -> new BeanTreeCell());
+    setCellFactory(param -> new BeansTreeCell());
 
     getSelectionModel().getSelectedItems()
         .addListener((ListChangeListener<TreeItem<Bean>>) change -> {
@@ -43,7 +42,7 @@ public class BeanTree extends TreeView<Bean> {
    * @param listener the listener to set. Can be null (to stop listening).
    * @return this.
    */
-  public BeanTree withSelectionChangeListener(SelectionChanged<Bean> listener) {
+  public BeansTree withSelectionChangeListener(SelectionChanged<Bean> listener) {
     this.listener= listener;
     return this;
   }

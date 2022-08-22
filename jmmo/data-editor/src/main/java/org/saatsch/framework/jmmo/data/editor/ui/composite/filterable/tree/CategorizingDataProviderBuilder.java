@@ -37,8 +37,6 @@ public class CategorizingDataProviderBuilder {
     if (null == annotation) {
       return buildLegacy();
     }
-    
-    List<Category> categories = Arrays.asList(annotation.value());
 
     String prop = CDPUtil.getCategoryPropertyName(annotation, 0);
     CategorizingDataProvider p = new CategorizingDataProvider(baseClass, prop, null, 0);
@@ -60,9 +58,4 @@ public class CategorizingDataProviderBuilder {
     return Collections.unmodifiableList(new ArrayList<>());
   }
 
-  private void getDistinctClassNames() {
-
-    //
-
-  }
 }

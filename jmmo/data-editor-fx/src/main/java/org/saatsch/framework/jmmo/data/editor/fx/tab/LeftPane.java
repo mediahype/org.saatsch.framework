@@ -7,7 +7,7 @@ import org.saatsch.framework.base.jfxbase.control.VBox;
 import org.saatsch.framework.jmmo.cdi.container.JmmoContext;
 import org.saatsch.framework.jmmo.data.api.Pointer;
 import org.saatsch.framework.jmmo.data.editor.fx.base.SelectionChanged;
-import org.saatsch.framework.jmmo.data.editor.fx.composite.FilterableBeanTree;
+import org.saatsch.framework.jmmo.data.editor.fx.composite.FilterableBeansTree;
 import org.saatsch.framework.jmmo.data.editor.fx.eventing.Eventing;
 import org.saatsch.framework.jmmo.data.editor.fx.eventing.NameChanged;
 import org.slf4j.Logger;
@@ -20,14 +20,14 @@ public class LeftPane extends VBox implements SelectionChanged<Bean> {
 
   private static final Logger LOG = LoggerFactory.getLogger(LeftPane.class);
   private final EditorTab parent;
-  private final FilterableBeanTree beanTree;
+  private final FilterableBeansTree beanTree;
   private final Inspect cmpInspect = new Inspect();
 
   private SelectionChanged<Bean> listener;
 
   public LeftPane(EditorTab parent) {
     this.parent = parent;
-    beanTree = new FilterableBeanTree(parent.getObjectClass()).withSelectionChangedListener(this);
+    beanTree = new FilterableBeansTree(parent.getObjectClass()).withSelectionChangedListener(this);
     new SplitPane().vertical().withParent(this).withChildren(beanTree, cmpInspect);
 
     setId(parent.getObjectClass() + "LeftPane");

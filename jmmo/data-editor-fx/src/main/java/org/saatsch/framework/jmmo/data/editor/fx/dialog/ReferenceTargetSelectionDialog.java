@@ -9,11 +9,11 @@ import org.saatsch.framework.base.jfxbase.control.Button;
 import org.saatsch.framework.base.jfxbase.control.HBox;
 import org.saatsch.framework.base.jfxbase.control.TextField;
 import org.saatsch.framework.jmmo.data.api.PropertyUtil;
-import org.saatsch.framework.jmmo.data.editor.fx.composite.FilterableBeanTree;
+import org.saatsch.framework.jmmo.data.editor.fx.composite.FilterableBeansTree;
 
 public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
 
-  private final FilterableBeanTree cmpTree;
+  private final FilterableBeansTree cmpTree;
 
   public ReferenceTargetSelectionDialog(Property<Object> property) {
     super(property.name());
@@ -26,11 +26,11 @@ public class ReferenceTargetSelectionDialog extends AbstractDialog<Object> {
 
 
     if (PropertyUtil.isPointer(property)) {
-      cmpTree = new FilterableBeanTree((Class<? extends Bean>) PropertyUtil.getPointerType(property));
+      cmpTree = new FilterableBeansTree((Class<? extends Bean>) PropertyUtil.getPointerType(property));
     } else {
       // must be a Collection of Pointers.
       // TODO: check if there are more possible use cases.
-      cmpTree = new FilterableBeanTree(
+      cmpTree = new FilterableBeansTree(
           (Class<? extends Bean>) PropertyUtil.firstTypeArgRecurse(property.metaProperty()));
 
     }

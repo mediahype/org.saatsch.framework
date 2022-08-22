@@ -34,7 +34,7 @@
     <guava.version>11.0.2</guava.version>
     <slf4j-api.version>1.7.30</slf4j-api.version>
     <vavr.version>1.0.0-alpha-4</vavr.version>
-
+    <freemarker.version>2.3.31</freemarker.version>
   </properties>
 
 
@@ -63,6 +63,12 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker-gae</artifactId>
+        <version>${freemarker.version}</version>
+      </dependency>
 
       <dependency>
         <groupId>net.oneandone.reflections8</groupId>

@@ -6,9 +6,9 @@ import org.saatsch.framework.jmmo.data.api.PropertyUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BeanTreeCell extends TreeCell<Bean> {
+public class BeansTreeCell extends TreeCell<Bean> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(BeanTreeCell.class);
+  private static final Logger LOG = LoggerFactory.getLogger(BeansTreeCell.class);
 
   @Override
   protected void updateItem(Bean item, boolean empty) {
