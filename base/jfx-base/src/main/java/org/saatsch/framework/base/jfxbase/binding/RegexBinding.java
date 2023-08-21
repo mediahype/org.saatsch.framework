@@ -15,7 +15,7 @@ public class RegexBinding {
   public static ObservableBooleanValue matches(StringExpression string, String regex){
 
     return new BooleanBinding() {
-      private Pattern pattern = Pattern.compile(regex);
+      private final Pattern pattern = Pattern.compile(regex);
       {bind(string);}
       @Override
       protected boolean computeValue() {

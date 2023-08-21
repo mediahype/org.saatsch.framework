@@ -25,4 +25,8 @@ public class Loading extends Dialog {
     return this;
   }
 
+  public void run(){
+    task.run();
+  }
+
 }

@@ -12,14 +12,15 @@ public class LoadingDemo extends AbstractDemo{
   protected void fill(VBox root) {
 
     Loading x = new Loading().withTask( () ->  {
-		
-    	for (int i= 0 ; i<10000; i++) {
-    		
+
+    	for (int i= 0 ; i<1000000; i++) {
+
     	}
-    	
+
 	} );
 
-    x.showAndWait();
+    x.show();
+    x.run();
 
     // this does not get called.
     x.close();

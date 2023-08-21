@@ -1,5 +1,6 @@
 package org.saatsch.framework.base.jfxbase.control;
 
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 
@@ -19,6 +20,11 @@ public class Label extends javafx.scene.control.Label implements ExtendedNode<La
   }
 
   public Label withTextProperty(StringProperty property){
+    textProperty().bind(property);
+    return this;
+  }
+
+  public Label withTextProperty(StringBinding property){
     textProperty().bind(property);
     return this;
   }

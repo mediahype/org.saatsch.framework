@@ -9,6 +9,9 @@ import java.util.jar.Manifest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Utility that loads {@link Attributes} from a jar file's manifest.
+ */
 public class FromManifest {
 
   private FromManifest() {}
@@ -16,8 +19,10 @@ public class FromManifest {
   private static final Logger LOG = LoggerFactory.getLogger(FromManifest.class);
 
   /**
-   * @param clazz
-   * @return
+   * loads the main manifest attributes.
+   *
+   * @param clazz a class in the jar from which to load the manifest.
+   * @return the loaded {@link Attributes} or null if the attributes could not be loaded.
    * @throws MalformedURLException
    * @throws IOException
    */
@@ -25,6 +30,7 @@ public class FromManifest {
     String className = clazz.getSimpleName() + ".class";
     String classPath = clazz.getResource(className).toString();
     if (!classPath.startsWith("jar")) {
+      LOG.error("can only load manifest from jar. classpath:{}", classPath);
       return null;
     }
     String manifestPath =
