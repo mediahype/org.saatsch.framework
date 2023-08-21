@@ -25,6 +25,7 @@
     <module>jface-base</module>
     <module>jface-support</module>
     <module>jfx-base</module>
+    <module>propertybinding</module>
     <module>serializing</module>
     <module>simplescript</module>
     <module>simplescript-jface</module>

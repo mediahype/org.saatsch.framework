@@ -44,15 +44,22 @@ public class BindingDemo extends AbstractDemo {
   }
 
   @Test
-  public void integerTest (){
+  public void stringTest (){
 
-    SimpleIntegerProperty p1 = new SimpleIntegerProperty(1);
-    SimpleIntegerProperty p2 = new SimpleIntegerProperty(2);
+    SimpleStringProperty p1 = new SimpleStringProperty("Hello ");
+    SimpleStringProperty p2 = new SimpleStringProperty("World!");
 
-    NumberBinding add = p1.add(p2);
 
-    add.addListener( observable -> System.out.println("notified!") );
+    StringExpression concat = p1.concat(p2);
 
+    // this adds an INVALIDATION listener
+    // concat.addListener( observable -> System.out.println("notified!") );
+
+
+    p2.set("Cosmos!");
+
+
+    System.out.println(concat.get());
 
 
   }
