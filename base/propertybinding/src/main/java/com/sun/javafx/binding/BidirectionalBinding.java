@@ -27,7 +27,7 @@ package com.sun.javafx.binding;
 
 import javafx.beans.Observable;
 import javafx.beans.WeakListener;
-import javafx.beans.property.Property;
+import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.util.StringConverter;

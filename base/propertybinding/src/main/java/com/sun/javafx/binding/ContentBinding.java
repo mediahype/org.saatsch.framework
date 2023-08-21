@@ -26,10 +26,7 @@
 package com.sun.javafx.binding;
 
 import javafx.beans.WeakListener;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import javafx.collections.ObservableSet;
+import javafx.collections.*;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

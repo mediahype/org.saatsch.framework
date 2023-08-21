@@ -25,7 +25,6 @@
 
 package com.sun.javafx.binding;
 
-import com.sun.javafx.logging.PlatformLogger;
 
 public class Logging {
 

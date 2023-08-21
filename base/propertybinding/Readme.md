@@ -8,3 +8,6 @@ Things we do not need from javafx:
 * Beans's: 
   * getBean() gets the property's containing bean.
   * getName() gets the property's name.
+* We probably don't need ObservableValue<T> because it introduces ChangeListener.
+* SelectBinding
+* 

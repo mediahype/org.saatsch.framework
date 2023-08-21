@@ -25,8 +25,8 @@
 
 package com.sun.javafx.binding;
 
-import com.sun.javafx.logging.PlatformLogger;
-import com.sun.javafx.logging.PlatformLogger.Level;
+import com.sun.javafx.binding.PlatformLogger;
+import com.sun.javafx.binding.PlatformLogger.Level;
 import com.sun.javafx.property.JavaBeanAccessHelper;
 import com.sun.javafx.property.PropertyReference;
 import javafx.beans.InvalidationListener;
